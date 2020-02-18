@@ -44,11 +44,6 @@ def initmotors():
     robot.Stop(stop.BRAKE)
 
 
-
-
-
-
-
 def main():
     initmotors()
 
