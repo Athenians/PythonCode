@@ -47,7 +47,7 @@ def initmotors():
 def main():
     initmotors()
 
-    robot
+    move(30,200,0)
 
 
 
