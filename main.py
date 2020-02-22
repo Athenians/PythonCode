@@ -33,7 +33,7 @@ def initmotors():
 
      distrot = distance * pi / Wheel_Diameter
 
-     robot.drive(distrot,turn)
+     robot.drive(speed,turn)
 
     if turn <= 0:
         while rw.angle() <= distrot:
