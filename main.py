@@ -59,7 +59,7 @@ def Main():
     set_cursor(OFF)
     set_font('Lat15-Terminus24x12')
 
-    debug_print('Main')
+    debug_print('Main  ')
 
     aaasetup()
 
