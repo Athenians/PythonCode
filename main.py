@@ -19,7 +19,7 @@ import sys
 import time
 
 
-#from aaasetup import aaasetup
+from aaasetup import aaasetup
 from globals import *
 from common import *
 
@@ -86,12 +86,12 @@ def Main():
 
 
 
-    Calibrate()
-    initmotors()
+ #   Calibrate()
+  #  initmotors()
 
- #   aaasetup()
+    aaasetup()
 
-    playtank()
+  #  playtank()
 
     debug_print('Main  Done')
  #   time.sleep(5)
