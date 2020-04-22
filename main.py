@@ -19,13 +19,14 @@ import sys
 import time
 
 
-#from aaasetup import aaasetup
+from aaasetup import aaasetup
 from globals import *
 from common import *
 
 
 btn = Button()
 sound = Sound()
+
 
 
 #turret = Motor(OUTPUT_A)
@@ -85,12 +86,12 @@ def Main():
 
 
 
-    Calibrate()
-    initmotors()
+ #   Calibrate()
+  #  initmotors()
 
- #   aaasetup()
+    aaasetup()
 
-    playtank()
+  #  playtank()
 
     debug_print('Main  Done')
  #   time.sleep(5)
