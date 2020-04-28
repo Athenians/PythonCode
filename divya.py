@@ -24,9 +24,7 @@ for x in range(4):
 tank_pair.on(left_speed=65, right_speed=65)
 sleep(1)
 
-'''
 steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 # drive in a turn for 10 rotations of the outer motor
 steer_pair.on_for_rotations(steering=-60, speed=25, rotations=10)
 steer_pair.off()
-'''
