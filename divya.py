@@ -6,6 +6,22 @@ for row in range(1,n+1):
 from ev3dev2.motor import OUTPUT_C, OUTPUT_B, MoveTank, MoveSteering, SpeedPercent
 from ev3dev2.sensor.lego import TouchSensor
 from time import sleep
+from ev3dev2.motor import OUTPUT_C, OUTPUT_B, MoveTank, MoveSteering, SpeedPercent, MoveDifferential, SpeedRPM
+from ev3dev2.sensor.lego import TouchSensor
+from ev3dev2.wheel import EV3Tire
+
+STUD_MM = 6.35
+
+# test with a robot that:
+# - uses the standard wheels known as EV3Tire
+# - wheels are 16 studs apart
+mdiff = MoveDifferential(OUTPUT_B, OUTPUT_C, EV3Tire, 15 * STUD_MM)
+for x in range(4):
+    # Drive forward 300 mm
+    mdiff.on_for_distance(SpeedRPM(-20), 300,brake=True, block=True)
+    # Rotate 90 degrees clockwise
+    mdiff.turn_right(SpeedRPM(-10), 75, brake=True, block=True, error_margin=2, use_gyro=False)
+
 #Forms a square, moves front, makes another square, and goes back to initial ares
 tank_pair = MoveTank(OUTPUT_B, OUTPUT_C)
 
