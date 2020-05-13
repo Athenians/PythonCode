@@ -46,3 +46,5 @@ steer_pair = MoveSteering(OUTPUT_B, OUTPUT_C)
 # drive in a turn for 10 rotations of the outer motor
 steer_pair.on_for_rotations(steering=-60, speed=25, rotations=10)
 steer_pair.off()
+
+print("Athenians Rock!")
