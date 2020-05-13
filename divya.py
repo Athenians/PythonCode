@@ -1,8 +1,10 @@
+
 n=int(5)
 for row in range(1,n+1):
     for col in range(1,n+1):
         print(row*col)
     print()
+
 from ev3dev2.motor import OUTPUT_C, OUTPUT_B, MoveTank, MoveSteering, SpeedPercent
 from ev3dev2.sensor.lego import TouchSensor
 from time import sleep
@@ -23,6 +25,7 @@ for x in range(4):
     mdiff.turn_right(SpeedRPM(-10), 75, brake=True, block=True, error_margin=2, use_gyro=False)
 
 #Forms a square, moves front, makes another square, and goes back to initial ares
+
 tank_pair = MoveTank(OUTPUT_B, OUTPUT_C)
 
 
