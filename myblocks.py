@@ -11,5 +11,6 @@ tank_pair = MoveTank(OUTPUT_B, OUTPUT_C)
 #no matter what speed always must be a negative integer to go front,positive to go back
 #Fill in number wanted
 #Faster you go more distance you achieve
-tank_pair.on(left_speed=, right_speed=)
+tank_pair.on(left_speed=,right_speed=)
 
+tank_pair.on_for_rotations()
