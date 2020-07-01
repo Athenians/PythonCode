@@ -4,13 +4,20 @@ from ev3dev2.sound import Sound
 from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D, Motor
 from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM
 from ev3dev2.wheel import Wheel
+
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_4
 from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
 # MOVE BLOCK
-tank_pair = MoveTank(OUTPUT_B, OUTPUT_C) 
-#no matter what speed always must be a negative integer to go front,positive to go back
-#Fill in number wanted
-#Faster you go more distance you achieve
-tank_pair.on(left_speed=,right_speed=)
+wheels = MoveTank(OUTPUT_B, OUTPUT_C) 
+#left_speed=
+#circumference=
+#right_speed=
+'''Format
+wheels.on_for_rotations(left_speed,right_speed, rotations, brake=True, block=True)
+'''
+wheels.on_for_rotations(5)
+'''
+How to add pi
+import math
+math.pi will print pi and add it as a variable  
 
-tank_pair.on_for_rotations()
