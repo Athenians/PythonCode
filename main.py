@@ -100,7 +100,7 @@ def Main():
     mtank.gyro = GyroSensor()
     mtank.gyro.calibrate()
  
-    moveblock(mtank,20,315)
+    moveblock(mtank,20, 20,315)
   #  playtank()
 
     debug_print('Main  Done')
