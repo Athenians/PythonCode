@@ -11,8 +11,13 @@ import math
 # MOVE BLOCK
 mtank = MoveTank(OUTPUT_B, OUTPUT_C) 
 def moveblock(mtank,left_speed,right_speed,distance):
-    circumference = math.pi * 100.3
     rotations = distance / circumference
     mtank.on_for_rotations(left_speed,right_speed, rotations, brake=True, block=True)
 
 
+def turnblock(mtank,speed,degrees):
+    mtank.turn_degrees(
+        speed,
+        target_angle,degrees
+    )
+# target_angle or degrees

@@ -46,6 +46,26 @@ log.basicConfig(level=log.DEBUG, format="%(asctime)s %(levelname)5s: %(message)s
 ON = True
 OFF = False
 
+wheel_diameter = 100.3
+circumference = math.pi * wheel_diameter
+mtank = MoveTank(OUTPUT_C, OUTPUT_B)
+mtank.set_polarity('inversed')
+mtank.ramp_up_sp = 2000
+mtank.ramp_down_sp = 2000
+
+mtank.gyro = GyroSensor()
+mtank.gyro.calibrate()
+
+def mission01():
+    for x in range (5):
+        moveblock(mtank,25,25,315)
+        turnblock(mtank,30,90)
+
+mission01()
+    
+
+
+
 
 
 
