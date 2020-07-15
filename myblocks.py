@@ -9,7 +9,8 @@ from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_4
 from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
 # MOVE BLOCK
 mtank = MoveTank(OUTPUT_B, OUTPUT_C) 
-def moveblock(mtank,speed,rotations):
-    mtank.on_for_rotations(speed, rotations, brake=True, block=True)
+def moveblock(mtank,speed,distance):
+    rotations = distance / 315
+    mtank.on_for_rotations(speed, speed, rotations, brake=True, block=True)
 
 
