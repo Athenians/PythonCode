@@ -7,10 +7,12 @@ from ev3dev2.wheel import Wheel
 
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_4
 from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
+import math 
 # MOVE BLOCK
 mtank = MoveTank(OUTPUT_B, OUTPUT_C) 
 def moveblock(mtank,left_speed,right_speed,distance):
-    rotations = distance / 315
+    circumference = math.pi * 100.3
+    rotations = distance / circumference
     mtank.on_for_rotations(left_speed,right_speed, rotations, brake=True, block=True)
 
 
