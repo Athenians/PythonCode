@@ -23,6 +23,7 @@ from aaasetup import aaasetup
 from globals import *
 from common import *
 from myblocks import *
+from missions import *
 
 btn = Button()
 sound = Sound()
@@ -56,12 +57,7 @@ mtank.ramp_down_sp = 2000
 mtank.gyro = GyroSensor()
 mtank.gyro.calibrate()
 
-def mission01():
-    for x in range (5):
-        moveblock(mtank,25,25,315)
-        turnblock(mtank,30,90)
 
-mission01()
     
 
 
@@ -120,8 +116,9 @@ def Main():
     mtank.gyro = GyroSensor()
     mtank.gyro.calibrate()
  
-    moveblock(mtank,20, 20,315)
+    #moveblock(mtank,20, 20,315)
   #  playtank()
+    mission01()
 
     debug_print('Main  Done')
  #   time.sleep(5)
