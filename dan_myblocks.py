@@ -22,17 +22,25 @@ log = getLogger(__name__)
 class AthMoveTank(MoveTank):
     def __init__(self, left_motor_port, right_motor_port,
             Wheel_Dia,
-            csl , csr, # left and right color sensor
+            csl_port , csr_port, # left and right color sensor
+            gy_port,
             desc=None, motor_class=LargeMotor):
 
         MoveTank.__init__(self, left_motor_port, right_motor_port, desc, motor_class)
-        self.wheel_Dia = Wheel_Dia
-        self.Circumference = Wheel_Dia * math.pi
+
+
+        # set up robot
+        self.set_polarity('inversed')
+        self.ramp_up_sp = 2000
+        self.ramp_down_sp = 2000
+
+        #set up gyro sensor
+        self.gyro = GyroSensor(gy_port)
 
         # create and set atrributes for sensors
-        self.csl = ColorSensor(csl)
-        self.csr = ColorSensor(csr)
-  
+        self.csl = ColorSensor(csl_port)
+        self.csr = ColorSensor(csr_port)
+ 
         self.csl.mode = 'COL-REFLECT'
         self.csr.mode = 'COL-REFLECT'        
         
@@ -42,6 +50,11 @@ class AthMoveTank(MoveTank):
         self.csr_min = 0
         self.csr_max = 100
         self.csr_mid = 50
+
+        # set up wheel data
+        self.wheel_Dia = Wheel_Dia
+        self.Circumference = Wheel_Dia * math.pi
+
 
     def calibratecs(self,speed=20, time=5):
         self.csl_min = 0
