@@ -24,6 +24,8 @@ class AthMoveTank(MoveTank):
             Wheel_Dia,
             csl_port , csr_port, # left and right color sensor
             gy_port,
+            turret_port,
+            attach_port,
             desc=None, motor_class=LargeMotor):
 
         MoveTank.__init__(self, left_motor_port, right_motor_port, desc, motor_class)
@@ -33,6 +35,10 @@ class AthMoveTank(MoveTank):
         self.set_polarity('inversed')
         self.ramp_up_sp = 2000
         self.ramp_down_sp = 2000
+
+        #set up small motors
+        self.turret = Motor(turret_port)
+        self.attach = Motor(attach_port)
 
         #set up gyro sensor
         self.gyro = GyroSensor(gy_port)
@@ -100,7 +106,7 @@ class AthMoveTank(MoveTank):
             kp, ki, kd,
             speed,
             cs_for_line,
-            cs_for_follow,                             
+            #cs_for_follow, this will be passed in **kwargs                            
             target_light_intensity=None,
             follow_left_edge=True,
             white=60,
