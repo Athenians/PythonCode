@@ -43,7 +43,7 @@ class AthMoveTank(MoveTank):
         self.csr_max = 100
         self.csr_mid = 50
 
-    def calibratecs(self,speed=20):
+    def calibratecs(self,speed=20, time=5):
         self.csl_min = 0
         self.csl_max = 100
         self.csr_min = 0
@@ -51,7 +51,7 @@ class AthMoveTank(MoveTank):
 
         # dont start until button is pushed!!
 
-        end_time = time.time() + 5
+        end_time = time.time() + time
         
         MoveTank.on(self,speed,speed)
         while time.time() < end_time:
@@ -71,6 +71,7 @@ class AthMoveTank(MoveTank):
         self.csl_mid = (self.csl_max - self.csl_min) / 2
         self.csr_mid = (self.csr_max - self.csr_min) / 2
 
+
     def moveblock(self, speed, distance, brake=True, block=True):
 
         rotations = distance / self.Circumference
@@ -78,6 +79,7 @@ class AthMoveTank(MoveTank):
 
 
     def turnblock(self, speed, target_angle, brake=True, error_margin=2, sleep_time=0.01):
+ 
         MoveTank.turn_degrees(speed,target_angle,brake, error_margin, sleep_time)
 
 
