@@ -66,10 +66,10 @@ class AthMoveTank(MoveTank):
 
 
     def calibratecs(self,speed=20, time=5):
-        self.csl_min = 0
-        self.csl_max = 100
-        self.csr_min = 0
-        self.csr_max = 100
+        self.csl_min = 50
+        self.csl_max = 50
+        self.csr_min = 50
+        self.csr_max = 50
 
         # dont start until button is pushed!!
 
