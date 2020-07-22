@@ -11,12 +11,16 @@ from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM
 
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
 from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
+from ev3dev2.button import Button
 import math 
 import time
-
+from globals import debug_print
 from logging import getLogger
 
 log = getLogger(__name__)
+
+btn = Button()
+
 
 class AthMoveTank(MoveTank):
     def __init__(self, left_motor_port, right_motor_port,
@@ -88,6 +92,73 @@ class AthMoveTank(MoveTank):
 
         self.csl_mid = (self.csl_max - self.csl_min) / 2
         self.csr_mid = (self.csr_max - self.csr_min) / 2
+
+
+    def left(self,state):
+        if state:
+            debug_print('Left button pressed')
+            self.turret.on(speed=45)
+        else:
+            debug_print('Left button released')
+            self.turret.off()
+        return 0
+    
+    def right(self,state):  
+        if state:
+            debug_print('right button pressed')
+            self.turret.on(speed=-45)
+        else:
+            debug_print('right button released')
+            self.turret.off()
+
+        return 0
+    
+    def up(self,state):
+        if state:
+            debug_print('Up button pressed')
+            self.attach.on(speed=25)
+        else:
+            debug_print('Up button released')
+            self.attach.off()
+        return 0
+    
+    def down(self,state):
+        if state:
+            debug_print('Down button pressed')
+            self.attach.on(speed=-25)
+        else:
+            debug_print('Down button released')
+            self.attach.off()
+        return 0
+
+    def enter(self,state):
+        if state:
+            debug_print('Enter button pressed')
+        else:
+            debug_print('Enter button released')
+
+
+    def aaasetup(self):
+
+        debug_print('aaasetup')
+        print('hit a button')  
+        btn.on_left = self.left
+        btn.on_right = self.right
+        btn.on_up = self.up
+        btn.on_down = self.down
+        btn.on_enter = self.enter
+
+        while True:
+            #debug_print(btn.buttons_pressed)
+            if btn.check_buttons(buttons=['enter']):
+                debug_print('enter button hit')
+                break
+            btn.process()
+            time.sleep(0.01)
+
+        self.turret.reset
+        self.attach.reset
+
 
 
     def moveblock(self, speed, distance, brake=True, block=True):
