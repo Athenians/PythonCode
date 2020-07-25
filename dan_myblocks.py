@@ -30,7 +30,10 @@ class AthMoveTank(MoveTank):
             turret_port,
             attach_port,
             desc=None, motor_class=LargeMotor):
-
+         """
+       DB If eve = AthMoveTank(Output_B,Ouput_C, other parameters)
+        eve. turret/attach. on would make the small motors turn on anD move since we created them into attributes in AthMoveTank
+        """
         MoveTank.__init__(self, left_motor_port, right_motor_port, desc, motor_class)
 
 
@@ -39,6 +42,7 @@ class AthMoveTank(MoveTank):
         self.ramp_up_sp = 2000
         self.ramp_down_sp = 2000
 
+       
         #set up small motors
         self.turret = Motor(turret_port)
         self.attach = Motor(attach_port)
@@ -52,7 +56,10 @@ class AthMoveTank(MoveTank):
  
         self.csl.mode = 'COL-REFLECT'
         self.csr.mode = 'COL-REFLECT'        
-        
+        #0=black
+        #100 = white
+        #50 = black and white
+        #set up min, max, and mid for both color sensors
         self.csl_min = 0
         self.csl_max = 100
         self.csl_mid = 50
@@ -74,7 +81,7 @@ class AthMoveTank(MoveTank):
         # dont start until button is pushed!!
 
         end_time = time.time() + time
-        
+        #DB Reads mins and maxs of both sensors and chages it based on what it read
         MoveTank.on(self,speed,speed)
         while time.time() < end_time:
             readl = self.csl.value()
@@ -93,7 +100,7 @@ class AthMoveTank(MoveTank):
         self.csl_mid = (self.csl_max - self.csl_min) / 2
         self.csr_mid = (self.csr_max - self.csr_min) / 2
 
-
+    #sets buttons so when called and pressed will do what was coded to do once pressed
     def left(self,state):
         if state:
             debug_print('Left button pressed')
@@ -142,6 +149,7 @@ class AthMoveTank(MoveTank):
 
         debug_print('aaasetup')
         print('hit a button')  
+        #DB TO press button you have to use btn.on and direction you want to move
         btn.on_left = self.left
         btn.on_right = self.right
         btn.on_up = self.up
@@ -171,7 +179,33 @@ class AthMoveTank(MoveTank):
  
         MoveTank.turn_degrees(speed,target_angle,brake, error_margin, sleep_time)
 
+    def follow_for_distance(self, distance):
+        #DB resets motor to 0 to start distance from her forward
+        start = self.reset 
+        # DB questions-WHat codes will show exact location 
+        #DB location  
 
+        target_location = distance + start
+        while location > target_location:
+            return False
+            else:
+              return True
+
+    def follow_until_line(self,reflected_light_intensity,when_to_stop_enter_number):
+        #DB enter 0 or 100 for what color to find to stop code
+        #DB  stops when while loop is false
+        while (reflected_light_intensity != when_to_stop_enter_number ):
+            return True
+            else:
+                return False
+            
+        
+
+
+        
+
+
+    
     def athfollow_line(self,
             kp, ki, kd,
             speed,
