@@ -25,7 +25,5 @@ from common import *
 from myblocks import *
 
 def mission01():
-    for x in range (4):
-        moveblock(mtank,25,25,300)
-        turnblock(mtank,30,90)
-
+    moveblock(mtank,25,25,300)
+    turnblock(mtank,30,90)
