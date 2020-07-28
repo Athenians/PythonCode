@@ -12,6 +12,6 @@ t.start()
 for i in range(0,5):       # Do five times.
     while bt.value() ==0:  # while button is not pressed
         sleep(0.01)        # do nothing other than wait
-    while ts.value() ==1:  # while button is pressed
+    while bt.value() ==1:  # while button is pressed
         sleep(0.01)        # do nothing other than wait
 Sound.beep()
