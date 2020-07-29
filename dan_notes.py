@@ -9,7 +9,7 @@
 #   Move forward 30mm -- speed normal
 #   turn 90deg -- speed normal
 #   find line -- speed normal
-#   follow line for 300 mm -- speed normal
+#   follow line for 300 mm -- speed normal -- left side of line , right sensor
 #   turn -90 -- speed normal
 #   move forward 50mm -- speed fast
 #   arm to 20x0
