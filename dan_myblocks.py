@@ -30,8 +30,8 @@ class AthMoveTank(MoveTank):
             turret_port,
             attach_port,
             desc=None, motor_class=LargeMotor):
-         """
-       DB If eve = AthMoveTank(Output_B,Ouput_C, other parameters)
+        """
+        DB If eve = AthMoveTank(Output_B,Ouput_C, other parameters)
         eve. turret/attach. on would make the small motors turn on anD move since we created them into attributes in AthMoveTank
         """
         MoveTank.__init__(self, left_motor_port, right_motor_port, desc, motor_class)
@@ -42,7 +42,7 @@ class AthMoveTank(MoveTank):
         self.ramp_up_sp = 2000
         self.ramp_down_sp = 2000
 
-       
+    
         #set up small motors
         self.turret = Motor(turret_port)
         self.attach = Motor(attach_port)
@@ -53,7 +53,7 @@ class AthMoveTank(MoveTank):
         # create and set atrributes for sensors
         self.csl = ColorSensor(csl_port)
         self.csr = ColorSensor(csr_port)
- 
+
         self.csl.mode = 'COL-REFLECT'
         self.csr.mode = 'COL-REFLECT'        
         #0=black
@@ -186,18 +186,23 @@ class AthMoveTank(MoveTank):
         #DB location  
 
         target_location = distance + start
-        while location > target_location:
-            return False
-            else:
-              return True
+        #if location > target_location:
+        #    return False
+        #    else:
+        #      return True
+
+        return True
 
     def follow_until_line(self,reflected_light_intensity,when_to_stop_enter_number):
         #DB enter 0 or 100 for what color to find to stop code
         #DB  stops when while loop is false
-        while (reflected_light_intensity != when_to_stop_enter_number ):
-            return True
-            else:
-                return False
+        #while (reflected_light_intensity != when_to_stop_enter_number ):
+            #return True
+            #else:
+                #return False
+        
+
+        return True
         
         
 
