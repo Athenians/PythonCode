@@ -47,7 +47,8 @@ log.basicConfig(level=log.DEBUG, format="%(asctime)s %(levelname)5s: %(message)s
 ON = True
 OFF = False
 
-wheel_diameter = 100.3
+wheel_diameter = 100.3                  #Wheel diameter for EVE
+#wheel_diameter = 68                    #Wheel diameter for DB robot
 circumference = math.pi * wheel_diameter
 mtank = MoveTank(OUTPUT_C, OUTPUT_B)
 mtank.set_polarity('inversed')

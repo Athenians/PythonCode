@@ -27,3 +27,4 @@ from myblocks import *
 def mission01():
     moveblock(mtank,25,25,300)
     turnblock(mtank,30,90)
+    moveblock(mtank,25,25,1700)
