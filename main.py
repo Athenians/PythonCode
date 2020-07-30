@@ -109,14 +109,6 @@ def Main():
     #aaasetup()
 
 
-    mtank = MoveTank(OUTPUT_C, OUTPUT_B)
-    mtank.set_polarity('inversed')
-    mtank.ramp_up_sp = 2000
-    mtank.ramp_down_sp = 2000
-
-    mtank.gyro = GyroSensor()
-    mtank.gyro.calibrate()
- 
     #moveblock(mtank,20, 20,315)
   #  playtank()
     mission01()
