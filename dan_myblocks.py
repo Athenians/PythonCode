@@ -181,11 +181,11 @@ class AthMoveTank(MoveTank):
 
     def follow_for_distance(self, distance):
         #DB resets motor to 0 to start distance from her forward
-        start = self.reset 
+        #start = self.reset 
         # DB questions-WHat codes will show exact location 
         #DB location  
 
-        target_location = distance + start
+        #target_location = distance + start
         #if location > target_location:
         #    return False
         #    else:
