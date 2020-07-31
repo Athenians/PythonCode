@@ -33,7 +33,7 @@ sound = Sound()
 
 
 # logging
-log.basicConfig(level=log.DEBUG, format="%(asctime)s %(levelname)5s: %(message)s")
+#log.basicConfig(level=log.DEBUG, format="%(asctime)s %(levelname)5s: %(message)s")
 #log = logging.getLogger(__name__)
 
     # logging.basicConfig(filename='mylog.log')
