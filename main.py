@@ -19,10 +19,7 @@ import sys
 import time
 
 
-from aaasetup import aaasetup
 from globals import *
-from common import *
-from myblocks import *
 from missions import *
 
 btn = Button()
@@ -47,51 +44,6 @@ log.basicConfig(level=log.DEBUG, format="%(asctime)s %(levelname)5s: %(message)s
 ON = True
 OFF = False
 
-wheel_diameter = 100.3                  #Wheel diameter for EVE
-#wheel_diameter = 68                    #Wheel diameter for DB robot
-circumference = math.pi * wheel_diameter
-mtank = MoveTank(OUTPUT_C, OUTPUT_B)
-mtank.set_polarity('inversed')
-mtank.ramp_up_sp = 2000
-mtank.ramp_down_sp = 2000
-
-mtank.gyro = GyroSensor()
-mtank.gyro.calibrate()
-
-
-    
-
-
-
-
-
-
-def playtank():
-    mtank = MoveTank(OUTPUT_C, OUTPUT_B)
-    mtank.set_polarity('inversed')
-    mtank.ramp_up_sp = 2000
-    mtank.ramp_down_sp = 2000
-
-    mtank.gyro = GyroSensor()
-    mtank.gyro.calibrate()
- 
- #   Calibrate()
-
-    mtank.turn_degrees(
-        speed=SpeedPercent(20),
-        target_angle=45
-    )
-    
-    mtank.follow_gyro_angle(
-        kp=1, ki=0.05, kd=3.2,
-        speed=SpeedPercent(30),
-        target_angle=45,
-        follow_for=follow_for_ms,
-        ms=4500
-    )
-
-
-
 
 def Main():
     # set the console just how we want it
@@ -102,15 +54,6 @@ def Main():
     debug_print('Main  Start')
 
 
-
- #   Calibrate()
-  #  initmotors()
-
-    #aaasetup()
-
-
-    #moveblock(mtank,20, 20,315)
-  #  playtank()
     mission01()
 
     debug_print('Main  Done')
