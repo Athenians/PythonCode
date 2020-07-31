@@ -22,7 +22,7 @@ log = getLogger(__name__)
 btn = Button()
 
 
-class AthMoveTank(MoveTank):
+class EveTank(MoveTank):
     def __init__(self, left_motor_port, right_motor_port,
             Wheel_Dia,
             csl_port , csr_port, # left and right color sensor
