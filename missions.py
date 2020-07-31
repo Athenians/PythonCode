@@ -11,13 +11,11 @@
 #from ev3dev2.sensor import INPUT_1, INPUT_2,  INPUT_4
 #from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
 
-import logging as log
-
+#import logging as log
 
 import os
 import sys
 import time
-
 
 
 def mission01(eve):

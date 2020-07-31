@@ -53,6 +53,7 @@ def Main():
 
     debug_print('Main  Start')
     Wheel_Dia = 100.3           #68 for otther robot
+    
     eve = AthMoveTank(OUTPUT_C,OUTPUT_B,
             Wheel_Dia,
             csl_port = INPUT_1 , csr_port = INPUT_4, # left and right color sensor
@@ -60,6 +61,10 @@ def Main():
             turret_port = OUTPUT_A,
             attach_port = OUTPUT_D,
             )
+    
+    
+    #menuing system goes here
+    
     mission01(eve)
 
     debug_print('Main  Done')
