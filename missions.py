@@ -19,9 +19,7 @@ import sys
 import time
 
 
-from aaasetup import aaasetup
 from globals import *
-from common import *
 from myblocks import *
 
 def mission01():
