@@ -332,3 +332,7 @@ class EveTank(MoveTank):
             self.on(left_speed, right_speed)
 
         self.stop()
+    
+    def line_finder(rli):
+        while cs != rli:
+            moveblock(self,40,1)
