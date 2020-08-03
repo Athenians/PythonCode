@@ -336,3 +336,4 @@ class EveTank(MoveTank):
     def line_finder(rli):
         while cs != rli:
             moveblock(self,40,1)
+        #line_finder
