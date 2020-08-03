@@ -202,15 +202,17 @@ class EveTank(MoveTank):
                 #return False
         
 
-        return True
-        
-        
+        return True    
 
-
-        
-
-
+    def line_finder(rli):
+        while cs != rli:
+            moveblock(self,40,1)
+        #line_finder
     
+
+
+
+
     def athfollow_line(self,
             kp, ki, kd,
             speed,
@@ -333,7 +335,3 @@ class EveTank(MoveTank):
 
         self.stop()
     
-    def line_finder(rli):
-        while cs != rli:
-            moveblock(self,40,1)
-        #line_finder
