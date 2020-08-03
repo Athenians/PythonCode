@@ -204,9 +204,9 @@ class EveTank(MoveTank):
 
         return True    
 
-    def line_finder(rli):
+    def line_finder(self,rli):
         while cs != rli:
-            moveblock(self,40,1)
+            self.moveblock(self,40,1)
     
 
 
