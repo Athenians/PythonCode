@@ -19,3 +19,10 @@
 #   while going home, arm to 0x0
 
 
+# commands you'll need
+# left_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
+# left_rotations = float(left_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
+# left_mm = float(left_rotations * self.Wheel_Dia)  # distance travelled on the LEFT wheel
+
+
+
