@@ -180,20 +180,41 @@ class EveTank(MoveTank):
         MoveTank.turn_degrees(speed,target_angle,brake, error_margin, sleep_time)
 
     def follow_for_distance(self, distance):
-        #DB resets motor to 0 to start distance from her forward
-        #start = self.reset 
-        # DB questions-WHat codes will show exact location 
+        #Pseudo Code
+        #reset motor to 0 to start distance 
+        #keep track of left and right motor distance average/location
+        #follow line for inputed distance given
+        #Once inputed distance is complete stop 
+        
+        #reset left and right motor to 0 to start distance
+        reset_rm = self.left_motor.reset 
+        reset_lm= self.right_motor.reset 
+        reset = reset_lm + reset_rm
         #DB location  
+        
+        #For left motor
+        left_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
+        left_rotations = float(left_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
+        left_mm = float(left_rotations * self.wheel_Dia)  # distance travelled on the LEFT wheel
+        
+        #for right motor
+        right_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
+        right_rotations = float(right_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
+        right_mm = float(right_rotations * self.wheel_Dia)  # distance travelled on the LEFT wheel
+        target_location = distance + reset
+        
+        #keeps track of location in mm 
+        current_mm = (left_mm + right_mm) / 2
 
-        #target_location = distance + start
-        #if location > target_location:
-        #    return False
-        #    else:
-        #      return True
+        #follow line for inputed distance given
+        if current_mm == target_location:
+         return False
+        else:
+         return True
 
         return True
 
-    def follow_until_line(self,reflected_light_intensity,when_to_stop_enter_number):
+    def follow_until_line(self,reflected_light_intensity,):
         #DB enter 0 or 100 for what color to find to stop code
         #DB  stops when while loop is false
         #while (reflected_light_intensity != when_to_stop_enter_number ):
