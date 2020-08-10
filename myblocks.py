@@ -184,14 +184,14 @@ class EveTank(MoveTank):
         #reset motor to 0 to start distance 
         #keep track of left and right motor distance average/location
         #follow line for inputed distance given
-        #Once inputed distance is complete stop 
+        #Once inputed distance is complete, stop 
         
         #reset left and right motor to 0 to start distance
-        reset_rm = self.left_motor.reset 
-        reset_lm= self.right_motor.reset 
-        reset = reset_lm + reset_rm
+        left_motor.position = 0
+        right_motor.position = 0 
+        reset = left_motor.position + right_motor.position
         #DB location  
-        
+       
         #For left motor
         left_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
         left_rotations = float(left_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
@@ -214,9 +214,12 @@ class EveTank(MoveTank):
 
         return True
 
-    def follow_until_line(self,reflected_light_intensity,):
-        #DB enter 0 or 100 for what color to find to stop code
-        #DB  stops when while loop is false
+    def follow_until_line(self,reflected_light_intensity,target_light_intensity):
+        # pseudo code
+        # DB enter 0 or 100 for what color to find to stop 
+        # follow line
+        # stops when while loop is false
+        # and returns true at the end 
         #while (reflected_light_intensity != when_to_stop_enter_number ):
             #return True
             #else:
@@ -225,8 +228,8 @@ class EveTank(MoveTank):
 
         return True    
 
-    def line_finder(self,rli):
-        while cs != rli:
+    def line_finder(self,reflected_light_intensity):
+        while csl or csr != reflected_light_intensity:
             self.moveblock(self,40,1)
     
 
