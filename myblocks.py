@@ -188,7 +188,7 @@ class EveTank(MoveTank):
         
         #reset left and right motor to 0 to start distance
         self.left_motor.position = 0
-        selfright_motor.position = 0 
+        self.right_motor.position = 0 
         reset = self.left_motor.position + self.right_motor.position
         #DB location  
        
