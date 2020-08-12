@@ -64,9 +64,13 @@ def Main():
     #menuing system goes here
 
     mission01(eve)
+<<<<<<< HEAD
 
     line_finder(eve,0)
 
+=======
+    line_finder(eve,0)
+>>>>>>> debugging line finder
     debug_print('Main  Done')
  #   time.sleep(5)
 
