@@ -65,6 +65,8 @@ def Main():
 
     mission01(eve)
 
+    line_finder(eve,0)
+
     debug_print('Main  Done')
  #   time.sleep(5)
 

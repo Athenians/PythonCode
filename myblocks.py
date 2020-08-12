@@ -229,7 +229,7 @@ class EveTank(MoveTank):
         return True    
 
     def line_finder(self,reflected_light_intensity):
-        while csl or csr != reflected_light_intensity:
+        while self.csl or self.csr != reflected_light_intensity:
             self.moveblock(self,40,1)
     
 
