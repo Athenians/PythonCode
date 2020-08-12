@@ -172,7 +172,7 @@ class EveTank(MoveTank):
     def moveblock(self, speed, distance, brake=True, block=True):
 
         rotations = distance / self.Circumference
-        MoveTank.on_for_rotations(speed,speed, rotations, brake, block)
+        MoveTank.on_for_rotations(SpeedNativeUnits(37),SpeedNativeUnits(37), rotations, brake, block)
 
 
     def turnblock(self, speed, target_angle, brake=True, error_margin=2, sleep_time=0.01):
