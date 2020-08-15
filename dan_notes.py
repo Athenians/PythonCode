@@ -110,12 +110,14 @@ class Menu(object):
         return maxline
 
     def runmenu(self):
+        debug_print('menu start')
         #set up menu names
         menuname = []
         menuname.append('Main')
         menuname.append('Tools')
         menuname.append('Missions')
 
+        debug_print('menu name' + menuname)
         #setting up the menu lines
         menu = []
         menu.append(MenuItem(0,0,'M',menuname[1],'1'))
@@ -138,12 +140,16 @@ class Menu(object):
         btn.on_up = self.up
         btn.on_down = self.down
         btn.on_enter = self.enter
-
+        
+        debug_print('menu hello')
         while True:
+            debug_print('menu backspace: ' + str(btn.check_buttons(buttons=['backspace'])))
             if btn.check_buttons(buttons=['backspace']):
                 break    
             #calculate max_line based on menu
             self.max_line = self.getmaxline(menu,cur_menu)
+
+            debug_print('menu max_line: ' + str(self.max_line))
 
             #display menu on screen 
             if refreshflag:
@@ -158,8 +164,7 @@ class Menu(object):
 
             time.sleep(0.01)
 
-
-
+        debug_print('menu End')
 
 
 #  these are my notes.

@@ -63,7 +63,7 @@ def Main():
     
     #menuing system goes here
 
-    mission02(eve)
+    #mission02(eve)
 
 
 #    eve.line_finder(0)
