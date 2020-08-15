@@ -3,10 +3,10 @@
 
 from ev3dev2.sound import Sound
 
-from ev3dev2.motor import MoveTank, MoveSteering, SpeedPercent
+from ev3dev2.motor import MoveTank
 from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D, Motor
-from ev3dev2.motor import SpeedNativeUnits, follow_for_forever, LineFollowErrorLostLine, LineFollowErrorTooFast
-from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM
+from ev3dev2.motor import follow_for_forever, LineFollowErrorLostLine, LineFollowErrorTooFast
+from ev3dev2.motor import SpeedNativeUnits, SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM
 
 
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
@@ -71,6 +71,14 @@ class EveTank(MoveTank):
         self.wheel_Dia = Wheel_Dia
         self.Circumference = Wheel_Dia * math.pi
 
+    def calibrategs(self):
+        debug_print('GS Calibration begin')
+        for x in range(2):
+            self.gyro.mode = 'GYRO-RATE'
+            self.gyro.mode = 'GYRO-ANG'
+            time.sleep(.5)       
+        gsnow = self.gyro.angle
+        debug_print('GS Calibration finish ' + str(gsnow))
 
     def calibratecs(self,speed=20, time=5):
         self.csl_min = 50
@@ -82,7 +90,7 @@ class EveTank(MoveTank):
 
         end_time = time.time() + time
         #DB Reads mins and maxs of both sensors and chages it based on what it read
-        MoveTank.on(self,speed,speed)
+        self.on(speed,speed)
         while time.time() < end_time:
             readl = self.csl.value()
             readr = self.csr.value()
@@ -95,7 +103,7 @@ class EveTank(MoveTank):
             if self.csr_min > readr:
                 self.csr_min = readr
  
-        MoveTank.off(self)
+        self.off(self)
 
         self.csl_mid = (self.csl_max - self.csl_min) / 2
         self.csr_mid = (self.csr_max - self.csr_min) / 2
@@ -169,15 +177,32 @@ class EveTank(MoveTank):
 
 
 
-    def moveblock(self, speed, distance, brake=True, block=True):
+    def moveblock(self, lspeed, rspeed, distance, brake=True, block=True):
+
+        self.left_motor.reset
+        self.right_motor.reset
 
         rotations = distance / self.Circumference
-        MoveTank.on_for_rotations(SpeedNativeUnits(37),SpeedNativeUnits(37), rotations, brake, block)
 
+        #debug_print('moveblock lspeed = ' + str(lspeed))
+        #debug_print('moveblock rspeed = ' + str(rspeed))
+        #debug_print('moveblock distance = ' + str(distance))
+        #debug_print('moveblock Circumference = ' + str(self.Circumference))
+        #debug_print('moveblock rotations = ' + str(rotations))
+
+        self.on_for_rotations(lspeed,rspeed,rotations)
+        
 
     def turnblock(self, speed, target_angle, brake=True, error_margin=2, sleep_time=0.01):
- 
-        MoveTank.turn_degrees(speed,target_angle,brake, error_margin, sleep_time)
+  
+        gsnow = self._gyro.angle
+        debug_print('turnblock Start Angle ' + str(gsnow))
+
+        self.turn_degrees(speed,target_angle,brake, error_margin, sleep_time)
+
+        gsnow = self._gyro.angle
+        debug_print('turnblock End Angle ' + str(gsnow))
+
 
     def follow_for_distance(self, distance):
         #Pseudo Code
