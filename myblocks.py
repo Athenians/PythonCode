@@ -21,7 +21,6 @@ log = getLogger(__name__)
 
 btn = Button()
 
-
 class EveTank(MoveTank):
     def __init__(self, left_motor_port, right_motor_port,
             Wheel_Dia,
@@ -70,6 +69,7 @@ class EveTank(MoveTank):
         # set up wheel data
         self.wheel_Dia = Wheel_Dia
         self.Circumference = Wheel_Dia * math.pi
+
 
     def calibrategs(self):
         debug_print('GS Calibration begin')
@@ -155,8 +155,9 @@ class EveTank(MoveTank):
 
     def aaasetup(self):
 
-        debug_print('aaasetup')
+        debug_print('aaasetup begin')
         print('hit a button')  
+        time.sleep(1)
         #DB TO press button you have to use btn.on and direction you want to move
         btn.on_left = self.left
         btn.on_right = self.right
@@ -175,7 +176,7 @@ class EveTank(MoveTank):
         self.turret.reset
         self.attach.reset
 
-
+        debug_print('aaasetup End')
 
     def moveblock(self, lspeed, rspeed, distance, brake=True, block=True):
 

@@ -10,6 +10,7 @@ from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, 
 #from ev3dev2.wheel import Wheel
 from ev3dev2.sensor import INPUT_1, INPUT_2,INPUT_3, INPUT_4
 from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
+from ev3dev2.console import Console
 
 import logging as log
 
@@ -22,6 +23,8 @@ import time
 from globals import *
 from missions import *
 from myblocks import EveTank
+
+from dan_notes import Menu
 
 btn = Button()
 sound = Sound()
@@ -62,8 +65,10 @@ def Main():
     
     
     #menuing system goes here
+    #menu = Menu()
+    #menu.runmenu(eve)
 
-    #mission02(eve)
+    mission01(eve)
 
 
 #    eve.line_finder(0)
