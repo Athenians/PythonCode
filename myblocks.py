@@ -254,7 +254,7 @@ class EveTank(MoveTank):
 
         return True    
 
-    def line_finder(self,reflected_light_intensity):
+    def line_finder(self,speed,left_or_rightsensor, white_or_black):
         while self.csl or self.csr != reflected_light_intensity:
             self.moveblock(self,40,1)
     
