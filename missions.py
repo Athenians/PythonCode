@@ -20,9 +20,10 @@ import time
 
 def mission01(eve):
     eve.calibrategs()
-    eve.moveblock(25,25,400)
-    eve.turnblock(30,80)
-    eve.moveblock(25,25,1700)
+    eve.moveblock(25,25,30)
+    eve.turnblock(10,80)
+    eve.moveblock(25,25,1650)
+    eve.turnblock(10,-80)
 
 
 def mission02(eve):
