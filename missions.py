@@ -35,3 +35,23 @@ def mission02(eve):
 
     #eve.moveblock(25,25,1500)
 
+
+def mission03(eve):
+    eve.calibrategs()
+    eve.moveblock(25,25,10)
+    eve.turnblock(10,75)
+    eve.moveblock(25,25,800)
+    eve.moveblock(7,7,60)
+    for x in range (1):
+       eve.moveblock(7,7,-10)
+       eve.moveblock(7,7,70)    
+    for x in range(6):
+        eve.moveblock(7,7,-20)
+        eve.moveblock(7,7,70)
+    for x in range (1):
+        eve.moveblock(7,7,-20)
+        eve.moveblock(7,7,80)
+
+    eve.moveblock(20,20,-1360)
+    
+

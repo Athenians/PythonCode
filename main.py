@@ -67,8 +67,8 @@ def Main():
     #menuing system goes here
     #menu = Menu()
     #menu.runmenu(eve)
-
-    mission01(eve)
+    mission03(eve)
+    #mission01(eve)
 
 
 #    eve.line_finder(0)
