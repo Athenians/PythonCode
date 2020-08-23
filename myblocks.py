@@ -80,7 +80,7 @@ class EveTank(MoveTank):
         gsnow = self.gyro.angle
         debug_print('GS Calibration finish ' + str(gsnow))
 
-    def calibratecs(self,speed=20, time=5):
+    def  calibratecs(self,speed=20, time=5):
         self.csl_min = 50
         self.csl_max = 50
         self.csr_min = 50

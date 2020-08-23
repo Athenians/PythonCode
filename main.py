@@ -62,7 +62,7 @@ def Main():
     
     
     #menuing system goes here
-
+    mission04(eve)
     #mission01(eve)
 
     def calibratecs(self,speed=20, time=5):
@@ -103,12 +103,13 @@ def Main():
         else:
             self.off
             
-    calibratecs(eve)
+    #calibratecs(eve)
             
-    line_finder(eve,eve.csl,0)
+    #line_finder(eve,eve.csl,0)
 
     
-
+# if:
+               # self.left_or_rightsensor.value() ==
     
 
     debug_print('Main  Done')

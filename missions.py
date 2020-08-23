@@ -52,6 +52,8 @@ def mission03(eve):
         eve.moveblock(7,7,-20)
         eve.moveblock(7,7,80)
 
-    eve.moveblock(20,20,-1360)
+    eve.moveblock(60,60,-1360)
     
 
+def mission04(eve):
+    eve.calibrategs
