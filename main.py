@@ -65,47 +65,11 @@ def Main():
     mission04(eve)
     #mission01(eve)
 
-    def calibratecs(self,speed=20, time=5):
-        self.csl_min = 50
-        self.csl_max = 50
-        self.csr_min = 50
-        self.csr_max = 50
 
-        # dont start until button is pushed!!
-
-        end_time = time.time() + time
-        #DB Reads mins and maxs of both sensors and chages it based on what it read
-        self.on(speed,speed)
-        while time.time() < end_time:
-            readl = self.csl.value()
-            readr = self.csr.value()
-            if self.csl_max < readl:
-                self.csl_max = readl
-            if self.csl_min > readl:
-                self.csl_min = readl
-            if self.csr_max < readr:
-                self.csr_max = readr
-            if self.csr_min > readr:
-                self.csr_min = readr
- 
-        self.off(self)
-
-        self.csl_mid = (self.csl_max - self.csl_min) / 2
-        self.csr_mid = (self.csr_max - self.csr_min) / 2
-    
-    def line_finder(self,left_or_rightsensor, white_or_black):
-        #pseudo code
-        #chose which sensor to use 
-        #chose what color to find
-        #
-        while left_or_rightsensor != white_or_black:
-            self.on(20,20) 
-        else:
-            self.off
             
-    #calibratecs(eve)
+    eve.calibratecs(eve)
             
-    #line_finder(eve,eve.csl,0)
+    eve.line_finder(eve,eve.csl,0)
 
     
 # if:

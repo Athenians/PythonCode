@@ -254,16 +254,25 @@ class EveTank(MoveTank):
 
         return True    
 
-    def line_finder(self,left_or_rightsensor, white_or_black):
+    def line_finder(self,speed,left_or_rightsensor, white_or_black):
         #pseudo code
         #chose which sensor to use 
         #chose what color to find
-        #
-        while left_or_rightsensor != white_or_black:
-            self.on(20,20) 
+
+        if left_or_rightsensor == 'l':
+            xmin = self.csl_min
+            xmid = self.csl_mid
+            xmax = self.csl_max
         else:
-            self.off
+            xmin = self.csr_min
+            xmid = self.csr_mid
+            xmax = self.csr_max
         
+        
+        #while self.left_or_rightsensor != white_or_black:
+            #self.on(speed,speed) 
+            #if self.left_or_rightsensor.value() == white_or_black: 
+
     
 
 
