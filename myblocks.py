@@ -263,10 +263,13 @@ class EveTank(MoveTank):
             xmin = self.csl_min
             xmid = self.csl_mid
             xmax = self.csl_max
+            xsensor = self.csl
         else:
             xmin = self.csr_min
             xmid = self.csr_mid
             xmax = self.csr_max
+            xsensor = self.csr
+            
         
         
         #while self.left_or_rightsensor != white_or_black:
