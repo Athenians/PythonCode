@@ -60,16 +60,15 @@ def Main():
             attach_port = OUTPUT_D,
             )
     
-    
+    #eve.calibratecs(eve)
+    eve.line_finder(eve,20,'l',0)
     #menuing system goes here
-    mission04(eve)
+    
     #mission01(eve)
 
 
             
-    eve.calibratecs(eve)
-            
-    eve.line_finder(eve,eve.csl,0)
+    
 
     
 # if:
