@@ -61,19 +61,15 @@ def Main():
             )
     
     #eve.calibratecs(eve)
-    eve.line_finder(eve,20,'l',0)
+    eve.calibratecs()
+    eve.aaasetup()
+    eve.line_finder(20,20,'l','w',5)
     #menuing system goes here
     
-    #mission01(eve)
+    mission01(eve)
 
 
-            
-    
-
-    
-# if:
-               # self.left_or_rightsensor.value() ==
-    
+     
 
     debug_print('Main  Done')
  #   time.sleep(5)
