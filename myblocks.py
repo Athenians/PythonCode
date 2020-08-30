@@ -80,15 +80,16 @@ class EveTank(MoveTank):
         gsnow = self.gyro.angle
         debug_print('GS Calibration finish ' + str(gsnow))
 
-    def  calibratecs(self,speed=20, time=5):
-        self.csl_min = 50
-        self.csl_max = 50
-        self.csr_min = 50
-        self.csr_max = 50
+    def  calibratecs(self,speed=10, itime=5):
+        self.csl_min = 100
+        self.csl_max = 0
+        self.csr_min = 100
+        self.csr_max = 0
 
         # dont start until button is pushed!!
 
-        end_time = time.time() + time
+        end_time = time.time() + itime
+    
         #DB Reads mins and maxs of both sensors and chages it based on what it read
         self.on(speed,speed)
         while time.time() < end_time:
@@ -102,11 +103,18 @@ class EveTank(MoveTank):
                 self.csr_max = readr
             if self.csr_min > readr:
                 self.csr_min = readr
- 
-        self.off(self)
+            time.sleep(.01)  
+        self.off()
 
         self.csl_mid = (self.csl_max - self.csl_min) / 2
         self.csr_mid = (self.csr_max - self.csr_min) / 2
+
+        debug_print('left min: ' + str(self.csl_min) 
+            + ' left mid: ' + str(self.csl_mid)
+            + ' left max: ' + str(self.csl_max))
+        debug_print('right min: ' + str(self.csr_min)
+            + ' right mid: ' + str(self.csr_mid)
+            + ' right max: ' + str(self.csr_max))
 
     #sets buttons so when called and pressed will do what was coded to do once pressed
     def left(self,state):
@@ -261,12 +269,12 @@ class EveTank(MoveTank):
 
         if left_or_rightsensor == 'l':
             xmin = self.csl_min
-            xmid = self.csl_mid
+            #xmid = self.csl_mid
             xmax = self.csl_max
             xsensor = self.csl
         else:
             xmin = self.csr_min
-            xmid = self.csr_mid
+            #xmid = self.csr_mid
             xmax = self.csr_max
             xsensor = self.csr
 
@@ -280,11 +288,10 @@ class EveTank(MoveTank):
             #debug_print(btn.buttons_pressed)
             self.on(lspeed,rspeed)
             xread = xsensor.value()
+            debug_print('xread = ' + str(xread))           
             if wb == 'w' and xread >= xmax:
-                debug_print('xread = ' + str(xread))
                 break
             if wb == 'b' and xread <= xmin:
-                debug_print('xread = ' + str(xread))
                 break           
             time.sleep(0.01)
 
