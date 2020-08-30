@@ -61,12 +61,12 @@ def Main():
             )
     
     #eve.calibratecs(eve)
-    eve.calibratecs()
-    eve.aaasetup()
-    eve.line_finder(20,20,'l','w',5)
+    #eve.calibratecs()
+    #eve.aaasetup()
+    #eve.line_finder(20,20,'l','w',5)
     #menuing system goes here
     
-    mission01(eve)
+    mission05(eve)
 
 
      

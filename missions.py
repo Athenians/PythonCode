@@ -57,3 +57,12 @@ def mission03(eve):
 
 def mission04(eve):
     eve.calibrategs
+
+def mission05(eve):
+    eve.moveblock(20,20,50)
+    eve.turnblock(10,80)
+    eve.moveblock(20,20,670)
+    eve.turnblock(10,70)
+    eve.moveblock(15,15,220)
+    eve.turnblock(10,130)
+    eve.moveblock(40,40,680)
