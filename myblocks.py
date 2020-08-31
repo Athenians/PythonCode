@@ -73,7 +73,7 @@ class EveTank(MoveTank):
 
     def calibrategs(self):
         debug_print('GS Calibration begin')
-        for x in range(2):
+        for _ in range(2):
             self.gyro.mode = 'GYRO-RATE'
             self.gyro.mode = 'GYRO-ANG'
             time.sleep(.5)       
@@ -203,7 +203,9 @@ class EveTank(MoveTank):
         
 
     def turnblock(self, speed, target_angle, brake=True, error_margin=2, sleep_time=0.01):
-  
+        """
+        turnblock
+        """
         gsnow = self._gyro.angle
         debug_print('turnblock Start Angle ' + str(gsnow))
 
@@ -211,6 +213,49 @@ class EveTank(MoveTank):
 
         gsnow = self._gyro.angle
         debug_print('turnblock End Angle ' + str(gsnow))
+
+
+    def line_finder(self,lspeed=10,rspeed=10,left_or_rightsensor='l', wb='w', tolerance=5):
+        """     
+        inputs:
+
+        lspeed - speed for left wheel
+
+        rspeed - speed for right wheel
+
+        left_or_rightsensor - which sensor will find the line
+
+        wb - find (w)hite or (b)lack
+
+        tolerence - tolerence from min or max
+        """
+
+        if left_or_rightsensor == 'l':
+            xmin = self.csl_min
+            #xmid = self.csl_mid
+            xmax = self.csl_max
+            xsensor = self.csl
+        else:
+            xmin = self.csr_min
+            #xmid = self.csr_mid
+            xmax = self.csr_max
+            xsensor = self.csr
+
+        xmax -= tolerance
+        xmin += tolerance
+
+        while True:
+            self.on(lspeed,rspeed)
+            xread = xsensor.value()
+            debug_print('xread = ' + str(xread))           
+            if wb == 'w' and xread >= xmax:
+                break
+            if wb == 'b' and xread <= xmin:
+                break           
+            time.sleep(0.01)
+
+        self.off()
+
 
 
     def follow_for_distance(self, distance):
@@ -261,42 +306,6 @@ class EveTank(MoveTank):
         
 
         return True    
-
-    def line_finder(self,lspeed,rspeed,left_or_rightsensor, wb, tolerance):
-        #pseudo code
-        #chose which sensor to use 
-        #chose what color to find
-
-        if left_or_rightsensor == 'l':
-            xmin = self.csl_min
-            #xmid = self.csl_mid
-            xmax = self.csl_max
-            xsensor = self.csl
-        else:
-            xmin = self.csr_min
-            #xmid = self.csr_mid
-            xmax = self.csr_max
-            xsensor = self.csr
-
-        xmax -= tolerance
-        xmin += tolerance
-
-        #while xsensor.value() != white_or_black:
-        #    self.on(lspeed,rspeed) 
-
-        while True:
-            #debug_print(btn.buttons_pressed)
-            self.on(lspeed,rspeed)
-            xread = xsensor.value()
-            debug_print('xread = ' + str(xread))           
-            if wb == 'w' and xread >= xmax:
-                break
-            if wb == 'b' and xread <= xmin:
-                break           
-            time.sleep(0.01)
-
-        self.off()
-
 
 
     def athfollow_line(self,
