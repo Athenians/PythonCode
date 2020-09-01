@@ -231,6 +231,7 @@ class EveTank(MoveTank):
         debug_print('turnblock End Angle ' + str(gsnow))
 
 
+<<<<<<< HEAD
     def line_finder(self,lspeed=10,rspeed=10,left_or_rightsensor='l', wb='w', tolerance=5):
         """     
         inputs:
@@ -275,6 +276,9 @@ class EveTank(MoveTank):
 
 
     def follow_for_distance(self, distance):
+=======
+    def follow_for_distance(self,speed,distance):
+>>>>>>> folllow for distance
         #Pseudo Code
         #reset motor to 0 to start distance 
         #keep track of left and right motor distance average/location
@@ -302,10 +306,11 @@ class EveTank(MoveTank):
         current_mm = (left_mm + right_mm) / 2
 
         #follow line for inputed distance given
-        if current_mm == target_location:
-         return False
-        else:
-         return True
+        if current_mm != target_location:
+            return True#follow line
+       # else:
+            #stopfollowing line 
+         
 
         return True
 
