@@ -1,5 +1,44 @@
 #!/usr/bin/env python3
 
+
+
+#  these are my notes.
+
+#   pseudo code:
+
+#   Mission xx
+#   Place robot in starting position (manually)
+#   ensure arm is 0x0
+#   Move forward 30mm -- speed normal
+#   turn 90deg -- speed normal
+#   find line -- speed normal
+#   follow line for 300 mm -- speed normal -- left side of line , right sensor
+#   turn -90 -- speed normal
+#   move forward 50mm -- speed fast
+#   arm to 20x0
+#   arm to 20x20
+#   complete mission
+#   go home
+#   while going home, arm to 0x0
+
+
+# commands you'll need
+# left_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
+# left_rotations = float(left_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
+# left_mm = float(left_rotations * self.Wheel_Dia)  # distance travelled on the LEFT wheel
+# current_mm = (left_mm + right_mm) / 2
+
+
+# WARNING  -- DONT SCROLL DOWN ANY FURTHER
+
+
+
+
+
+
+
+
+
 from ev3dev2.button import Button
 from globals import debug_print
 import time
@@ -61,19 +100,19 @@ class Menu(object):
         return 0
 
     def enter(self,state):
-        if state:
+        if not state:
             debug_print('xEnter button pressed')
             if self.cur_linetype == 'M':
                 self.cur_menu = int(self.cur_lineprog)
                 self.cur_line = 0
             else:
+                # run the function
                 self.lcd.text_at(self.cur_lineprog, column=1,row=1, reset_console = True,inverse=True)
                 debug_print('cur_lineprog: ' + self.cur_lineprog)
                 function=getattr(self.eve,self.cur_lineprog)
                 debug_print('function: ' + str(function))
                 function()
-
-                #self.cur_lineprog    #this should run the function          
+       
         self.refreshflag = True
         return 0
 
@@ -116,7 +155,6 @@ class Menu(object):
         debug_print('menu start')
         self.eve = eve
 
-       # self.__init__(self)
         #set up menu names
         self.menuname = []
         self.menuname.append('Main')
@@ -130,7 +168,7 @@ class Menu(object):
         self.menu.append(MenuItem(0,1,'M',self.menuname[2],'2'))
         self.menu.append(MenuItem(0,2,'P','DoIt','all_missions(eve)'))
         self.menu.append(MenuItem(1,0,'P','AAASetup','aaasetup'))
-        self.menu.append(MenuItem(1,1,'P','Calibratcs','eve.calibratecs()'))
+        self.menu.append(MenuItem(1,1,'P','Calibratcs','calibratecs'))
         self.menu.append(MenuItem(2,0,'P','mission01','mission01(eve)'))
         self.menu.append(MenuItem(2,1,'P','mission02','mission02(eve)'))
         self.menu.append(MenuItem(2,2,'P','mission03','mission03(eve)'))
@@ -177,30 +215,56 @@ class Menu(object):
         debug_print('menu End')
 
 
-#  these are my notes.
-
-#   pseudo code:
-
-#   Mission xx
-#   Place robot in starting position (manually)
-#   ensure arm is 0x0
-#   Move forward 30mm -- speed normal
-#   turn 90deg -- speed normal
-#   find line -- speed normal
-#   follow line for 300 mm -- speed normal -- left side of line , right sensor
-#   turn -90 -- speed normal
-#   move forward 50mm -- speed fast
-#   arm to 20x0
-#   arm to 20x20
-#   complete mission
-#   go home
-#   while going home, arm to 0x0
 
 
-# commands you'll need
-# left_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
-# left_rotations = float(left_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
-# left_mm = float(left_rotations * self.Wheel_Dia)  # distance travelled on the LEFT wheel
-# current_mm = (left_mm + right_mm) / 2
+d={}
+d[('Veggie','beans')] = ('long','Green')
+d[('Veggie','onions')] = ('round','Yellow')
+d[('Veggie','beets')] = ('round','Red')
+d[('Fruit','Banana')] = ('long','Yellow')
+d[('Fruit','Apple')] = ('round','Red')
+d[('Fruit','cherry')] = ('small','Red')
+
+list(d.keys())
+
+for k, v in sorted(d.items()):
+    if k[0] == 'Veggie':
+        print(k[0],k[1], v[0], v[1])
+
+print ()
 
 
+#set up menu names
+menuname = {
+    0:'Main',
+    1:'Tools',
+    2:'Missions',
+    9:'xxxx'
+}
+
+print( menuname)
+
+
+menu={}
+menu[(0,0)] = ('M',menuname[1],1)
+menu[(0,1)] = ('M',menuname[2],2)
+menu[(0,2)] = ('P','DoIt','all_missions')
+menu[(1,0)] = ('P','AAASetup','aaasetup')
+menu[(1,1)] = ('P','Calibratcs','calibratecs')
+menu[(2,0)] = ('P','mission01','mission01(eve)')
+menu[(2,1)] = ('P','mission02','mission02(eve)')
+menu[(2,2)] = ('P','mission03','mission03(eve)')
+
+
+for k, v in sorted(menu.items()):
+    if k[0] == 0:
+        print(k[0],k[1], v[0], v[1],v[2])
+
+print ()
+
+
+import time
+end_time = time.time() + 5
+while time.time() < end_time:
+    print(time.time())
+print ('end')
