@@ -6,7 +6,7 @@ from ev3dev2.sound import Sound
 from ev3dev2.motor import MoveTank
 from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D, Motor
 from ev3dev2.motor import follow_for_forever, LineFollowErrorLostLine, LineFollowErrorTooFast
-from ev3dev2.motor import SpeedNativeUnits, SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM
+from ev3dev2.motor import SpeedNativeUnits, SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM,speed_to_speedvalue
 
 
 from ev3dev2.sensor import INPUT_1, INPUT_2, INPUT_3, INPUT_4
@@ -20,6 +20,15 @@ from logging import getLogger
 log = getLogger(__name__)
 
 btn = Button()
+
+class EveColorSensor(ColorSensor):
+    def __init__(self,port):
+
+        ColorSensor.__init__(self,port)
+
+        self.min = 0
+        self.mid = 0
+        self.max = 0
 
 class EveTank(MoveTank):
     def __init__(self, left_motor_port, right_motor_port,
@@ -50,8 +59,8 @@ class EveTank(MoveTank):
         self.gyro = GyroSensor(gy_port)
 
         # create and set atrributes for sensors
-        self.csl = ColorSensor(csl_port)
-        self.csr = ColorSensor(csr_port)
+        self.csl = EveColorSensor(csl_port)
+        self.csr = EveColorSensor(csr_port)
 
         self.csl.mode = 'COL-REFLECT'
         self.csr.mode = 'COL-REFLECT'        
@@ -59,12 +68,19 @@ class EveTank(MoveTank):
         #100 = white
         #50 = black and white
         #set up min, max, and mid for both color sensors
-        self.csl_min = 0
-        self.csl_max = 100
-        self.csl_mid = 50
-        self.csr_min = 0
-        self.csr_max = 100
-        self.csr_mid = 50
+        #self.csl_min = 0
+        #self.csl_max = 100
+        #self.csl_mid = 50
+        #self.csr_min = 0
+        #self.csr_max = 100
+        #self.csr_mid = 50
+
+        self.csl.min = 0
+        self.csl.max = 100
+        self.csl.mid = 50
+        self.csr.min = 0
+        self.csr.max = 100
+        self.csr.mid = 50
 
         # set up wheel data
         self.wheel_Dia = Wheel_Dia
@@ -73,40 +89,48 @@ class EveTank(MoveTank):
 
     def calibrategs(self):
         debug_print('GS Calibration begin')
-        for x in range(2):
+        for _ in range(2):
             self.gyro.mode = 'GYRO-RATE'
             self.gyro.mode = 'GYRO-ANG'
             time.sleep(.5)       
         gsnow = self.gyro.angle
         debug_print('GS Calibration finish ' + str(gsnow))
 
-    def  calibratecs(self,speed=20, time=5):
-        self.csl_min = 50
-        self.csl_max = 50
-        self.csr_min = 50
-        self.csr_max = 50
+    def  calibratecs(self,speed=10, itime=4):
+        self.csl.min = 100
+        self.csl.max = 0
+        self.csr.min = 100
+        self.csr.max = 0
 
         # dont start until button is pushed!!
 
-        end_time = time.time() + time
+        end_time = time.time() + itime
+    
         #DB Reads mins and maxs of both sensors and chages it based on what it read
         self.on(speed,speed)
         while time.time() < end_time:
             readl = self.csl.value()
             readr = self.csr.value()
-            if self.csl_max < readl:
-                self.csl_max = readl
-            if self.csl_min > readl:
-                self.csl_min = readl
-            if self.csr_max < readr:
-                self.csr_max = readr
-            if self.csr_min > readr:
-                self.csr_min = readr
- 
-        self.off(self)
+            if self.csl.max < readl:
+                self.csl.max = readl
+            if self.csl.min > readl:
+                self.csl.min = readl
+            if self.csr.max < readr:
+                self.csr.max = readr
+            if self.csr.min > readr:
+                self.csr.min = readr
+            time.sleep(.01)  
+        self.off()
 
-        self.csl_mid = (self.csl_max - self.csl_min) / 2
-        self.csr_mid = (self.csr_max - self.csr_min) / 2
+        self.csl.mid = (self.csl.max - self.csl.min) / 2
+        self.csr.mid = (self.csr.max - self.csr.min) / 2
+
+        debug_print('left min: ' + str(self.csl.min) 
+            + ' left mid: ' + str(self.csl.mid)
+            + ' left max: ' + str(self.csl.max))
+        debug_print('right min: ' + str(self.csr.min)
+            + ' right mid: ' + str(self.csr.mid)
+            + ' right max: ' + str(self.csr.max))
 
     #sets buttons so when called and pressed will do what was coded to do once pressed
     def left(self,state):
@@ -195,7 +219,9 @@ class EveTank(MoveTank):
         
 
     def turnblock(self, speed, target_angle, brake=True, error_margin=2, sleep_time=0.01):
-  
+        """
+        turnblock
+        """
         gsnow = self._gyro.angle
         debug_print('turnblock Start Angle ' + str(gsnow))
 
@@ -205,7 +231,54 @@ class EveTank(MoveTank):
         debug_print('turnblock End Angle ' + str(gsnow))
 
 
+<<<<<<< HEAD
+    def line_finder(self,lspeed=10,rspeed=10,left_or_rightsensor='l', wb='w', tolerance=5):
+        """     
+        inputs:
+
+        lspeed - speed for left wheel
+
+        rspeed - speed for right wheel
+
+        left_or_rightsensor - which sensor will find the line
+
+        wb - find (w)hite or (b)lack
+
+        tolerence - tolerence from min or max
+        """
+
+        if left_or_rightsensor == 'l':
+            xmin = self.csl.min
+            #xmid = self.csl_mid
+            xmax = self.csl.max
+            xsensor = self.csl
+        else:
+            xmin = self.csr.min
+            #xmid = self.csr_mid
+            xmax = self.csr.max
+            xsensor = self.csr
+
+        xmax -= tolerance
+        xmin += tolerance
+
+        while True:
+            self.on(lspeed,rspeed)
+            xread = xsensor.value()
+            #debug_print('xread = ' + str(xread))           
+            if wb == 'w' and xread >= xmax:
+                break
+            if wb == 'b' and xread <= xmin:
+                break           
+            time.sleep(0.01)
+
+        self.off()
+
+
+
     def follow_for_distance(self, distance):
+=======
+    def follow_for_distance(self,speed,distance):
+>>>>>>> folllow for distance
         #Pseudo Code
         #reset motor to 0 to start distance 
         #keep track of left and right motor distance average/location
@@ -233,10 +306,11 @@ class EveTank(MoveTank):
         current_mm = (left_mm + right_mm) / 2
 
         #follow line for inputed distance given
-        if current_mm == target_location:
-         return False
-        else:
-         return True
+        if current_mm != target_location:
+            return True#follow line
+       # else:
+            #stopfollowing line 
+         
 
         return True
 
@@ -253,43 +327,6 @@ class EveTank(MoveTank):
         
 
         return True    
-
-    def line_finder(self,lspeed,rspeed,left_or_rightsensor, wb, tolerance):
-        #pseudo code
-        #chose which sensor to use 
-        #chose what color to find
-
-        if left_or_rightsensor == 'l':
-            xmin = self.csl_min
-            xmid = self.csl_mid
-            xmax = self.csl_max
-            xsensor = self.csl
-        else:
-            xmin = self.csr_min
-            xmid = self.csr_mid
-            xmax = self.csr_max
-            xsensor = self.csr
-
-        xmax -= tolerance
-        xmin += tolerance
-
-        #while xsensor.value() != white_or_black:
-        #    self.on(lspeed,rspeed) 
-
-        while True:
-            #debug_print(btn.buttons_pressed)
-            self.on(lspeed,rspeed)
-            xread = xsensor.value()
-            if wb == 'w' and xread >= xmax:
-                debug_print('xread = ' + str(xread))
-                break
-            if wb == 'b' and xread <= xmin:
-                debug_print('xread = ' + str(xread))
-                break           
-            time.sleep(0.01)
-
-        self.off()
-
 
 
     def athfollow_line(self,
@@ -363,15 +400,24 @@ class EveTank(MoveTank):
         self.cs = cs_for_line #set the input color sensor to tank
         assert self._cs, "ColorSensor must be defined"
 
-        if target_light_intensity is None:
-            target_light_intensity = self._cs.reflected_light_intensity
+        white = self.cs.max
+
+        target_light_intensity = self.cs.mid   
+        #if target_light_intensity is None:
+           # target_light_intensity = self._cs.reflected_light_intensity
+
+        debug_print('white = ' + str(white) + '  tli = ' + str(target_light_intensity))
 
         integral = 0.0
         last_error = 0.0
         derivative = 0.0
         off_line_count = 0
+        speed = speed_to_speedvalue(speed)
         speed_native_units = speed.to_native_units(self.left_motor)
-        MAX_SPEED = SpeedNativeUnits(self.max_speed)
+
+        #MAX_SPEED = SpeedNativeUnits(self.max_speed)
+
+        start_time = time.time() 
 
         while follow_for(self, **kwargs):
             reflected_light_intensity = self._cs.reflected_light_intensity
@@ -383,19 +429,30 @@ class EveTank(MoveTank):
 
             if not follow_left_edge:
                 turn_native_units *= -1
+            
+            debug_print(
+                  'Timer: ' + str(time.time() - start_time)
+                + ' kp: ' + str(kp)
+                + ' ki: ' + str(ki)
+                + ' kd: ' + str(kd)
+                + ' rli: ' + str(reflected_light_intensity) 
+                + ' error: ' + str(error) 
+                + ' integral: ' + str(integral)
+                + ' derivative: ' + str(derivative)
+                + ' turn_native_units: ' + str(turn_native_units))
 
             left_speed = SpeedNativeUnits(speed_native_units - turn_native_units)
             right_speed = SpeedNativeUnits(speed_native_units + turn_native_units)
 
-            if left_speed > MAX_SPEED:
-                log.info("%s: left_speed %s is greater than MAX_SPEED %s"  % (self, left_speed, MAX_SPEED))
-                self.stop()
-                raise LineFollowErrorTooFast("The robot is moving too fast to follow the line")
+          #  if left_speed > MAX_SPEED:
+          #      log.info("%s: left_speed %s is greater than MAX_SPEED %s"  % (self, left_speed, MAX_SPEED))
+          #      self.stop()
+          #      raise LineFollowErrorTooFast("The robot is moving too fast to follow the line")
 
-            if right_speed > MAX_SPEED:
-                log.info("%s: right_speed %s is greater than MAX_SPEED %s"  % (self, right_speed, MAX_SPEED))
-                self.stop()
-                raise LineFollowErrorTooFast("The robot is moving too fast to follow the line")
+          #  if right_speed > MAX_SPEED:
+          #      log.info("%s: right_speed %s is greater than MAX_SPEED %s"  % (self, right_speed, MAX_SPEED))
+          #      self.stop()
+          #      raise LineFollowErrorTooFast("The robot is moving too fast to follow the line")
 
             # Have we lost the line?
             if reflected_light_intensity >= white:

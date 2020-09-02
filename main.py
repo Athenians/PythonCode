@@ -5,8 +5,8 @@
 from ev3dev2.button import Button
 from ev3dev2.sound import Sound
 from ev3dev2.motor import OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D
-from ev3dev2.motor import MoveTank
-from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, follow_for_ms
+from ev3dev2.motor import MoveTank,LineFollowErrorTooFast
+from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, follow_for_ms, follow_for_forever
 #from ev3dev2.wheel import Wheel
 from ev3dev2.sensor import INPUT_1, INPUT_2,INPUT_3, INPUT_4
 from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
@@ -61,12 +61,41 @@ def Main():
             )
     
     #eve.calibratecs(eve)
+<<<<<<< HEAD
     #eve.calibratecs()
     #eve.aaasetup()
     #eve.line_finder(20,20,'l','w',5)
     #menuing system goes here
     
-    mission05(eve)
+
+=======
+    eve.calibratecs(10,4)
+    eve.aaasetup()
+    eve.line_finder(10,10,'r','b',5)
+    eve.aaasetup()
+
+    
+    try:
+        # Follow the line for 4500ms
+        #eve.cs = eve.csr
+        eve.athfollow_line(
+            kp=4, ki=0.025, kd=1.5,
+            speed=SpeedPercent(10),
+            cs_for_line = eve.csr,            
+            #target_light_intensity=eve.csr.mid,
+            #white= eve.csr.max,
+            follow_left_edge=False,
+            sleep_time=0.02,
+            follow_for=follow_for_forever
+            #,  ms=4500
+        )
+    except LineFollowErrorTooFast:
+        eve.stop()
+        raise
+    #menuing system goes here
+    
+    # mission01(eve)
+>>>>>>> 6639e25661be6ea054a839ab82fc4f9cc00670f0
 
 
      
