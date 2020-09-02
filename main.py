@@ -65,7 +65,8 @@ def Main():
     eve.aaasetup()
     eve.line_finder(10,10,'r','b',5)
     eve.aaasetup()
-
+    eve.motor_mover(10,45,eve.attach)
+    eve.motor_mover(1,25,eve.turret)
     
     try:
         # Follow the line for 4500ms
