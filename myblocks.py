@@ -230,8 +230,11 @@ class EveTank(MoveTank):
         gsnow = self._gyro.angle
         debug_print('turnblock End Angle ' + str(gsnow))
 
+    # turret/attach
 
-<<<<<<< HEAD
+    def motor_mover(self,rotations, speed, xmotor):
+        self.xmotor.on_for_rotations(speed,rotations)
+
     def line_finder(self,lspeed=10,rspeed=10,left_or_rightsensor='l', wb='w', tolerance=5):
         """     
         inputs:
@@ -276,9 +279,6 @@ class EveTank(MoveTank):
 
 
     def follow_for_distance(self, distance):
-=======
-    def follow_for_distance(self,speed,distance):
->>>>>>> folllow for distance
         #Pseudo Code
         #reset motor to 0 to start distance 
         #keep track of left and right motor distance average/location
