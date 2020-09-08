@@ -278,7 +278,7 @@ class EveTank(MoveTank):
 
 
 
-    def follow_for_distance(self, distance):
+    def follow_for_distance(self,speed,distance):
         #Pseudo Code
         #reset motor to 0 to start distance 
         #keep track of left and right motor distance average/location
@@ -307,14 +307,16 @@ class EveTank(MoveTank):
 
         #follow line for inputed distance given
         if current_mm != target_location:
-            return True#follow line
-       # else:
-            #stopfollowing line 
+            return False
+        else:
+           return True
+       
+        
          
 
         return True
 
-    def follow_until_line(self,reflected_light_intensity,target_light_intensity):
+    def follow_until_line(self,sensor, rli,color):
         # pseudo code
         # DB enter 0 or 100 for what color to find to stop 
         # follow line

@@ -63,7 +63,7 @@ def Main():
     #eve.calibratecs(eve)
     eve.calibratecs(10,4)
     eve.aaasetup()
-    eve.line_finder(10,10,'r','b',5)
+    eve.line_finder(10,10,'l','w',5)
     eve.aaasetup()
     eve.motor_mover(10,45,eve.attach)
     eve.motor_mover(1,25,eve.turret)
@@ -72,9 +72,9 @@ def Main():
         # Follow the line for 4500ms
         #eve.cs = eve.csr
         eve.athfollow_line(
-            kp=4, ki=0.025, kd=1.5,
+            kp=2.5, ki=0, kd=0,
             speed=SpeedPercent(10),
-            cs_for_line = eve.csr,            
+            cs_for_line = eve.csl,            
             #target_light_intensity=eve.csr.mid,
             #white= eve.csr.max,
             follow_left_edge=False,
