@@ -72,7 +72,7 @@ def Main():
         # Follow the line for 4500ms
         #eve.cs = eve.csr
         eve.athfollow_line(
-            kp=2.5, ki=0.070, kd=1,
+            kp=2, ki=0.060, kd=3,
             speed=SpeedPercent(10),
             cs_for_line = eve.csr,            
             #target_light_intensity=eve.csr.mid,
