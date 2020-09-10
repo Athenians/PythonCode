@@ -233,7 +233,7 @@ class EveTank(MoveTank):
     # turret/attach
 
     def motor_mover(self,rotations, speed, xmotor):
-        self.xmotor.on_for_rotations(speed,rotations)
+        xmotor.on_for_rotations(speed,rotations)
 
     def line_finder(self,lspeed=10,rspeed=10,left_or_rightsensor='l', wb='w', tolerance=5):
         """     
