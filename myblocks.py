@@ -30,6 +30,31 @@ class EveColorSensor(ColorSensor):
         self.mid = 0
         self.max = 0
 
+def follow_until_line(eve,cs_for_until, wb, tolerence=2):
+    # pseudo code
+    # DB enter 0 or 100 for what color to find to stop 
+    # follow line
+    # stops when while loop is false
+    # and returns true at the end 
+    #while (reflected_light_intensity != when_to_stop_enter_number ):
+        #return True
+        #else:
+            #return False
+
+    if wb == 'w' :
+        target_rli = cs_for_until.max - tolerence
+    else:
+        target_rli = cs_for_until.min + tolerence
+
+    rli = cs_for_until.reflected_light_intensity
+
+    debug_print(
+          ' rli: ' + str(rli) 
+        + ' target_rli: ' + str(target_rli) )
+
+    return rli  !=   target_rli
+    #return True    
+
 class EveTank(MoveTank):
     def __init__(self, left_motor_port, right_motor_port,
             Wheel_Dia,
@@ -68,13 +93,6 @@ class EveTank(MoveTank):
         #100 = white
         #50 = black and white
         #set up min, max, and mid for both color sensors
-        #self.csl_min = 0
-        #self.csl_max = 100
-        #self.csl_mid = 50
-        #self.csr_min = 0
-        #self.csr_max = 100
-        #self.csr_mid = 50
-
         self.csl.min = 0
         self.csl.max = 100
         self.csl.mid = 50
@@ -316,20 +334,6 @@ class EveTank(MoveTank):
 
         return True
 
-    def follow_until_line(self,sensor, rli,color):
-        # pseudo code
-        # DB enter 0 or 100 for what color to find to stop 
-        # follow line
-        # stops when while loop is false
-        # and returns true at the end 
-        #while (reflected_light_intensity != when_to_stop_enter_number ):
-            #return True
-            #else:
-                #return False
-        
-
-        return True    
-
 
     def athfollow_line(self,
             kp, ki, kd,
@@ -434,9 +438,9 @@ class EveTank(MoveTank):
             
             debug_print(
                   'Timer: ' + str(time.time() - start_time)
-                + ' kp: ' + str(kp)
-                + ' ki: ' + str(ki)
-                + ' kd: ' + str(kd)
+                # + ' kp: ' + str(kp)
+                # + ' ki: ' + str(ki)
+                # + ' kd: ' + str(kd)
                 + ' rli: ' + str(reflected_light_intensity) 
                 + ' error: ' + str(error) 
                 + ' integral: ' + str(integral)

@@ -216,6 +216,13 @@ class Menu(object):
 
 
 
+import time
+end_time = time.time() + 5
+while time.time() < end_time:
+    print(time.time())
+    time.sleep(.2)
+print ('end')
+
 
 d={}
 d[('Veggie','beans')] = ('long','Green')
@@ -226,6 +233,7 @@ d[('Fruit','Apple')] = ('round','Red')
 d[('Fruit','cherry')] = ('small','Red')
 
 list(d.keys())
+list(d.values())
 
 for k, v in sorted(d.items()):
     if k[0] == 'Veggie':
@@ -245,6 +253,7 @@ menuname = {
 print( menuname)
 
 
+
 menu={}
 menu[(0,0)] = ('M',menuname[1],1)
 menu[(0,1)] = ('M',menuname[2],2)
@@ -255,16 +264,18 @@ menu[(2,0)] = ('P','mission01','mission01(eve)')
 menu[(2,1)] = ('P','mission02','mission02(eve)')
 menu[(2,2)] = ('P','mission03','mission03(eve)')
 
+xmenu = 2
 
 for k, v in sorted(menu.items()):
-    if k[0] == 0:
+    if k[0] == xmenu:
         print(k[0],k[1], v[0], v[1],v[2])
 
 print ()
 
 
-import time
-end_time = time.time() + 5
-while time.time() < end_time:
-    print(time.time())
-print ('end')
+x = (42,60,30,1,9)
+
+print (x[3])
+
+
+

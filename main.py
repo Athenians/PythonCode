@@ -21,7 +21,7 @@ import time
 
 from globals import *
 from missions import *
-from myblocks import EveTank
+from myblocks import EveTank, follow_until_line
 
 btn = Button()
 sound = Sound()
@@ -72,14 +72,17 @@ def Main():
         # Follow the line for 4500ms
         #eve.cs = eve.csr
         eve.athfollow_line(
-            kp=2, ki=0.060, kd=3,
+           # kp=2, ki=0.060, kd=3,
+            kp=3, ki=0.08, kd=1.5,
             speed=SpeedPercent(10),
-            cs_for_line = eve.csr,            
-            #target_light_intensity=eve.csr.mid,
-            #white= eve.csr.max,
-            follow_left_edge=True,
+            cs_for_line = eve.csl,            
+            follow_left_edge=False,
             sleep_time=0.01,
-            follow_for=follow_for_forever
+            follow_for=follow_until_line,
+            cs_for_until = eve.csr,
+            wb = 'b'
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms
             #,  ms=4500
         )
     except LineFollowErrorTooFast:
