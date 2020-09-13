@@ -5,11 +5,13 @@
 #from ev3dev2.button import Button
 #from ev3dev2.sound import Sound
 #from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D, Motor
-from ev3dev2.motor import MoveTank
+from ev3dev2.motor import MoveTank, LineFollowErrorTooFast, follow_for_forever
 from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, follow_for_ms
 #from ev3dev2.wheel import Wheel
 #from ev3dev2.sensor import INPUT_1, INPUT_2,  INPUT_4
 #from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
+
+from myblocks import EveTank, follow_until_line
 
 #import logging as log
 
@@ -66,3 +68,85 @@ def mission05(eve):
     eve.moveblock(15,15,220)
     eve.turnblock(10,130)
     eve.moveblock(40,40,680)
+
+
+
+def danmission01(eve):
+
+    eve.calibratecs(10,4)
+    eve.aaasetup()
+    #eve.line_finder(10,10,'r','w',5)
+    #eve.aaasetup()
+    #eve.motor_mover(45,10,eve.attach)
+    #eve.motor_mover(25,.5,eve.turret)
+    
+    #to 1st line
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, kd=3,
+            kp=3.5, ki=0.08, kd=2.5,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(10),
+            cs_for_line = eve.csl,            
+            follow_left_edge=False,
+            sleep_time=0.01,
+            #follow_for=follow_until_line,cs_for_until = eve.csr, wb = 'b',tolerence=4
+            follow_for=follow_for_forever
+            #follow_for=follow_for_ms
+            #,  ms=4500
+        )
+    except LineFollowErrorTooFast:
+        eve.stop()
+        raise
+
+    #Get beyond line
+    eve.moveblock(20,20,10,brake=False)
+
+    # go around curve
+    try:
+        eve.athfollow_line(
+           # kp=2, ki=0.060, kd=3,
+            kp=3.5, ki=0.08, kd=1,         # use this for change of directions speed = 10       
+            # kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(10),
+            cs_for_line = eve.csl,            
+            follow_left_edge=True,
+            sleep_time=0.01,
+            follow_for=follow_until_line,
+            cs_for_until = eve.csr,
+            wb = 'b',
+            tolerence=2
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms
+            #,  ms=4500
+        )
+    except LineFollowErrorTooFast:
+        eve.stop()
+        raise
+
+    #Get beyond line
+    eve.moveblock(20,20,10,brake=False)
+
+    #finish the mission
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, kd=3,
+            #kp=3.5, ki=0.08, kd=2.5,         # use this for change of directions speed = 10       
+            kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(20),
+            cs_for_line = eve.csl,            
+            follow_left_edge=True,
+            sleep_time=0.01,
+            follow_for=follow_until_line,
+            cs_for_until = eve.csr,
+            wb = 'b',
+            tolerence=2
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms
+            #,  ms=4500
+        )
+    except LineFollowErrorTooFast:
+        eve.stop()
+        raise
+
+

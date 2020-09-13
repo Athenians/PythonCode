@@ -60,34 +60,10 @@ def Main():
             attach_port = OUTPUT_D,
             )
     
-    #eve.calibratecs(eve)
-    eve.calibratecs(10,4)
-    eve.aaasetup()
-    #eve.line_finder(10,10,'r','w',5)
-    #eve.aaasetup()
-    #eve.motor_mover(10,45,eve.attach)
-    #eve.motor_mover(1,25,eve.turret)
-    
-    try:
-        # Follow the line for 4500ms
-        #eve.cs = eve.csr
-        eve.athfollow_line(
-           # kp=2, ki=0.060, kd=3,
-            kp=3, ki=0.08, kd=1.5,
-            speed=SpeedPercent(10),
-            cs_for_line = eve.csl,            
-            follow_left_edge=False,
-            sleep_time=0.01,
-            follow_for=follow_until_line,
-            cs_for_until = eve.csr,
-            wb = 'b'
-            #follow_for=follow_for_forever
-            #follow_for=follow_for_ms
-            #,  ms=4500
-        )
-    except LineFollowErrorTooFast:
-        eve.stop()
-        raise
+ 
+    danmission01(eve)
+
+
     #menuing system goes here
     
     # mission01(eve)

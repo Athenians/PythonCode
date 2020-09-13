@@ -29,6 +29,7 @@ class EveColorSensor(ColorSensor):
         self.min = 0
         self.mid = 0
         self.max = 0
+        self.side = ""
 
 def follow_until_line(eve,cs_for_until, wb, tolerence=2):
     # pseudo code
@@ -41,18 +42,26 @@ def follow_until_line(eve,cs_for_until, wb, tolerence=2):
         #else:
             #return False
 
-    if wb == 'w' :
-        target_rli = cs_for_until.max - tolerence
-    else:
-        target_rli = cs_for_until.min + tolerence
-
     rli = cs_for_until.reflected_light_intensity
-
+ 
     debug_print(
           ' rli: ' + str(rli) 
-        + ' target_rli: ' + str(target_rli) )
+          +' tolerence: ' + str(tolerence) 
+          +' cs_for_until.max: ' + str(cs_for_until.max) 
+          +' cs_for_until.min: ' + str(cs_for_until.min) 
+          +' wb: ' + str(wb) 
+        )
 
-    return rli  !=   target_rli
+    if wb == 'w' :
+        target_rli = cs_for_until.max - tolerence
+        return rli <= cs_for_until.max - tolerence
+    else:
+        target_rli = cs_for_until.min + tolerence       
+        return rli >= target_rli
+
+
+
+    return rli  >=   target_rli
     #return True    
 
 class EveTank(MoveTank):
@@ -96,9 +105,11 @@ class EveTank(MoveTank):
         self.csl.min = 0
         self.csl.max = 100
         self.csl.mid = 50
+        self.csl.side = "left"
         self.csr.min = 0
         self.csr.max = 100
         self.csr.mid = 50
+        self.csr.side = "right"
 
         # set up wheel data
         self.wheel_Dia = Wheel_Dia
@@ -129,14 +140,11 @@ class EveTank(MoveTank):
         while time.time() < end_time:
             readl = self.csl.value()
             readr = self.csr.value()
-            if self.csl.max < readl:
-                self.csl.max = readl
-            if self.csl.min > readl:
-                self.csl.min = readl
-            if self.csr.max < readr:
-                self.csr.max = readr
-            if self.csr.min > readr:
-                self.csr.min = readr
+            self.csl.max = max(self.csl.max,readl)
+            self.csl.min = min(self.csl.min,readl)
+            self.csr.max = max(self.csr.max,readr)
+            self.csr.min = min(self.csr.min,readr)
+
             time.sleep(.01)  
         self.off()
 
@@ -250,7 +258,7 @@ class EveTank(MoveTank):
 
     # turret/attach
 
-    def motor_mover(self,rotations, speed, xmotor):
+    def motor_mover(self,speed, rotations, xmotor):
         xmotor.on_for_rotations(speed,rotations)
 
     def line_finder(self,lspeed=10,rspeed=10,left_or_rightsensor='l', wb='w', tolerance=5):
@@ -343,7 +351,7 @@ class EveTank(MoveTank):
             target_light_intensity=None,
             follow_left_edge=True,
             white=60,
-            off_line_count_max=20,
+            off_line_count_max=10,
             sleep_time=0.01,
             follow_for = follow_for_forever,
             **kwargs
@@ -406,13 +414,19 @@ class EveTank(MoveTank):
         self.cs = cs_for_line #set the input color sensor to tank
         assert self._cs, "ColorSensor must be defined"
 
-        white = self.cs.max
+        white = cs_for_line.max
+        side  = cs_for_line.side
 
-        target_light_intensity = self.cs.mid   
+        target_light_intensity = cs_for_line.mid   
         #if target_light_intensity is None:
            # target_light_intensity = self._cs.reflected_light_intensity
 
-        debug_print('white = ' + str(white) + '  tli = ' + str(target_light_intensity))
+        debug_print('white = ' + str(white) 
+            + ' tli = ' + str(target_light_intensity)
+            + ' kp: ' + str(kp)
+            + ' ki: ' + str(ki)
+            + ' kd: ' + str(kd)   
+        )
 
         integral = 0.0
         last_error = 0.0
@@ -426,7 +440,7 @@ class EveTank(MoveTank):
         start_time = time.time() 
 
         while follow_for(self, **kwargs):
-            reflected_light_intensity = self._cs.reflected_light_intensity
+            reflected_light_intensity = cs_for_line.reflected_light_intensity
             error = target_light_intensity - reflected_light_intensity
             integral = integral + error
             derivative = error - last_error
@@ -436,19 +450,25 @@ class EveTank(MoveTank):
             if not follow_left_edge:
                 turn_native_units *= -1
             
-            debug_print(
-                  'Timer: ' + str(time.time() - start_time)
-                # + ' kp: ' + str(kp)
-                # + ' ki: ' + str(ki)
-                # + ' kd: ' + str(kd)
-                + ' rli: ' + str(reflected_light_intensity) 
-                + ' error: ' + str(error) 
-                + ' integral: ' + str(integral)
-                + ' derivative: ' + str(derivative)
-                + ' turn_native_units: ' + str(turn_native_units))
+            if side == "left":
+                offsetfactor = -1
+            else:
+                offsetfactor = 1
 
-            left_speed = SpeedNativeUnits(speed_native_units - turn_native_units)
-            right_speed = SpeedNativeUnits(speed_native_units + turn_native_units)
+            offset = .20
+            tnul =  1+offset * offsetfactor
+            tnur =  1-offset * offsetfactor 
+          
+            # debug_print(
+            #       'Timer: ' + str(time.time() - start_time)
+            #     + ' rli: ' + str(reflected_light_intensity) 
+            #     + ' error: ' + str(error) 
+            #     + ' integral: ' + str(integral)
+            #     + ' derivative: ' + str(derivative)
+            #     + ' turn_native_units: ' + str(turn_native_units))
+
+            left_speed = SpeedNativeUnits(speed_native_units - turn_native_units * tnul)
+            right_speed = SpeedNativeUnits(speed_native_units + turn_native_units * tnul)
 
           #  if left_speed > MAX_SPEED:
           #      log.info("%s: left_speed %s is greater than MAX_SPEED %s"  % (self, left_speed, MAX_SPEED))
@@ -461,9 +481,12 @@ class EveTank(MoveTank):
           #      raise LineFollowErrorTooFast("The robot is moving too fast to follow the line")
 
             # Have we lost the line?
-            if reflected_light_intensity >= white:
+            if reflected_light_intensity >= white-2:
                 off_line_count += 1
-
+                debug_print(
+                      ' white: ' + str(white-2) 
+                    + ' off_line_count: ' + str(off_line_count)
+                )
                 if off_line_count >= off_line_count_max:
                     self.stop()
                     raise LineFollowErrorLostLine("we lost the line")
