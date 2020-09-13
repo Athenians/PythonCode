@@ -468,7 +468,7 @@ class EveTank(MoveTank):
             #     + ' turn_native_units: ' + str(turn_native_units))
 
             left_speed = SpeedNativeUnits(speed_native_units - turn_native_units * tnul)
-            right_speed = SpeedNativeUnits(speed_native_units + turn_native_units * tnul)
+            right_speed = SpeedNativeUnits(speed_native_units + turn_native_units * tnur)
 
           #  if left_speed > MAX_SPEED:
           #      log.info("%s: left_speed %s is greater than MAX_SPEED %s"  % (self, left_speed, MAX_SPEED))
