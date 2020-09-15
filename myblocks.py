@@ -455,7 +455,7 @@ class EveTank(MoveTank):
             else:
                 offsetfactor = 1
 
-            offset = .20
+            offset = .25
             tnul =  1+offset * offsetfactor
             tnur =  1-offset * offsetfactor 
           

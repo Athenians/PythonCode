@@ -40,8 +40,11 @@ def mission02(eve):
 
 def mission03(eve):
     eve.calibrategs()
-    eve.moveblock(25,25,10)
-    eve.turnblock(10,75)
+    eve.aaasetup()
+    eve.moveblock(7,7,50)
+    eve.aaasetup()
+    eve.turnblock(10,90)
+    eve.aaasetup()
     eve.moveblock(25,25,800)
     eve.moveblock(7,7,60)
     for x in range (1):
@@ -84,10 +87,10 @@ def danmission01(eve):
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, kd=3,
-            kp=3.5, ki=0.08, kd=2.5,         # use this for change of directions speed = 10       
+            kp=2, ki=0.08, kd=2,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(10),
-            cs_for_line = eve.csl,            
+            cs_for_line = eve.csr,            
             follow_left_edge=False,
             sleep_time=0.01,
             #follow_for=follow_until_line,cs_for_until = eve.csr, wb = 'b',tolerence=4
