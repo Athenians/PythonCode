@@ -18,7 +18,7 @@ from globals import debug_print
 from logging import getLogger
 
 log = getLogger(__name__)
-
+ 
 btn = Button()
 
 class EveColorSensor(ColorSensor):
@@ -61,7 +61,41 @@ def follow_until_line(eve,cs_for_until, wb, tolerence=2):
 
 
 
-    return rli  >=   target_rli
+    return False
+
+
+ def follow_for_distance(eve,speed,distance):
+    #Pseudo Code
+    #reset motor to 0 to start distance 
+    #keep track of left and right motor distance average/location
+    #follow line for inputed distance given
+    #Once inputed distance is complete, stop 
+        
+    #reset left and right motor to 0 to start distance
+    self.left_motor.position = 0
+    self.right_motor.position = 0 
+    #DB location  
+       
+    #For left motor
+    left_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
+    left_rotations = float(left_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
+    left_mm = float(left_rotations * self.wheel_Dia)  # distance travelled on the LEFT wheel
+        
+    #for right motor
+    right_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
+    right_rotations = float(right_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
+    right_mm = float(right_rotations * self.wheel_Dia)  # distance travelled on the LEFT wheel
+        
+    #keeps track of location in mm 
+    current_mm = (left_mm + right_mm) / 2
+
+    #follow line for inputed distance given
+    if current_mm < distance:
+        return False
+    else:
+       return True
+
+    return False
     #return True    
 
 class EveTank(MoveTank):
@@ -303,44 +337,6 @@ class EveTank(MoveTank):
         self.off()
 
 
-
-    def follow_for_distance(self,speed,distance):
-        #Pseudo Code
-        #reset motor to 0 to start distance 
-        #keep track of left and right motor distance average/location
-        #follow line for inputed distance given
-        #Once inputed distance is complete, stop 
-        
-        #reset left and right motor to 0 to start distance
-        self.left_motor.position = 0
-        self.right_motor.position = 0 
-        reset = self.left_motor.position + self.right_motor.position
-        #DB location  
-       
-        #For left motor
-        left_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
-        left_rotations = float(left_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
-        left_mm = float(left_rotations * self.wheel_Dia)  # distance travelled on the LEFT wheel
-        
-        #for right motor
-        right_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
-        right_rotations = float(right_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
-        right_mm = float(right_rotations * self.wheel_Dia)  # distance travelled on the LEFT wheel
-        target_location = distance + reset
-        
-        #keeps track of location in mm 
-        current_mm = (left_mm + right_mm) / 2
-
-        #follow line for inputed distance given
-        if current_mm != target_location:
-            return False
-        else:
-           return True
-       
-        
-         
-
-        return True
 
 
     def athfollow_line(self,

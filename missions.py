@@ -95,8 +95,7 @@ def danmission01(eve):
             sleep_time=0.01,
             #follow_for=follow_until_line,cs_for_until = eve.csr, wb = 'b',tolerence=4
             follow_for=follow_for_forever
-            #follow_for=follow_for_ms
-            #,  ms=4500
+            #follow_for=follow_for_ms,  ms=4500
         )
     except LineFollowErrorTooFast:
         eve.stop()
