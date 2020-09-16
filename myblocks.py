@@ -62,9 +62,10 @@ def follow_until_line(eve,cs_for_until, wb, tolerence=2):
 
 
     return False
-
-
- def follow_for_distance(eve,speed,distance):
+    
+    
+    
+def follow_for_distance(eve,speed,distance):
     #Pseudo Code
     #reset motor to 0 to start distance 
     #keep track of left and right motor distance average/location
@@ -72,19 +73,19 @@ def follow_until_line(eve,cs_for_until, wb, tolerence=2):
     #Once inputed distance is complete, stop 
         
     #reset left and right motor to 0 to start distance
-    self.left_motor.position = 0
-    self.right_motor.position = 0 
+    eve.left_motor.position = 0
+    eve.right_motor.position = 0 
     #DB location  
        
     #For left motor
-    left_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
-    left_rotations = float(left_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
-    left_mm = float(left_rotations * self.wheel_Dia)  # distance travelled on the LEFT wheel
+    left_pos = eve.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
+    left_rotations = float(left_pos / eve.left_motor.count_per_rot)  # this converts encoder counts to rotations
+    left_mm = float(left_rotations * eve.wheel_Dia)  # distance travelled on the LEFT wheel
         
     #for right motor
-    right_pos = self.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
-    right_rotations = float(right_pos / self.left_motor.count_per_rot)  # this converts encoder counts to rotations
-    right_mm = float(right_rotations * self.wheel_Dia)  # distance travelled on the LEFT wheel
+    right_pos = eve.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
+    right_rotations = float(right_pos / eve.left_motor.count_per_rot)  # this converts encoder counts to rotations
+    right_mm = float(right_rotations * eve.wheel_Dia)  # distance travelled on the LEFT wheel
         
     #keeps track of location in mm 
     current_mm = (left_mm + right_mm) / 2
@@ -96,7 +97,7 @@ def follow_until_line(eve,cs_for_until, wb, tolerence=2):
        return True
 
     return False
-    #return True    
+
 
 class EveTank(MoveTank):
     def __init__(self, left_motor_port, right_motor_port,

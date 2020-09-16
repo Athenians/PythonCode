@@ -11,7 +11,7 @@ from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, 
 #from ev3dev2.sensor import INPUT_1, INPUT_2,  INPUT_4
 #from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
 
-from myblocks import EveTank, follow_until_line
+from myblocks import EveTank, follow_until_line,follow_for_distance
 
 #import logging as log
 
