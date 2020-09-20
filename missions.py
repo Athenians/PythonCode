@@ -61,7 +61,8 @@ def mission03(eve):
     
 
 def mission04(eve):
-    eve.calibrategs
+    eve.calibrategs()
+    eve.aaasetup()
 
 def mission05(eve):
     eve.moveblock(20,20,50)
@@ -72,6 +73,12 @@ def mission05(eve):
     eve.turnblock(10,130)
     eve.moveblock(40,40,680)
 
+def mission06(eve):
+    eve.calibrategs()
+    eve.aaasetup()
+    eve.moveblock(15,15,739)
+    eve.aaasetup()
+    eve.turnblock(7,90) 
 
 
 def danmission01(eve):

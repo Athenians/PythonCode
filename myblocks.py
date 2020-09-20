@@ -73,8 +73,10 @@ def follow_for_distance(eve,speed,distance):
     #Once inputed distance is complete, stop 
         
     #reset left and right motor to 0 to start distance
+    """
     eve.left_motor.position = 0
     eve.right_motor.position = 0 
+    """
     #DB location  
        
     #For left motor
@@ -279,7 +281,7 @@ class EveTank(MoveTank):
         self.on_for_rotations(lspeed,rspeed,rotations)
         
 
-    def turnblock(self, speed, target_angle, brake=True, error_margin=2, sleep_time=0.01):
+    def turnblock(self, speed, target_angle, brake=True, error_margin=1, sleep_time=0.01):
         """
         turnblock
         """

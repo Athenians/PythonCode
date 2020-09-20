@@ -61,9 +61,9 @@ def Main():
             )
     
  
-    #mission03(eve)
+    mission06(eve)
     
-    danmission01(eve)
+    #danmission01(eve)
 
     #menuing system goes here
     
