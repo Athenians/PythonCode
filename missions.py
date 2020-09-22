@@ -136,10 +136,31 @@ def mission07(eve):
             follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
             #follow_for=follow_for_forever
             #follow_for=follow_for_ms,  ms=4500
+        
         )
     except LineFollowErrorTooFast:
         eve.stop() 
         raise
+    eve.moveblock(20,20,30,brake=False)
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, kd=3,
+            kp=2, ki=0.08, kd=2,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(10),
+            cs_for_line = eve.csr,            
+            follow_left_edge=True,
+            sleep_time=0.01,
+            follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms,  ms=4500
+        
+        )
+    except LineFollowErrorTooFast:
+        eve.stop() 
+        raise
+
+
     eve.turnblock(10,-45)
     
 
