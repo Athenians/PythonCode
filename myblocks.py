@@ -74,6 +74,7 @@ def follow_for_distance(eve,speed,distance):
         
     #reset left and right motor to 0 to start distance
     """
+    Do this before starting
     eve.left_motor.position = 0
     eve.right_motor.position = 0 
     """
@@ -111,7 +112,7 @@ class EveTank(MoveTank):
             desc=None, motor_class=LargeMotor):
         """
         DB If eve = AthMoveTank(Output_B,Ouput_C, other parameters)
-        eve. turret/attach. on would make the small motors turn on anD move since we created them into attributes in AthMoveTank
+        eve. turret/attach. on would make the small motors turn on and move since we created them into attributes in EveTank
         """
         MoveTank.__init__(self, left_motor_port, right_motor_port, desc, motor_class)
 
