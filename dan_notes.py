@@ -214,7 +214,7 @@ class Menu(object):
 
         debug_print('menu End')
 
-
+#More notes below
 
 import time
 end_time = time.time() + 5
@@ -264,7 +264,7 @@ menu[(2,0)] = ('P','mission01','mission01(eve)')
 menu[(2,1)] = ('P','mission02','mission02(eve)')
 menu[(2,2)] = ('P','mission03','mission03(eve)')
 
-xmenu = 2
+xmenu = 0
 
 for k, v in sorted(menu.items()):
     if k[0] == xmenu:
