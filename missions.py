@@ -38,7 +38,7 @@ def mission02(eve):
     #eve.moveblock(25,25,1500)
 
 
-def mission03(eve):
+def mission_Step_Counter(eve):
     eve.calibrategs()
     eve.aaasetup()
     eve.moveblock(7,7,50)
@@ -80,7 +80,7 @@ def mission06(eve):
     eve.aaasetup()
     eve.turnblock(7,90) 
 
-def mission07(eve):
+def mission_Row_Machine(eve):
     eve.calibratecs(10,4)
     eve.aaasetup()
     eve.line_finder(10,10,'l','b')
