@@ -83,11 +83,12 @@ def mission06(eve):
 def mission_Row_Machine(eve):
     eve.calibratecs(10,4)
     eve.aaasetup()
-    eve.line_finder(10,10,'l','b')
+    eve.line_finder(10,10,'r','b')
+    eve.aaasetup()
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, kd=3,
-            kp=2, ki=0.08, kd=2,         # use this for change of directions speed = 10       
+            kp=1.8, ki=0.08, kd=1,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(10),
             cs_for_line = eve.csl,            
@@ -101,6 +102,7 @@ def mission_Row_Machine(eve):
         eve.stop()
         raise
     eve.moveblock(20,20,30,brake=False)
+    eve.aaasetup()
 
     try:
         eve.athfollow_line(
@@ -122,7 +124,10 @@ def mission_Row_Machine(eve):
     eve.moveblock(20,20,30,brake=False)
 
     eve.turnblock(10,-20)
+
     eve.line_finder(10,10,'r','b')
+
+    eve.aaasetup()
 
     try:
         eve.athfollow_line(
@@ -145,7 +150,7 @@ def mission_Row_Machine(eve):
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, kd=3,
-            kp=2, ki=0.08, kd=2,         # use this for change of directions speed = 10       
+            kp=1.8, ki=0.08, kd=2,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(10),
             cs_for_line = eve.csr,            
@@ -161,7 +166,36 @@ def mission_Row_Machine(eve):
         raise
 
 
-    eve.turnblock(10,-45)
+    eve.turnblock(10,-58)
+    eve.aaasetup()
+
+def mission07(eve):
+    eve.calibratecs(10,4)
+    eve.aaasetup()
+    eve.line_finder(10,10,'r','b')
+    eve.aaasetup()
+    
+    eve.left_motor.position = 0
+    eve.right_motor.position = 0 
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, kd=3,
+            kp=1.8, ki=0.08, kd=2,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(10),
+            cs_for_line = eve.csr,            
+            follow_left_edge=True,
+            sleep_time=0.01,
+            #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
+            follow_for = follow_for_distance,distance = 1140
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms,  ms=4500
+        
+        )
+    except LineFollowErrorTooFast:
+        eve.stop() 
+        raise
+
     
 
     

@@ -65,7 +65,7 @@ def follow_until_line(eve,cs_for_until, wb, tolerence=2):
     
     
     
-def follow_for_distance(eve,speed,distance):
+def follow_for_distance(eve,distance):
     #Pseudo Code
     #reset motor to 0 to start distance 
     #keep track of left and right motor distance average/location
@@ -83,21 +83,24 @@ def follow_for_distance(eve,speed,distance):
     #For left motor
     left_pos = eve.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
     left_rotations = float(left_pos / eve.left_motor.count_per_rot)  # this converts encoder counts to rotations
-    left_mm = float(left_rotations * eve.wheel_Dia)  # distance travelled on the LEFT wheel
+    left_mm = float(left_rotations * eve.wheel_Dia * math.pi)  # distance travelled on the LEFT wheel
         
     #for right motor
-    right_pos = eve.left_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
-    right_rotations = float(right_pos / eve.left_motor.count_per_rot)  # this converts encoder counts to rotations
-    right_mm = float(right_rotations * eve.wheel_Dia)  # distance travelled on the LEFT wheel
+    right_pos = eve.right_motor.position      # this gets you the current motor position of the left motor - returns encoder counts
+    right_rotations = float(right_pos / eve.right_motor.count_per_rot)  # this converts encoder counts to rotations
+    right_mm = float(right_rotations * eve.wheel_Dia * math.pi)  # distance travelled on the LEFT wheel
         
     #keeps track of location in mm 
     current_mm = (left_mm + right_mm) / 2
-
+    debug_print("Current location = " + str(current_mm) 
+        + " Diameter = "+ str(eve.wheel_Dia)
+        + " eve.left_motor.position = " + str(eve.left_motor.position) 
+        + " eve.left_motor.count_per_rot = " + str(eve.left_motor.count_per_rot))
     #follow line for inputed distance given
     if current_mm < distance:
-        return False
+        return True
     else:
-       return True
+       return False
 
     return False
 
