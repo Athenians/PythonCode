@@ -88,7 +88,7 @@ def mission_Row_Machine(eve):
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, kd=3,
-            kp=1.8, ki=0.08, kd=1,         # use this for change of directions speed = 10       
+            kp=2, ki=0.0, kd=0,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(10),
             cs_for_line = eve.csl,            
@@ -170,7 +170,7 @@ def mission_Row_Machine(eve):
     eve.aaasetup()
 
 def mission07(eve):
-    eve.calibratecs(10,4)
+    eve.calibratecs(10,2)
     eve.aaasetup()
     eve.line_finder(10,10,'r','b')
     eve.aaasetup()
@@ -179,9 +179,9 @@ def mission07(eve):
     eve.right_motor.position = 0 
     try:
         eve.athfollow_line(
-            #kp=2, ki=0.060, kd=3,
-            kp=1.8, ki=0.08, kd=2,         # use this for change of directions speed = 10       
-            #kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
+            #kp=2, ki=0.060, #kd=3,
+            kp=1.5, ki=0.03, kd=2,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(10),
             cs_for_line = eve.csr,            
             follow_left_edge=True,
@@ -195,6 +195,11 @@ def mission07(eve):
     except LineFollowErrorTooFast:
         eve.stop() 
         raise
+
+    eve.turnblock(10,-55)
+    eve.moveblock(10,10,100)
+    eve.aaasetup()
+   
 
     
 

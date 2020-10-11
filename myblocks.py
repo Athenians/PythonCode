@@ -92,10 +92,10 @@ def follow_for_distance(eve,distance):
         
     #keeps track of location in mm 
     current_mm = (left_mm + right_mm) / 2
-    debug_print("Current location = " + str(current_mm) 
-        + " Diameter = "+ str(eve.wheel_Dia)
-        + " eve.left_motor.position = " + str(eve.left_motor.position) 
-        + " eve.left_motor.count_per_rot = " + str(eve.left_motor.count_per_rot))
+    # debug_print("Current location = " + str(current_mm) 
+    #     + " Diameter = "+ str(eve.wheel_Dia)
+    #     + " eve.left_motor.position = " + str(eve.left_motor.position) 
+    #     + " eve.left_motor.count_per_rot = " + str(eve.left_motor.count_per_rot))
     #follow line for inputed distance given
     if current_mm < distance:
         return True
@@ -166,7 +166,7 @@ class EveTank(MoveTank):
         gsnow = self.gyro.angle
         debug_print('GS Calibration finish ' + str(gsnow))
 
-    def  calibratecs(self,speed=10, itime=4):
+    def  calibratecs(self,speed=10, itime=2):
         self.csl.min = 100
         self.csl.max = 0
         self.csr.min = 100
@@ -458,17 +458,17 @@ class EveTank(MoveTank):
             else:
                 offsetfactor = 1
 
-            offset = .25
+            offset = 0
             tnul =  1+offset * offsetfactor
             tnur =  1-offset * offsetfactor 
           
-            # debug_print(
-            #       'Timer: ' + str(time.time() - start_time)
-            #     + ' rli: ' + str(reflected_light_intensity) 
-            #     + ' error: ' + str(error) 
-            #     + ' integral: ' + str(integral)
-            #     + ' derivative: ' + str(derivative)
-            #     + ' turn_native_units: ' + str(turn_native_units))
+            debug_print(
+                  'Timer: ' + str(time.time() - start_time)
+                + ' rli: ' + str(reflected_light_intensity) 
+                + ' error: ' + str(error) 
+                + ' integral: ' + str(integral)
+                + ' derivative: ' + str(derivative)
+                + ' turn_native_units: ' + str(turn_native_units))
 
             left_speed = SpeedNativeUnits(speed_native_units - turn_native_units * tnul)
             right_speed = SpeedNativeUnits(speed_native_units + turn_native_units * tnur)
