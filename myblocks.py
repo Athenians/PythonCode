@@ -204,6 +204,7 @@ class EveTank(MoveTank):
         if state:
             debug_print('Left button pressed')
             self.turret.on(speed=45)
+            print('Left motor position: ' + str(-10))
         else:
             debug_print('Left button released')
             self.turret.off()
