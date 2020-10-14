@@ -204,7 +204,7 @@ class EveTank(MoveTank):
         if state:
             debug_print('Left button pressed')
             self.turret.on(speed=45)
-            print('Left motor position: ' + str(-10))
+            print('Turret motor position(left): ' + str(eve.turret.postion))
         else:
             debug_print('Left button released')
             self.turret.off()
@@ -214,6 +214,7 @@ class EveTank(MoveTank):
         if state:
             debug_print('right button pressed')
             self.turret.on(speed=-45)
+            print('Turret motor position(right): ' + str(+10))
         else:
             debug_print('right button released')
             self.turret.off()
@@ -224,15 +225,18 @@ class EveTank(MoveTank):
         if state:
             debug_print('Up button pressed')
             self.attach.on(speed=25)
+            print('Attach motor position(up): ' + str(+10))
         else:
             debug_print('Up button released')
             self.attach.off()
+
         return 0
     
     def down(self,state):
         if state:
             debug_print('Down button pressed')
             self.attach.on(speed=-25)
+            print('Attach motor postion(down):' + str(-10))
         else:
             debug_print('Down button released')
             self.attach.off()
