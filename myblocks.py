@@ -214,7 +214,7 @@ class EveTank(MoveTank):
         if state:
             debug_print('right button pressed')
             self.turret.on(speed=-45)
-            print('Turret motor position(right): ' + str(+10))
+            print('Turret motor position(right): ' + str(eve.turret.postion))
         else:
             debug_print('right button released')
             self.turret.off()
@@ -225,7 +225,7 @@ class EveTank(MoveTank):
         if state:
             debug_print('Up button pressed')
             self.attach.on(speed=25)
-            print('Attach motor position(up): ' + str(+10))
+            print('Attach motor position(up): ' + str(eve.attach.postion))
         else:
             debug_print('Up button released')
             self.attach.off()
@@ -236,7 +236,7 @@ class EveTank(MoveTank):
         if state:
             debug_print('Down button pressed')
             self.attach.on(speed=-25)
-            print('Attach motor postion(down):' + str(-10))
+            print('Attach motor position(down): ' + str(eve.attach.postion))
         else:
             debug_print('Down button released')
             self.attach.off()
@@ -250,7 +250,11 @@ class EveTank(MoveTank):
 
 
     def aaasetup(self):
-
+        """
+        If attachment moved first initalize position as 0 by 
+        eve.turret.position = 0 
+        eve.attach.position = 0 
+        """
         debug_print('aaasetup begin')
         print('hit a button')  
         time.sleep(1)
