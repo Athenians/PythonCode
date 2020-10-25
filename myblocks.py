@@ -16,6 +16,8 @@ import math
 import time
 from globals import debug_print
 from logging import getLogger
+import ev3dev2.fonts as fonts
+from ev3dev2.console import Console
 
 log = getLogger(__name__)
  
@@ -112,7 +114,8 @@ class EveTank(MoveTank):
             gy_port,
             turret_port,
             attach_port,
-            desc=None, motor_class=LargeMotor):
+            desc=None, motor_class=LargeMotor,
+            lcd= Console(font="Lat15-TerminusBold16")):
         """
         DB If eve = AthMoveTank(Output_B,Ouput_C, other parameters)
         eve. turret/attach. on would make the small motors turn on and move since we created them into attributes in EveTank
@@ -136,6 +139,8 @@ class EveTank(MoveTank):
         # create and set atrributes for sensors
         self.csl = EveColorSensor(csl_port)
         self.csr = EveColorSensor(csr_port)
+
+        self.lcd = lcd
 
         self.csl.mode = 'COL-REFLECT'
         self.csr.mode = 'COL-REFLECT'        
@@ -204,7 +209,7 @@ class EveTank(MoveTank):
         if state:
             debug_print('Left button pressed')
             self.turret.on(speed=45)
-            print('Turret motor position(left): ' + str(eve.turret.postion))
+            print('Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position))
         else:
             debug_print('Left button released')
             self.turret.off()
@@ -214,7 +219,7 @@ class EveTank(MoveTank):
         if state:
             debug_print('right button pressed')
             self.turret.on(speed=-45)
-            print('Turret motor position(right): ' + str(eve.turret.postion))
+            print('Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position))
         else:
             debug_print('right button released')
             self.turret.off()
@@ -225,7 +230,8 @@ class EveTank(MoveTank):
         if state:
             debug_print('Up button pressed')
             self.attach.on(speed=25)
-            print('Attach motor position(up): ' + str(eve.attach.postion))
+            print('Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position))
+            
         else:
             debug_print('Up button released')
             self.attach.off()
@@ -236,10 +242,13 @@ class EveTank(MoveTank):
         if state:
             debug_print('Down button pressed')
             self.attach.on(speed=-25)
-            print('Attach motor position(down): ' + str(eve.attach.postion))
         else:
             debug_print('Down button released')
             self.attach.off()
+            xdisplay = 'Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position)
+            debug_print(xdisplay)
+            self.lcd.text_at(xdisplay, column = 2,row= 2,inverse=False)
+            print()
         return 0
 
     def enter(self,state):
@@ -273,8 +282,8 @@ class EveTank(MoveTank):
             btn.process()
             time.sleep(0.01)
 
-        self.turret.reset
-        self.attach.reset
+        self.turret.position = 0
+        self.attach.position = 0 
 
         debug_print('aaasetup End')
 

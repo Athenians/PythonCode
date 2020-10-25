@@ -50,17 +50,17 @@ def Main():
     Wheel_Dia = 100.3           #68 for otther robot
     
     eve = EveTank(
-            left_motor_port = OUTPUT_C,
+            left_motor_port = OUTPUT_D,
             right_motor_port = OUTPUT_B,
             Wheel_Dia = Wheel_Dia,
             csl_port = INPUT_1, 
             csr_port = INPUT_4, # left and right color sensor
             gy_port = INPUT_2,
             turret_port = OUTPUT_A,
-            attach_port = OUTPUT_D,
+            attach_port = OUTPUT_C,
             )
     
- 
+    
     mission_Row_Machine(eve)
     
     

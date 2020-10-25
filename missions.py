@@ -83,6 +83,7 @@ def mission06(eve):
 def mission_Row_Machine(eve):
     eve.calibratecs(10,2)
     eve.aaasetup()
+    eve.aaasetup()
     eve.line_finder(10,10,'r','b')
     eve.aaasetup()
     
