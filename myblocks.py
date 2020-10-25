@@ -209,7 +209,9 @@ class EveTank(MoveTank):
         if state:
             debug_print('Left button pressed')
             self.turret.on(speed=45)
-            print('Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position))
+            xdisplay = 'Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position)
+            debug_print(xdisplay)
+            self.lcd.text_at(xdisplay, column = 2,row= 2,inverse=False)
         else:
             debug_print('Left button released')
             self.turret.off()
@@ -219,7 +221,9 @@ class EveTank(MoveTank):
         if state:
             debug_print('right button pressed')
             self.turret.on(speed=-45)
-            print('Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position))
+            xdisplay = 'Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position)
+            debug_print(xdisplay)
+            self.lcd.text_at(xdisplay, column = 2,row= 2,inverse=False)
         else:
             debug_print('right button released')
             self.turret.off()
@@ -230,8 +234,9 @@ class EveTank(MoveTank):
         if state:
             debug_print('Up button pressed')
             self.attach.on(speed=25)
-            print('Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position))
-            
+            xdisplay = 'Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position)
+            debug_print(xdisplay)
+            self.lcd.text_at(xdisplay, column = 2,row= 2,inverse=False) 
         else:
             debug_print('Up button released')
             self.attach.off()
