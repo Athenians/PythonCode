@@ -18,6 +18,8 @@ from myblocks import EveTank, follow_until_line,follow_for_distance
 import os
 import sys
 import time
+import threading
+
 
 
 def mission01(eve):
@@ -45,7 +47,15 @@ def mission_Step_Counter(eve):
     eve.aaasetup()
     eve.turnblock(10,90)
     eve.aaasetup()
-    eve.moveblock(25,25,800)
+
+    x = threading.Thread(target = eve.moveblock, args = (25,25,800,) )
+    #eve.moveblock(25,25,800)
+    x.start()
+    thread.join()
+    x = threading.Thread(target = eve.motor_mover, args = (15,10,eve.turret))
+    x.start()
+    thread.join()
+
     eve.moveblock(7,7,60)
     for x in range (1):
        eve.moveblock(7,7,-10)
@@ -196,5 +206,4 @@ def danmission01(eve):
     except LineFollowErrorTooFast:
         eve.stop()
         raise
-
 

@@ -287,8 +287,9 @@ class EveTank(MoveTank):
             btn.process()
             time.sleep(0.01)
 
-        self.turret.position = 0
-        self.attach.position = 0 
+        self.turret.reset
+        self.attach.reset
+
 
         debug_print('aaasetup End')
 
@@ -299,11 +300,11 @@ class EveTank(MoveTank):
 
         rotations = distance / self.Circumference
 
-        #debug_print('moveblock lspeed = ' + str(lspeed))
-        #debug_print('moveblock rspeed = ' + str(rspeed))
-        #debug_print('moveblock distance = ' + str(distance))
-        #debug_print('moveblock Circumference = ' + str(self.Circumference))
-        #debug_print('moveblock rotations = ' + str(rotations))
+        debug_print('moveblock lspeed = ' + str(lspeed))
+        debug_print('moveblock rspeed = ' + str(rspeed))
+        debug_print('moveblock distance = ' + str(distance))
+        debug_print('moveblock Circumference = ' + str(self.Circumference))
+        debug_print('moveblock rotations = ' + str(rotations))
 
         self.on_for_rotations(lspeed,rspeed,rotations)
         
@@ -323,7 +324,7 @@ class EveTank(MoveTank):
     # turret/attach
 
     def motor_mover(self,speed, rotations, xmotor):
-        xmotor.on_for_rotations(speed,rotations)
+       xmotor.on_for_rotations(speed,rotations)
 
     def line_finder(self,lspeed=10,rspeed=10,left_or_rightsensor='l', wb='w', tolerance=5):
         """     
