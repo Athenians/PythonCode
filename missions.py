@@ -50,11 +50,17 @@ def mission_Step_Counter(eve):
 
     x = threading.Thread(target = eve.moveblock, args = (25,25,800,) )
     #eve.moveblock(25,25,800)
+
+    y = threading.Thread(target = eve.motor_mover, args = (15,5,eve.turret,))
+    z = threading.Thread(target = eve.motor_mover, args = (25,-4,eve.attach,))
+
     x.start()
-    thread.join()
-    x = threading.Thread(target = eve.motor_mover, args = (15,10,eve.turret))
-    x.start()
-    thread.join()
+    y.start()
+    z.start()
+
+    x.join()
+    y.join()
+    z.join()
 
     eve.moveblock(7,7,60)
     for x in range (1):
@@ -94,6 +100,8 @@ def mission_Row_Machine(eve):
     eve.calibratecs(10,2)
     eve.aaasetup()
     eve.aaasetup()
+    eve.moveblock(10,10,120)
+    eve.aaasetup()
     eve.line_finder(10,10,'r','b')
     eve.aaasetup()
     
@@ -102,14 +110,14 @@ def mission_Row_Machine(eve):
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, #kd=3,
-            kp=1.5, ki=0.03, kd=2,         # use this for change of directions speed = 10       
+            kp=1.5, ki=0.03, kd=0,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(10),
             cs_for_line = eve.csr,            
             follow_left_edge=True,
             sleep_time=0.01,
             #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
-            follow_for = follow_for_distance,distance = 1140
+            follow_for = follow_for_distance,distance = 1120
             #follow_for=follow_for_forever
             #follow_for=follow_for_ms,  ms=4500
         
@@ -118,8 +126,9 @@ def mission_Row_Machine(eve):
         eve.stop() 
         raise
 
-    eve.turnblock(10,-55)
-    eve.moveblock(10,10,100)
+    eve.line_finder(5,5,'l','b')
+    eve.turnblock(10,-50)
+    eve.moveblock(10,10,45)
     eve.aaasetup()
    
 
