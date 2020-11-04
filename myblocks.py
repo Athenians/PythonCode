@@ -19,6 +19,8 @@ from logging import getLogger
 import ev3dev2.fonts as fonts
 from ev3dev2.console import Console
 
+import pickle 
+
 log = getLogger(__name__)
  
 btn = Button()
@@ -203,6 +205,16 @@ class EveTank(MoveTank):
         debug_print('right min: ' + str(self.csr.min)
             + ' right mid: ' + str(self.csr.mid)
             + ' right max: ' + str(self.csr.max))
+
+        #Stores color sensor values to be saved during calibration
+        cs_values =  [self.csl.min,self.csl.mid,self.csl.max,
+        self.csr.min,self.csr.mid,self.csr.max]
+
+        with open("csvalues.pk",'wb') as fi:
+            pickle.dump(cs_values, fi)
+
+        
+
 
     #sets buttons so when called and pressed will do what was coded to do once pressed
     def left(self,state):
