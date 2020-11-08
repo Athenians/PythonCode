@@ -97,9 +97,9 @@ def mission06(eve):
     eve.turnblock(7,90) 
 
 def mission_Row_Machine(eve):
-    eve.calibratecs(10,2)
+    #eve.calibratecs(10,2)
     eve.aaasetup()
-    eve.moveblock(10,10,115,brake=False)
+    eve.moveblock(20,20,115,brake=False)
     eve.line_finder(10,10,'r','b')
     
     
@@ -108,12 +108,12 @@ def mission_Row_Machine(eve):
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, #kd=3,
-            kp=1.25, ki=0.02, kd=1,         # use this for change of directions speed = 10       
+            kp=1.25, ki=0.00, kd=0,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(10),
             cs_for_line = eve.csr,            
             follow_left_edge=True,
-            sleep_time=0.015,
+            sleep_time=0.002,
             #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
             follow_for = follow_for_distance,distance = 1120
             #follow_for=follow_for_forever
@@ -125,15 +125,23 @@ def mission_Row_Machine(eve):
         raise
 
     eve.line_finder(5,5,'l','b')
-    eve.turnblock(10,-60)
-    eve.aaasetup()
-    eve.moveblock(10,10,25)
-    # 3 45
-    eve.motor_mover(25,-4,eve.attach)
-    eve.turnblock(10,-35)
-    eve.motor_mover(25,4,eve.attach)
 
-   
+    #this is to complete row machine
+    # eve.turnblock(10,-60)
+    # eve.aaasetup()
+    # eve.moveblock(10,10,34)
+    # # 3 45
+    # eve.motor_mover(40,-4,eve.attach)
+    # eve.turnblock(10,-35)
+    # eve.motor_mover(40,4,eve.attach)
+
+   #this is to complete row machine
+    eve.aaasetup()
+    eve.moveblock(10,10,220)
+    eve.aaasetup()
+    eve.moveblock(0,10,340)
+    eve.aaasetup()
+    eve.moveblock(-10,-10,500)
 
     
 
@@ -206,7 +214,7 @@ def danmission01(eve):
             speed=SpeedPercent(20),
             cs_for_line = eve.csl,            
             follow_left_edge=True,
-            sleep_time=0.01,
+            sleep_time=0.001,
             follow_for=follow_until_line,
             cs_for_until = eve.csr,
             wb = 'b',

@@ -481,7 +481,7 @@ class EveTank(MoveTank):
         while follow_for(self, **kwargs):
             reflected_light_intensity = cs_for_line.reflected_light_intensity
             error = target_light_intensity - reflected_light_intensity
-            integral = integral + error
+            integral = integral * .75 + error
             derivative = error - last_error
             last_error = error
             turn_native_units = (kp * error) + (ki * integral) + (kd * derivative)
@@ -494,7 +494,7 @@ class EveTank(MoveTank):
             else:
                 offsetfactor = 1
 
-            offset = 0
+            offset = .33
             tnul =  1+offset * offsetfactor
             tnur =  1-offset * offsetfactor 
           
