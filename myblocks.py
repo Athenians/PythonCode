@@ -150,14 +150,34 @@ class EveTank(MoveTank):
         #100 = white
         #50 = black and white
         #set up min, max, and mid for both color sensors
-        self.csl.min = 0
-        self.csl.max = 100
-        self.csl.mid = 50
+        #self.csl.min = 0
+        #self.csl.max = 100
+        #self.csl.mid = 50
         self.csl.side = "left"
-        self.csr.min = 0
-        self.csr.max = 100
-        self.csr.mid = 50
+        #self.csr.min = 0
+        #self.csr.max = 100
+        #self.csr.mid = 50
         self.csr.side = "right"
+
+        #Loads color sensor values saved from last calibration
+        with open("csvalues.pk" , 'rb') as fi:
+            cs_values = pickle.load(fi)
+
+        self.csl.min = cs_values[0]
+        self.csl.mid = cs_values[1]
+        self.csl.max = cs_values[2]
+        self.csr.min = cs_values[3]
+        self.csr.mid = cs_values[4]
+        self.csr.max = cs_values[5]
+
+        debug_print('left min: ' + str(self.csl.min) 
+            + ' left mid: ' + str(self.csl.mid)
+            + ' left max: ' + str(self.csl.max))
+        debug_print('right min: ' + str(self.csr.min)
+            + ' right mid: ' + str(self.csr.mid)
+            + ' right max: ' + str(self.csr.max))
+
+
 
         # set up wheel data
         self.wheel_Dia = Wheel_Dia
