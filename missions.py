@@ -97,20 +97,20 @@ def mission06(eve):
     eve.turnblock(7,90) 
 
 def mission_Row_Machine(eve):
-    #eve.calibratecs(10,2)
+    eve.calibratecs(10,2)
     eve.aaasetup()
     eve.moveblock(20,20,115,brake=False)
     eve.line_finder(10,10,'r','b')
-    
+
     
     eve.left_motor.position = 0
     eve.right_motor.position = 0 
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, #kd=3,
-            kp=1.25, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            kp=3, ki=0.003, kd=0,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(10),
+            speed=SpeedPercent(15),
             cs_for_line = eve.csr,            
             follow_left_edge=True,
             sleep_time=0.002,
@@ -135,13 +135,21 @@ def mission_Row_Machine(eve):
     # eve.turnblock(10,-35)
     # eve.motor_mover(40,4,eve.attach)
 
-   #this is to complete row machine
+   #this is to complete treadmill
     eve.aaasetup()
     eve.moveblock(10,10,220)
     eve.aaasetup()
-    eve.moveblock(0,10,340)
+    
+    eve.motor_mover(40,-3,eve.attach)
+    eve.moveblock(0,10,1000)
+    eve.motor_mover(40,3,eve.attach)
     eve.aaasetup()
-    eve.moveblock(-10,-10,500)
+ 
+    eve.moveblock(-10,-10,220)
+
+    
+    eve.turnblock(10,-90)
+    eve.moveblock(-10,-10,220)
 
     
 
