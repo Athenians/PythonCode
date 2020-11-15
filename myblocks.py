@@ -230,6 +230,8 @@ class EveTank(MoveTank):
         cs_values =  [self.csl.min,self.csl.mid,self.csl.max,
         self.csr.min,self.csr.mid,self.csr.max]
 
+        #delete the pickle file
+
         with open("csvalues.pk",'wb') as fi:
             pickle.dump(cs_values, fi)
 
