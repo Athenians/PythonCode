@@ -167,88 +167,22 @@ def mission_Row_Machine(eve):
     #eve.aaasetup()
     eve.moveblock(50,50,-1600)
    
-
-
-
-    
-
-
-
-
-def danmission01(eve):
-
-    eve.calibratecs(10,4)
+def mission_bench(eve):
+    eve.calibrategs()
     eve.aaasetup()
-    #eve.line_finder(10,10,'r','w',5)
-    #eve.aaasetup()
-    #eve.motor_mover(45,10,eve.attach)
-    #eve.motor_mover(25,.5,eve.turret)
+    #Write suedo code here
+    # move forward 340 mm while lowrring attatchment 1.5
     
-    #to 1st line
-    try:
-        eve.athfollow_line(
-            #kp=2, ki=0.060, kd=3,
-            kp=2, ki=0.08, kd=2,         # use this for change of directions speed = 10       
-            #kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(10),
-            cs_for_line = eve.csr,            
-            follow_left_edge=False,
-            sleep_time=0.01,
-            #follow_for=follow_until_line,cs_for_until = eve.csr, wb = 'b',tolerence=4
-            follow_for=follow_for_forever
-            #follow_for=follow_for_ms,  ms=4500
-        )
-    except LineFollowErrorTooFast:
-        eve.stop()
-        raise
+    eve.motor_mover(40,-3,eve.attach)
+    eve.moveblock(15,15,320)
+    eve.motor_mover(40,4,eve.turret)
+    eve.aaasetup()
+    #
+    #
 
-    #Get beyond line
-    eve.moveblock(20,20,10,brake=False)
+    
 
-    # go around curve
-    try:
-        eve.athfollow_line(
-           # kp=2, ki=0.060, kd=3,
-            kp=3.5, ki=0.08, kd=1,         # use this for change of directions speed = 10       
-            # kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(10),
-            cs_for_line = eve.csl,            
-            follow_left_edge=True,
-            sleep_time=0.01,
-            follow_for=follow_until_line,
-            cs_for_until = eve.csr,
-            wb = 'b',
-            tolerence=2
-            #follow_for=follow_for_forever
-            #follow_for=follow_for_ms
-            #,  ms=4500
-        )
-    except LineFollowErrorTooFast:
-        eve.stop()
-        raise
 
-    #Get beyond line
-    eve.moveblock(20,20,10,brake=False)
 
-    #finish the mission
-    try:
-        eve.athfollow_line(
-            #kp=2, ki=0.060, kd=3,
-            #kp=3.5, ki=0.08, kd=2.5,         # use this for change of directions speed = 10       
-            kp=2, ki=0.000, kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(20),
-            cs_for_line = eve.csl,            
-            follow_left_edge=True,
-            sleep_time=0.001,
-            follow_for=follow_until_line,
-            cs_for_until = eve.csr,
-            wb = 'b',
-            tolerence=2
-            #follow_for=follow_for_forever
-            #follow_for=follow_for_ms
-            #,  ms=4500
-        )
-    except LineFollowErrorTooFast:
-        eve.stop()
-        raise
+
 
