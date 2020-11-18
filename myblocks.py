@@ -360,7 +360,7 @@ class EveTank(MoveTank):
     def motor_mover(self,speed, rotations, xmotor):
        xmotor.on_for_rotations(speed,rotations)
 
-    def line_finder(self,lspeed=10,rspeed=10,left_or_rightsensor='l', wb='w', tolerance=5):
+    def line_finder(self,lspeed=10,rspeed=10,left_or_rightsensor='l', wb='w', tolerance=3):
         """     
         inputs:
 

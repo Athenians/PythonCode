@@ -133,12 +133,12 @@ def mission_Row_Machine(eve):
     eve.moveblock(10,10,220)
     #eve.aaasetup()
     
-    eve.motor_mover(40,-3.75,eve.attach)
+    eve.motor_mover(60,-3.75,eve.attach)
     eve.moveblock(0,10,1000)
-    eve.motor_mover(40,3.75,eve.attach)
+    eve.motor_mover(60,3.75,eve.attach)
     #eve.aaasetup()
  
-    eve.moveblock(-15,-15,380)
+    eve.moveblock(-15,-15,400)
 
     
     eve.turnblock(10,-90)
@@ -146,7 +146,7 @@ def mission_Row_Machine(eve):
     time.sleep(1)
     
     eve.line_finder(5,5,'l','b')
-  #  eve.aaasetup()
+    eve.aaasetup()
     eve.moveblock(15,0,190)
     
     eve.line_finder(5,5,'l','b')
@@ -159,13 +159,14 @@ def mission_Row_Machine(eve):
     eve.moveblock(10,10,34)
     #eve.aaasetup()
     # 3 45
-    eve.motor_mover(40,-4,eve.attach)
+    eve.motor_mover(40,-4.4,eve.attach)
     eve.turnblock(10,-35)
-    eve.motor_mover(40,4,eve.attach)
-    eve.aaasetup()
+    eve.motor_mover(40,4.4,eve.attach)
+    #eve.aaasetup()
     eve.turnblock(15,80)
+    #eve.aaasetup()
     eve.moveblock(50,50,-1600)
-
+   
 
 
 
