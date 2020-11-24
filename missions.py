@@ -133,9 +133,9 @@ def mission_Row_Machine(eve):
     eve.moveblock(10,10,220)
     #eve.aaasetup()
     
-    eve.motor_mover(60,-3.75,eve.attach)
+    eve.motor_mover(60,-3.85,eve.attach)
     eve.moveblock(0,10,1000)
-    eve.motor_mover(60,3.75,eve.attach)
+    eve.motor_mover(60,3.85,eve.attach)
     #eve.aaasetup()
  
     eve.moveblock(-15,-15,400)
@@ -146,7 +146,7 @@ def mission_Row_Machine(eve):
     time.sleep(1)
     
     eve.line_finder(5,5,'l','b')
-    eve.aaasetup()
+   # eve.aaasetup()
     eve.moveblock(15,0,190)
     
     eve.line_finder(5,5,'l','b')
@@ -163,23 +163,37 @@ def mission_Row_Machine(eve):
     eve.turnblock(10,-35)
     eve.motor_mover(40,4.4,eve.attach)
     #eve.aaasetup()
-    eve.turnblock(15,80)
+    eve.turnblock(15,73)
     #eve.aaasetup()
     eve.moveblock(50,50,-1600)
    
 def mission_bench(eve):
     eve.calibrategs()
     eve.aaasetup()
+
+    #eve.aaasetup()
     #Write suedo code here
     # move forward 340 mm while lowrring attatchment 1.5
     
-    eve.motor_mover(40,-3,eve.attach)
+    eve.motor_mover(50,-2.75,eve.attach)
     eve.moveblock(15,15,320)
-    eve.motor_mover(40,4,eve.turret)
+    eve.turnblock(10,14)
+    eve.moveblock(15,15,45)
+    time.sleep(.25)
+    eve.motor_mover(50,2,eve.attach)
     eve.aaasetup()
-    #
-    #
 
+    #eve.motor_mover(50,-2.2,eve.attach)
+    #eve.motor_mover(50,2,eve.turret)
+    #
+    y = threading.Thread(target = eve.motor_mover, args = (50,-2.2,eve.attach,))
+    z = threading.Thread(target = eve.motor_mover, args = (50,2,eve.turret,))
+
+    y.start()
+    z.start()
+
+    y.join()
+    z.join()
     
 
 
