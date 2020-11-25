@@ -180,8 +180,10 @@ def mission_bench(eve):
     eve.turnblock(10,14)
     eve.moveblock(15,15,45)
     time.sleep(.25)
-    eve.motor_mover(50,2,eve.attach)
     eve.aaasetup()
+    eve.motor_mover(50,2,eve.attach)
+    #eve.aaasetup()
+    time.sleep(0.25)
 
     #eve.motor_mover(50,-2.2,eve.attach)
     #eve.motor_mover(50,2,eve.turret)
