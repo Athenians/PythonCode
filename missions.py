@@ -174,22 +174,21 @@ def mission_bench(eve):
     #eve.aaasetup()
     #Write suedo code here
     # move forward 340 mm while lowrring attatchment 1.5
-    
-    eve.motor_mover(50,-2.75,eve.attach)
+
     eve.moveblock(15,15,320)
-    eve.turnblock(10,14)
-    eve.moveblock(15,15,45)
-    time.sleep(.25)
-    eve.aaasetup()
-    eve.motor_mover(50,2,eve.attach)
+    eve.motor_mover(50,-3,eve.attach)
+    eve.turnblock(8,10)
+    #eve.aaasetup()
+    eve.moveblock(15,15,40)
+    time.sleep(1)
+    #eve.aaasetup()
+    eve.motor_mover(50,2.5,eve.attach)
     #eve.aaasetup()
     time.sleep(0.25)
 
-    #eve.motor_mover(50,-2.2,eve.attach)
-    #eve.motor_mover(50,2,eve.turret)
-    #
-    y = threading.Thread(target = eve.motor_mover, args = (50,-2.2,eve.attach,))
-    z = threading.Thread(target = eve.motor_mover, args = (50,2,eve.turret,))
+    
+    y = threading.Thread(target = eve.motor_mover, args = (75,-2.7,eve.attach,))
+    z = threading.Thread(target = eve.motor_mover, args = (25,2,eve.turret,))
 
     y.start()
     z.start()
@@ -197,7 +196,18 @@ def mission_bench(eve):
     y.join()
     z.join()
     
+     #MOve the attachment back to it's original positon 
+    x = threading.Thread(target = eve.moveblock,args = (35,30,-365,))
+    y = threading.Thread(target = eve.motor_mover, args = (75,3.2,eve.attach,))
+    z = threading.Thread(target = eve.motor_mover, args = (25,-2,eve.turret,))
 
+    x.start()
+    y.start()
+    z.start()
+
+    x.join()
+    y.join()
+    z.join()
 
 
 
