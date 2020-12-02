@@ -225,7 +225,7 @@ def mission_basket(eve):
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, #kd=3,
-            kp=7, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            kp=3, ki=0.00, kd=0,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(10),
             cs_for_line = eve.csr,            
