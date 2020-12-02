@@ -196,7 +196,8 @@ def mission_bench(eve):
     y.join()
     z.join()
     
-     #MOve the attachment back to it's original positon 
+    eve.aaasetup()
+     #Move the attachment back to it's original positon 
     x = threading.Thread(target = eve.moveblock,args = (35,30,-365,))
     y = threading.Thread(target = eve.motor_mover, args = (75,3.2,eve.attach,))
     z = threading.Thread(target = eve.motor_mover, args = (25,-2,eve.turret,))
@@ -208,6 +209,38 @@ def mission_bench(eve):
     x.join()
     y.join()
     z.join()
+
+def mission_basket(eve):
+    eve.calibrategs()
+    eve.calibratecs(10,2)
+    eve.aaasetup()
+    eve.moveblock(20,20,250,brake=False)
+    eve.turnblock(10,90)
+    eve.line_finder(10,10,'r','b')
+
+
+    eve.left_motor.position = 0
+    eve.right_motor.position = 0 
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, #kd=3,
+            kp=7, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(10),
+            cs_for_line = eve.csr,            
+            follow_left_edge=True,
+            sleep_time=0.002,
+            #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
+            follow_for = follow_for_distance,distance = 430
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms,  ms=4500
+        
+        )
+    except LineFollowErrorTooFast:
+        eve.stop() 
+        raise
+
+    
 
 
 
