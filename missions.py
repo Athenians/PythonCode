@@ -214,6 +214,11 @@ def mission_basket(eve):
     eve.calibrategs()
     eve.calibratecs(10,2)
     eve.aaasetup()
+   # eve.moveblovk(20,20,510)
+   # eve.turnblock(20,90)
+    #eve.line_finder(10,10,'l','b')
+    #eve.moveblock()
+
     eve.moveblock(20,20,250,brake=False)
     eve.turnblock(10,90)
     eve.line_finder(10,10,'r','b')
@@ -240,9 +245,4 @@ def mission_basket(eve):
     except LineFollowErrorTooFast:
         eve.stop() 
         raise
-
-    
-
-
-
-
+ '''

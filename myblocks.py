@@ -486,7 +486,7 @@ class EveTank(MoveTank):
             + ' tli = ' + str(target_light_intensity)
             + ' kp: ' + str(kp)
             + ' ki: ' + str(ki)
-            + ' kd: ' + str(kd)   
+            + ' kd: ' + str(kd)    
         )
 
         integral = 0.0
