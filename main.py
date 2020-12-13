@@ -71,11 +71,23 @@ def Main():
     #menuing system goes here
     
     # mission01(eve)
+    
+    #while recalibrating color sensor info for the 1st time on that day or time use code below 
+    #delete old pickle file before doing so
 
+    '''
+    with open("csvalues.pk", 'rb') as fi:
+    cs_values = pickle.load(fi)
 
-     
-
+    eve.csl.min = cs_values[0]
+    eve.csl.mid = cs_values[1]
+    eve.csl.max = cs_values[2]
+    eve.csr.min = cs_values[3]
+    eve.csr.mid = cs_values[4]
+    eve.csr.max = cs_values[5]
+    '''
     debug_print('Main  Done')
+
  #   time.sleep(5)
 
 
