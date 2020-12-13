@@ -212,7 +212,8 @@ def mission_bench(eve):
 
 def mission_basket(eve):
     eve.calibrategs()
-    eve.calibratecs(10,2)
+    #eve.aaasetup()
+    #eve.calibratecs(10,2)
     eve.aaasetup()
    # eve.moveblovk(20,20,510)
    # eve.turnblock(20,90)
@@ -224,9 +225,51 @@ def mission_basket(eve):
     eve.line_finder(10,10,'r','b')
 
     eve.moveblock(-15,0,95)
- 
+
     eve.left_motor.position = 0
     eve.right_motor.position = 0 
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, #kd=3,
+            kp=6, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(5),
+            cs_for_line = eve.csr,            
+            follow_left_edge=True,
+            sleep_time=0.002,
+            #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
+            follow_for = follow_for_distance,distance = 220
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms,  ms=4500
+        
+        )
+    except LineFollowErrorTooFast:
+        eve.stop() 
+        raise
+
+
+    eve.left_motor.position = 0
+    eve.right_motor.position = 0 
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, #kd=3,
+            kp=2, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(10),
+            cs_for_line = eve.csr,            
+            follow_left_edge=True,
+            sleep_time=0.002,
+            #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
+            follow_for = follow_for_distance,distance = 170
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms,  ms=4500
+        
+        )
+    except LineFollowErrorTooFast:
+        eve.stop() 
+        raise
+
+
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, #kd=3,
@@ -236,8 +279,8 @@ def mission_basket(eve):
             cs_for_line = eve.csr,            
             follow_left_edge=True,
             sleep_time=0.002,
-            #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
-            follow_for = follow_for_distance,distance = 430
+            follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
+            #follow_for = follow_for_distance,distance = 430
             #follow_for=follow_for_forever
             #follow_for=follow_for_ms,  ms=4500
         
@@ -245,4 +288,11 @@ def mission_basket(eve):
     except LineFollowErrorTooFast:
         eve.stop() 
         raise
- '''
+
+    eve.turnblock(20,-35)
+    eve.motor_mover(50,-3.2,eve.attach)
+    
+    eve.moveblock(20,20,50,brake=False)
+
+    eve.motor_mover(50,1,eve.attach)
+ 
