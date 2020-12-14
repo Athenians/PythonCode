@@ -346,7 +346,7 @@ class EveTank(MoveTank):
         self.on_for_rotations(lspeed,rspeed,rotations)
         
 
-    def turnblock(self, speed, target_angle, brake=True, error_margin=1, sleep_time=0.01):
+    def turnblock(self, speed, target_angle, brake=True, error_margin=1, sleep_time=0.002):
         """
         turnblock
         """

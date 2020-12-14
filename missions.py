@@ -224,14 +224,14 @@ def mission_basket(eve):
     eve.turnblock(10,90)
     eve.line_finder(10,10,'r','b')
 
-    eve.moveblock(-15,0,95)
+    eve.moveblock(0,10,40)
 
     eve.left_motor.position = 0
     eve.right_motor.position = 0 
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, #kd=3,
-            kp=6, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            kp=4, ki=0.06, kd=3,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(5),
             cs_for_line = eve.csr,            
@@ -255,7 +255,7 @@ def mission_basket(eve):
             #kp=2, ki=0.060, #kd=3,
             kp=2, ki=0.00, kd=0,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(10),
+            speed=SpeedPercent(15),
             cs_for_line = eve.csr,            
             follow_left_edge=True,
             sleep_time=0.002,
@@ -275,7 +275,7 @@ def mission_basket(eve):
             #kp=2, ki=0.060, #kd=3,
             kp=3, ki=0.00, kd=0,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(10),
+            speed=SpeedPercent(15),
             cs_for_line = eve.csr,            
             follow_left_edge=True,
             sleep_time=0.002,
@@ -289,10 +289,17 @@ def mission_basket(eve):
         eve.stop() 
         raise
 
-    eve.turnblock(20,-35)
-    eve.motor_mover(50,-3.2,eve.attach)
-    
-    eve.moveblock(20,20,50,brake=False)
+    eve.moveblock(20,20,20,brake=False)
+    time.sleep(0.25)
 
-    eve.motor_mover(50,1,eve.attach)
+    eve.turnblock(10,-30)
+    eve.motor_mover(50,-3.25,eve.attach)
+    time.sleep(0.25)
+    
+    eve.moveblock(20,20,60,brake=False)
+
+    eve.aaasetup()
+    eve.motor_mover(75,3.25,eve.attach)
+ 
+    eve.aaasetup()
  
