@@ -62,10 +62,13 @@ def Main():
             )
 
 
-#    mission_Row_Machine(eve)
+
   #  mission_bench(eve)
-    mission_basket(eve)
-  
+    #mission_basket(eve)    
+    #calibrate(eve)
+    
+    mission_Row_Machine(eve)
+    mission_Step_Counter(eve)
   #menuing system goes here
     
   # mission01(eve)

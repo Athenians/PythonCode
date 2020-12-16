@@ -41,65 +41,62 @@ def mission02(eve):
 
 
 def mission_Step_Counter(eve):
-    eve.calibrategs()
+    #eve.calibrategs()
     eve.aaasetup()
     eve.moveblock(7,7,50)
-    eve.aaasetup()
-    eve.turnblock(10,90)
-    eve.aaasetup()
+    #eve.aaasetup()
+    eve.turnblock(10,92)
+    #eve.aaasetup()
 
     x = threading.Thread(target = eve.moveblock, args = (25,25,800,) )
     #eve.moveblock(25,25,800)
 
-    y = threading.Thread(target = eve.motor_mover, args = (15,5,eve.turret,))
-    z = threading.Thread(target = eve.motor_mover, args = (25,-4,eve.attach,))
+    y = threading.Thread(target = eve.motor_mover, args = (50,2,eve.turret,))
+    #z = threading.Thread(target = eve.motor_mover, args = (25,-4,eve.attach,))
 
     x.start()
     y.start()
-    z.start()
+    #z.start()
 
     x.join()
     y.join()
-    z.join()
+    #z.join()
 
     eve.moveblock(7,7,60)
-    for x in range (1):
-       eve.moveblock(7,7,-10)
-       eve.moveblock(7,7,70)    
-    for x in range(6):
-        eve.moveblock(7,7,-20)
-        eve.moveblock(7,7,70)
-    for x in range (1):
-        eve.moveblock(7,7,-20)
-        eve.moveblock(7,7,80)
+   # for x in range (1):
+      # eve.moveblock(7,10,-10)
+       #eve.moveblock(7,7,50)    
+    for x in range(20):
+        eve.moveblock(10,10,-20)
+        eve.moveblock(10,10,50)
+    #for x in range (1):
+      #  eve.moveblock(7,7,-20)
+       # eve.moveblock(7,7,80)
 
-    eve.moveblock(60,60,-1360)
+    x = threading.Thread(target = eve.moveblock, args = (60,60,-1360,) )
+    #eve.moveblock(60,60,-1360)
+    y = threading.Thread(target = eve.motor_mover, args = (50,-2,eve.turret,))
     
+    x.start()
+    y.start()
+    #z.start()
 
-def mission04(eve):
-    eve.calibrategs()
-    eve.aaasetup()
+    x.join()
+    y.join()
+    #z.join()  
 
-def mission05(eve):
-    eve.moveblock(20,20,50)
-    eve.turnblock(10,80)
-    eve.moveblock(20,20,670)
-    eve.turnblock(10,70)
-    eve.moveblock(15,15,220)
-    eve.turnblock(10,130)
-    eve.moveblock(40,40,680)
 
-def mission06(eve):
-    eve.calibrategs()
-    eve.aaasetup()
-    eve.moveblock(15,15,739)
-    eve.aaasetup()
-    eve.turnblock(7,90) 
-
-def mission_Row_Machine(eve):
+def calibrate(eve):
     eve.calibrategs()
     eve.calibratecs(10,2)
+
+
+def mission_Row_Machine(eve):
+    #eve.calibrategs()
+    #eve.calibratecs(10,2)
     eve.aaasetup()
+    time.sleep(0.5)
+    eve.calibrategs
     eve.moveblock(20,20,115,brake=False)
     eve.line_finder(10,10,'r','b')
 
@@ -141,7 +138,7 @@ def mission_Row_Machine(eve):
     eve.moveblock(-15,-15,400)
 
     
-    eve.turnblock(10,-90)
+    eve.turnblock(5,-90)
     eve.moveblock(-15,-15,240)
     time.sleep(1)
     
@@ -154,13 +151,13 @@ def mission_Row_Machine(eve):
 
 
     #this is to complete row machine
-    eve.turnblock(10,-45)
+    eve.turnblock(5,-45)
     #eve.aaasetup()
-    eve.moveblock(10,10,34)
+    eve.moveblock(10,10,37)
     #eve.aaasetup()
     # 3 45
     eve.motor_mover(40,-4.4,eve.attach)
-    eve.turnblock(10,-35)
+    eve.turnblock(5,-35)
     eve.motor_mover(40,4.4,eve.attach)
     #eve.aaasetup()
     eve.turnblock(15,73)
