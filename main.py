@@ -70,9 +70,12 @@ def Main():
     
     mission_Row_Machine(eve)
     mission_Step_Counter(eve)
-  #menuing system goes here
+    #menuing system goes here
+    menu = Menu()
+
+    menu.runmenu(eve)
     
-  # mission01(eve)
+    # mission01(eve)
   
     debug_print('Main  Done')
 
