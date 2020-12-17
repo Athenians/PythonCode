@@ -15,6 +15,7 @@ from ev3dev2.button import Button
 import math 
 import time
 from globals import debug_print
+import missions
 from logging import getLogger
 import ev3dev2.fonts as fonts
 from ev3dev2.console import Console
@@ -564,3 +565,11 @@ class EveTank(MoveTank):
 
         self.stop()
     
+    def mission_Step_Counter(self):
+        missions.mission_Step_Counter(self)
+
+    def mission_Row_Machine(self):
+        missions.mission_Row_Machine(self)
+        
+    def mission_bench(self):
+        missions.mission_bench(self)
