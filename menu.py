@@ -4,7 +4,7 @@ import time
 import ev3dev2.fonts as fonts
 from  ev3dev2.console import Console
 
-from myblocks import *
+#from myblocks import *
 
 class MenuItem:
     def __init__(self, menu, line, linetype, linename, lineprog):

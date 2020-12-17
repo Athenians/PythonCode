@@ -33,7 +33,7 @@ def mission01(eve):
 def mission02(eve):
 
     eve.calibrategs()
-    for x in range(4):
+    for _ in range(4):
         eve.moveblock(25,25,400)
         eve.turnblock(10,90,error_margin=0)
 
@@ -66,7 +66,7 @@ def mission_Step_Counter(eve):
    # for x in range (1):
       # eve.moveblock(7,10,-10)
        #eve.moveblock(7,7,50)    
-    for x in range(20):
+    for _ in range(20):
         eve.moveblock(10,10,-20)
         eve.moveblock(10,10,50)
     #for x in range (1):

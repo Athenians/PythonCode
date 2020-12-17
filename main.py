@@ -20,9 +20,9 @@ import time
 
 
 from globals import *
-from missions import *
+#from missions import *
 from myblocks import EveTank, follow_until_line
-from menu import *
+from menu import Menu
 import pickle 
 
 btn = Button()
@@ -49,7 +49,7 @@ def Main():
     set_font('Lat15-Terminus24x12')
 
     debug_print('Main  Start')
-    Wheel_Dia = 100.3           #68 for otther robot
+    Wheel_Dia = 100.3           #68 for other robot
     
     eve = EveTank(
             left_motor_port = OUTPUT_D,
@@ -72,13 +72,14 @@ def Main():
     #mission_Step_Counter(eve)
 
 
+
+
     #menuing system goes here
     menu = Menu()
-
     menu.runmenu(eve)
-    
-    # mission01(eve)
-  
+
+
+
     debug_print('Main  Done')
 
  #   time.sleep(5)
