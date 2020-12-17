@@ -127,7 +127,7 @@ class Menu(object):
         self.menu.append(MenuItem(0,1,'M',self.menuname[2],'2'))
         self.menu.append(MenuItem(0,2,'P','DoIt','Main()'))
         self.menu.append(MenuItem(1,0,'P','AAASetup','aaasetup'))
-        #self.menu.append(MenuItem(1,1,'P','Calibratcs','calibratecs()'))
+        self.menu.append(MenuItem(1,1,'P','Calibratcs','calibratecs'))
         self.menu.append(MenuItem(2,0,'P','Step Counter','mission_Step_Counter'))
         self.menu.append(MenuItem(2,1,'P','Row machine/tredmill','mission_Row_Machine'))
         self.menu.append(MenuItem(2,2,'P','Bench','mission_bench'))

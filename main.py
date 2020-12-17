@@ -68,8 +68,10 @@ def Main():
     #mission_basket(eve)    
     #calibrate(eve)
     
-    mission_Row_Machine(eve)
-    mission_Step_Counter(eve)
+    #mission_Row_Machine(eve)
+    #mission_Step_Counter(eve)
+
+
     #menuing system goes here
     menu = Menu()
 
