@@ -4,7 +4,7 @@ import time
 import ev3dev2.fonts as fonts
 from  ev3dev2.console import Console
 
-#from myblocks import *
+from myblocks import *
 
 class MenuItem:
     def __init__(self, menu, line, linetype, linename, lineprog):
@@ -125,12 +125,13 @@ class Menu(object):
         self.menu = []
         self.menu.append(MenuItem(0,0,'M',self.menuname[1],'1'))
         self.menu.append(MenuItem(0,1,'M',self.menuname[2],'2'))
-        self.menu.append(MenuItem(0,2,'P','DoIt','Main()'))
+        self.menu.append(MenuItem(0,2,'P','DoIt','all_missions'))
         self.menu.append(MenuItem(1,0,'P','AAASetup','aaasetup'))
         self.menu.append(MenuItem(1,1,'P','Calibratcs','calibratecs'))
         self.menu.append(MenuItem(2,0,'P','Step Counter','mission_Step_Counter'))
         self.menu.append(MenuItem(2,1,'P','Row machine/tredmill','mission_Row_Machine'))
         self.menu.append(MenuItem(2,2,'P','Bench','mission_bench'))
+        #self.menu.append(MenuItem(2,3,'P','Basket','mission_basket'))
     
 
 

@@ -573,3 +573,6 @@ class EveTank(MoveTank):
         
     def mission_bench(self):
         missions.mission_bench(self)
+
+    def all_missions(self):
+        missions.allmissions(self)

@@ -11,8 +11,8 @@ from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, 
 #from ev3dev2.sensor import INPUT_1, INPUT_2,  INPUT_4
 #from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
 
-from myblocks import EveTank, follow_until_line,follow_for_distance
-
+from myblocks import  *
+from myblocks import follow_for_distance
 #import logging as log
 
 import os
@@ -66,14 +66,14 @@ def mission_Step_Counter(eve):
    # for x in range (1):
       # eve.moveblock(7,10,-10)
        #eve.moveblock(7,7,50)    
-    for _ in range(20):
+    for _ in range(15):
         eve.moveblock(10,10,-20)
         eve.moveblock(10,10,50)
     #for x in range (1):
       #  eve.moveblock(7,7,-20)
        # eve.moveblock(7,7,80)
 
-    x = threading.Thread(target = eve.moveblock, args = (60,60,-1360,) )
+    x = threading.Thread(target = eve.moveblock, args = (60,60,-1500,) )
     #eve.moveblock(60,60,-1360)
     y = threading.Thread(target = eve.motor_mover, args = (50,-2,eve.turret,))
     
@@ -162,7 +162,7 @@ def mission_Row_Machine(eve):
     #eve.aaasetup()
     eve.turnblock(15,73)
     #eve.aaasetup()
-    eve.moveblock(50,50,-1600)
+    eve.moveblock(50,50,-1875)
    
 def mission_bench(eve):
     eve.calibrategs()
@@ -184,8 +184,8 @@ def mission_bench(eve):
     time.sleep(0.25)
 
     
-    y = threading.Thread(target = eve.motor_mover, args = (75,-2.7,eve.attach,))
-    z = threading.Thread(target = eve.motor_mover, args = (25,2,eve.turret,))
+    y = threading.Thread(target = eve.motor_mover, args = (75,-3,eve.attach,))
+    z = threading.Thread(target = eve.motor_mover, args = (20,2,eve.turret,))
 
     y.start()
     z.start()
@@ -193,11 +193,11 @@ def mission_bench(eve):
     y.join()
     z.join()
     
-    eve.aaasetup()
+    #eve.aaasetup()
      #Move the attachment back to it's original positon 
     x = threading.Thread(target = eve.moveblock,args = (35,30,-365,))
-    y = threading.Thread(target = eve.motor_mover, args = (75,3.2,eve.attach,))
-    z = threading.Thread(target = eve.motor_mover, args = (25,-2,eve.turret,))
+    y = threading.Thread(target = eve.motor_mover, args = (75,3.5,eve.attach,))
+    z = threading.Thread(target = eve.motor_mover, args = (25,-3,eve.turret,))
 
     x.start()
     y.start()
@@ -206,6 +206,11 @@ def mission_bench(eve):
     x.join()
     y.join()
     z.join()
+def allmissions(eve):
+    mission_Row_Machine(eve)
+    mission_Step_Counter(eve)
+    mission_bench(eve)
+    
 
 def mission_basket(eve):
     eve.calibrategs()

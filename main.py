@@ -20,7 +20,7 @@ import time
 
 
 from globals import *
-#from missions import *
+from missions import *
 from myblocks import EveTank, follow_until_line
 from menu import Menu
 import pickle 
