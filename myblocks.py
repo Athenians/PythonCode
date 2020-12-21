@@ -190,6 +190,7 @@ class EveTank(MoveTank):
 
     def calibrategs(self):
         debug_print('GS Calibration begin')
+        time.sleep(.5)
         for _ in range(2):
             self.gyro.mode = 'GYRO-RATE'
             self.gyro.mode = 'GYRO-ANG'

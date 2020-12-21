@@ -22,30 +22,13 @@ import threading
 
 
 
-def mission01(eve):
-    eve.calibrategs()
-    eve.moveblock(25,25,30)
-    eve.turnblock(10,80)
-    eve.moveblock(25,25,1650)
-    eve.turnblock(10,-80)
-
-
-def mission02(eve):
-
-    eve.calibrategs()
-    for _ in range(4):
-        eve.moveblock(25,25,400)
-        eve.turnblock(10,90,error_margin=0)
-
-    #eve.moveblock(25,25,1500)
-
 
 def mission_Step_Counter(eve):
-    #eve.calibrategs()
     eve.aaasetup()
-    eve.moveblock(7,7,50)
+    eve.calibrategs()
+    eve.moveblock(15,15,50)
     #eve.aaasetup()
-    eve.turnblock(10,92)
+    eve.turnblock(5,95)
     #eve.aaasetup()
 
     x = threading.Thread(target = eve.moveblock, args = (25,25,800,) )
@@ -131,7 +114,7 @@ def mission_Row_Machine(eve):
     #eve.aaasetup()
     
     eve.motor_mover(60,-3.85,eve.attach)
-    eve.moveblock(0,10,1000)
+    eve.moveblock(0,15,1053)
     eve.motor_mover(60,3.85,eve.attach)
     #eve.aaasetup()
  
@@ -160,7 +143,7 @@ def mission_Row_Machine(eve):
     eve.turnblock(5,-35)
     eve.motor_mover(40,4.4,eve.attach)
     #eve.aaasetup()
-    eve.turnblock(15,73)
+    eve.turnblock(5,73)
     #eve.aaasetup()
     eve.moveblock(50,50,-1875)
    
@@ -197,7 +180,7 @@ def mission_bench(eve):
      #Move the attachment back to it's original positon 
     x = threading.Thread(target = eve.moveblock,args = (35,30,-365,))
     y = threading.Thread(target = eve.motor_mover, args = (75,3.5,eve.attach,))
-    z = threading.Thread(target = eve.motor_mover, args = (25,-3,eve.turret,))
+    z = threading.Thread(target = eve.motor_mover, args = (25,-2,eve.turret,))
 
     x.start()
     y.start()
@@ -206,6 +189,8 @@ def mission_bench(eve):
     x.join()
     y.join()
     z.join()
+
+
 def allmissions(eve):
     mission_Row_Machine(eve)
     mission_Step_Counter(eve)
