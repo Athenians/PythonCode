@@ -63,27 +63,13 @@ def Main():
             )
 
 
-
-  #  mission_bench(eve)
-    #mission_basket(eve)    
-    #calibrate(eve)
-    
-    #mission_Row_Machine(eve)
-    #mission_Step_Counter(eve)
-
-
-
-
     #menuing system goes here
     menu = Menu()
     menu.runmenu(eve)
 
-
-
     debug_print('Main  Done')
 
  #   time.sleep(5)
-
 
 if __name__ == '__main__':
     Main()

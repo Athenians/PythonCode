@@ -148,26 +148,27 @@ def mission_Row_Machine(eve):
     eve.moveblock(50,50,-1875)
    
 def mission_bench(eve):
-    eve.calibrategs()
     eve.aaasetup()
+    time.sleep(0.5)
+    eve.calibrategs()
 
     #eve.aaasetup()
     #Write suedo code here
     # move forward 340 mm while lowrring attatchment 1.5
 
     eve.moveblock(15,15,320)
-    eve.motor_mover(50,-3,eve.attach)
+    eve.motor_mover(50,-2.75,eve.attach)
     eve.turnblock(8,10)
     #eve.aaasetup()
-    eve.moveblock(15,15,40)
-    time.sleep(1)
+    eve.moveblock(15,15,50)
+    time.sleep(.5)
     #eve.aaasetup()
-    eve.motor_mover(50,2.5,eve.attach)
+    eve.motor_mover(50,2.75,eve.attach)
     #eve.aaasetup()
     time.sleep(0.25)
 
     
-    y = threading.Thread(target = eve.motor_mover, args = (75,-3,eve.attach,))
+    y = threading.Thread(target = eve.motor_mover, args = (75,-3.75,eve.attach,))
     z = threading.Thread(target = eve.motor_mover, args = (20,2,eve.turret,))
 
     y.start()
@@ -179,7 +180,7 @@ def mission_bench(eve):
     #eve.aaasetup()
      #Move the attachment back to it's original positon 
     x = threading.Thread(target = eve.moveblock,args = (35,30,-365,))
-    y = threading.Thread(target = eve.motor_mover, args = (75,3.5,eve.attach,))
+    y = threading.Thread(target = eve.motor_mover, args = (75,3.75,eve.attach,))
     z = threading.Thread(target = eve.motor_mover, args = (25,-2,eve.turret,))
 
     x.start()
@@ -198,10 +199,9 @@ def allmissions(eve):
     
 
 def mission_basket(eve):
+    eve.aaasetup()  
     eve.calibrategs()
-    #eve.aaasetup()
-    #eve.calibratecs(10,2)
-    eve.aaasetup()
+
    # eve.moveblovk(20,20,510)
    # eve.turnblock(20,90)
     #eve.line_finder(10,10,'l','b')
@@ -276,17 +276,18 @@ def mission_basket(eve):
         eve.stop() 
         raise
 
-    eve.moveblock(20,20,20,brake=False)
+    #eve.turnblock(10,-30)
+    eve.motor_mover(50,-2.5,eve.attach)
+    time.sleep(0.5)
+    #eve.aaasetup()
+    eve.moveblock(10,10,60,brake=False)
     time.sleep(0.25)
 
-    eve.turnblock(10,-30)
-    eve.motor_mover(50,-3.25,eve.attach)
+    #eve.aaasetup()
+    eve.motor_mover(75,1.75,eve.attach)
     time.sleep(0.25)
-    
-    eve.moveblock(20,20,60,brake=False)
-
-    eve.aaasetup()
-    eve.motor_mover(75,3.25,eve.attach)
+    eve.moveblock(20,20,-50,brake=False)
+    eve.motor_mover(50,.75,eve.attach)
  
-    eve.aaasetup()
+    #eve.aaasetup()
  

@@ -577,3 +577,6 @@ class EveTank(MoveTank):
 
     def all_missions(self):
         missions.allmissions(self)
+
+    def mission_basket(self):
+        missions.mission_basket(self)

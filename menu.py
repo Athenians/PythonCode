@@ -131,7 +131,7 @@ class Menu(object):
         self.menu.append(MenuItem(2,0,'P','Step Counter','mission_Step_Counter'))
         self.menu.append(MenuItem(2,1,'P','Row machine/tredmill','mission_Row_Machine'))
         self.menu.append(MenuItem(2,2,'P','Bench','mission_bench'))
-        #self.menu.append(MenuItem(2,3,'P','Basket','mission_basket'))
+        self.menu.append(MenuItem(2,3,'P','Basket','mission_basket'))
     
 
 
