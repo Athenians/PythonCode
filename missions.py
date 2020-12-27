@@ -12,7 +12,7 @@ from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, 
 #from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
 
 from myblocks import  *
-from myblocks import follow_for_distance
+#from myblocks import follow_for_distance
 #import logging as log
 
 import os
@@ -255,8 +255,7 @@ def mission_basket(eve):
     except LineFollowErrorTooFast:
         eve.stop() 
         raise
-
-
+    
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, #kd=3,
@@ -288,6 +287,62 @@ def mission_basket(eve):
     time.sleep(0.25)
     eve.moveblock(20,20,-50,brake=False)
     eve.motor_mover(50,.75,eve.attach)
- 
+
+    #slide
+    eve.turnblock(10,95)
+    eve.moveblock(10,10,85)
+    eve.line_finder(10,10,'r','b')
+    #turn more if the attachment doesn't push man down
+    eve.turnblock(10,40)
+    eve.motor_mover(50,.5,eve.attach)
+    #eve.motor_mover(25,-3,eve.turret)
+    
     #eve.aaasetup()
+    eve.turnblock(10,-40)
+    eve.motor_mover(50,-.5,eve.attach)
+    #eve.aaasetup()
+    #eve.line_finder(10,10,'r','b')
+    
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, #kd=3,
+            kp=2, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(15),
+            cs_for_line = eve.csr,            
+            follow_left_edge=False,
+            sleep_time=0.002,
+            follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
+            #follow_for = follow_for_distance,distance = 425
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms,  ms=4500
+        
+        )
+    except LineFollowErrorTooFast:
+        eve.stop() 
+        raise
+
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, #kd=3,
+            kp=2, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(15),
+            cs_for_line = eve.csr,            
+            follow_left_edge=False,
+            sleep_time=0.002,
+            follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
+            #follow_for = follow_for_distance,distance = 425
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms,  ms=4500
+        
+        )
+    except LineFollowErrorTooFast:
+        eve.stop() 
+        raise
+
+    eve.aaasetup()
+
+
+
  
