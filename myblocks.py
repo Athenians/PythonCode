@@ -19,7 +19,7 @@ import missions
 from logging import getLogger
 import ev3dev2.fonts as fonts
 from ev3dev2.console import Console
-
+from ev3dev2.led import Leds
 import pickle 
 
 log = getLogger(__name__)
@@ -159,6 +159,9 @@ class EveTank(MoveTank):
         #self.csr.max = 100
         #self.csr.mid = 50
         self.csr.side = "right"
+
+        #set up LED lights
+        self.leds = Leds()
 
         #Loads color sensor values saved from last calibration
         #before loading file make sure exists
@@ -303,6 +306,7 @@ class EveTank(MoveTank):
 
 
     def aaasetup(self):
+        self.leds.animate_flash('RED',sleeptime = 0.01, duration = 15)
         """
         If attachment moved first initalize position as 0 by 
         eve.turret.position = 0 
@@ -326,6 +330,7 @@ class EveTank(MoveTank):
             btn.process()
             time.sleep(0.01)
 
+        self.leds.animate_flash('GREEN',sleeptime = 0.01, duration = 5)
         self.turret.reset
         self.attach.reset
 

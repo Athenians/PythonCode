@@ -10,7 +10,7 @@ from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, 
 #from ev3dev2.wheel import Wheel
 from ev3dev2.sensor import INPUT_1, INPUT_2,INPUT_3, INPUT_4
 from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
-
+from ev3dev2.led import Leds
 import logging as log
 
 
