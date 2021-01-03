@@ -306,7 +306,10 @@ class EveTank(MoveTank):
 
 
     def aaasetup(self):
-        self.leds.animate_flash('RED',sleeptime = 0.01, duration = 15)
+        x = threading.Thread(target = self.leds.animate_flash, args = ('RED',sleeptime = 0.01, duration = 15),)
+        
+        x.start()
+
         """
         If attachment moved first initalize position as 0 by 
         eve.turret.position = 0 
@@ -330,7 +333,7 @@ class EveTank(MoveTank):
             btn.process()
             time.sleep(0.01)
 
-        self.leds.animate_flash('GREEN',sleeptime = 0.01, duration = 5)
+        x.join()
         self.turret.reset
         self.attach.reset
 

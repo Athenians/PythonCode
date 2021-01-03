@@ -41,6 +41,8 @@ def mission02(eve):
 
 
 def mission_Step_Counter(eve):
+    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','ORANGE', sleeptime = 0.01, duration = 20)
+    z.start()
     #eve.calibrategs()
     eve.aaasetup()
     eve.moveblock(7,7,50)
@@ -83,7 +85,8 @@ def mission_Step_Counter(eve):
 
     x.join()
     y.join()
-    #z.join()  
+    #color thread
+    z.join()  
 
 
 def calibrate(eve):
@@ -92,7 +95,8 @@ def calibrate(eve):
 
 
 def mission_Row_Machine(eve):
-    #eve.calibrategs()
+    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','RED', sleeptime = 0.01, duration = 45)    #eve.calibrategs()
+    z.start()
     #eve.calibratecs(10,2)
     eve.aaasetup()
     time.sleep(0.5)
@@ -163,8 +167,11 @@ def mission_Row_Machine(eve):
     eve.turnblock(15,73)
     #eve.aaasetup()
     eve.moveblock(50,50,-1600)
+    z.join()
    
 def mission_bench(eve):
+    x = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','AMBER', sleeptime = 0.01, duration = 20)    
+    x.start()
     eve.calibrategs()
     eve.aaasetup()
 
@@ -194,7 +201,8 @@ def mission_bench(eve):
     z.join()
     
     eve.aaasetup()
-     #Move the attachment back to it's original positon 
+    x.join()
+    #Move the attachment back to it's original positon 
     x = threading.Thread(target = eve.moveblock,args = (35,30,-365,))
     y = threading.Thread(target = eve.motor_mover, args = (75,3.2,eve.attach,))
     z = threading.Thread(target = eve.motor_mover, args = (25,-2,eve.turret,))
@@ -207,7 +215,11 @@ def mission_bench(eve):
     y.join()
     z.join()
 
+
+
 def mission_basket(eve):
+    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','YELLOW', sleeptime = 0.01, duration = 35)
+    z.start()
     eve.calibrategs()
     #eve.aaasetup()
     #eve.calibratecs(10,2)
@@ -299,4 +311,7 @@ def mission_basket(eve):
     eve.motor_mover(75,3.25,eve.attach)
  
     eve.aaasetup()
+    
+    #PUT THIS AT THE END OF THE PROGRAMMING FOR MISSION
+    z.join()
  
