@@ -33,7 +33,7 @@ def mission01(eve):
 def mission02(eve):
 
     eve.calibrategs()
-    for x in range(4):
+    for _ in range(4):
         eve.moveblock(25,25,400)
         eve.turnblock(10,90,error_margin=0)
 
@@ -41,7 +41,7 @@ def mission02(eve):
 
 
 def mission_Step_Counter(eve):
-    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','ORANGE', sleeptime = 0.01, duration = 20)
+    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','ORANGE','LEFT','RIGHT', 0.01, 20,))
     z.start()
     #eve.calibrategs()
     eve.aaasetup()
@@ -95,7 +95,8 @@ def calibrate(eve):
 
 
 def mission_Row_Machine(eve):
-    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','RED', sleeptime = 0.01, duration = 45)    #eve.calibrategs()
+    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','RED','LEFT','RIGHT', 0.01, 45,))   
+    #eve.calibrategs()
     z.start()
     #eve.calibratecs(10,2)
     eve.aaasetup()
@@ -170,7 +171,7 @@ def mission_Row_Machine(eve):
     z.join()
    
 def mission_bench(eve):
-    x = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','AMBER', sleeptime = 0.01, duration = 20)    
+    x = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','AMBER', 'LEFT','RIGHT', 0.01, 20,))
     x.start()
     eve.calibrategs()
     eve.aaasetup()
@@ -218,7 +219,7 @@ def mission_bench(eve):
 
 
 def mission_basket(eve):
-    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','YELLOW', sleeptime = 0.01, duration = 35)
+    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','YELLOW', 'LEFT', 'RIGHT', 0.01, 35,))
     z.start()
     eve.calibrategs()
     #eve.aaasetup()

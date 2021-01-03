@@ -21,6 +21,7 @@ import ev3dev2.fonts as fonts
 from ev3dev2.console import Console
 from ev3dev2.led import Leds
 import pickle 
+import threading
 
 log = getLogger(__name__)
  
@@ -306,7 +307,8 @@ class EveTank(MoveTank):
 
 
     def aaasetup(self):
-        x = threading.Thread(target = self.leds.animate_flash, args = ('RED',sleeptime = 0.01, duration = 15),)
+        x = threading.Thread(target = self.leds.animate_flash, args = ('RED','LEFT','RIGHT',0.01,15,))
+
         
         x.start()
 
