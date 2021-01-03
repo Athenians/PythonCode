@@ -316,3 +316,8 @@ def mission_basket(eve):
     #PUT THIS AT THE END OF THE PROGRAMMING FOR MISSION
     z.join()
  
+def allmissions(eve):
+    mission_Row_Machine(eve)
+    mission_Step_Counter(eve)
+    mission_bench(eve)
+    mission_basket(eve)
