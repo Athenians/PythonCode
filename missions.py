@@ -10,9 +10,9 @@ from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, 
 #from ev3dev2.wheel import Wheel
 #from ev3dev2.sensor import INPUT_1, INPUT_2,  INPUT_4
 #from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
+from ev3dev2.led import Leds
+from myblocks import EveTank, follow_until_line,follow_for_distance
 
-from myblocks import  *
-#from myblocks import follow_for_distance
 #import logging as log
 
 import os
@@ -22,13 +22,30 @@ import threading
 
 
 
+def mission01(eve):
+    eve.calibrategs()
+    eve.moveblock(25,25,30)
+    eve.turnblock(10,80)
+    eve.moveblock(25,25,1650)
+    eve.turnblock(10,-80)
+
+
+def mission02(eve):
+
+    eve.calibrategs()
+    for x in range(4):
+        eve.moveblock(25,25,400)
+        eve.turnblock(10,90,error_margin=0)
+
+    #eve.moveblock(25,25,1500)
+
 
 def mission_Step_Counter(eve):
+    #eve.calibrategs()
     eve.aaasetup()
-    eve.calibrategs()
-    eve.moveblock(15,15,50)
+    eve.moveblock(7,7,50)
     #eve.aaasetup()
-    eve.turnblock(5,95)
+    eve.turnblock(10,92)
     #eve.aaasetup()
 
     x = threading.Thread(target = eve.moveblock, args = (25,25,800,) )
@@ -49,14 +66,14 @@ def mission_Step_Counter(eve):
    # for x in range (1):
       # eve.moveblock(7,10,-10)
        #eve.moveblock(7,7,50)    
-    for _ in range(15):
+    for x in range(20):
         eve.moveblock(10,10,-20)
         eve.moveblock(10,10,50)
     #for x in range (1):
       #  eve.moveblock(7,7,-20)
        # eve.moveblock(7,7,80)
 
-    x = threading.Thread(target = eve.moveblock, args = (60,60,-1500,) )
+    x = threading.Thread(target = eve.moveblock, args = (60,60,-1360,) )
     #eve.moveblock(60,60,-1360)
     y = threading.Thread(target = eve.motor_mover, args = (50,-2,eve.turret,))
     
@@ -114,7 +131,7 @@ def mission_Row_Machine(eve):
     #eve.aaasetup()
     
     eve.motor_mover(60,-3.85,eve.attach)
-    eve.moveblock(0,15,1053)
+    eve.moveblock(0,10,1000)
     eve.motor_mover(60,3.85,eve.attach)
     #eve.aaasetup()
  
@@ -143,33 +160,32 @@ def mission_Row_Machine(eve):
     eve.turnblock(5,-35)
     eve.motor_mover(40,4.4,eve.attach)
     #eve.aaasetup()
-    eve.turnblock(5,73)
+    eve.turnblock(15,73)
     #eve.aaasetup()
-    eve.moveblock(50,50,-1875)
+    eve.moveblock(50,50,-1600)
    
 def mission_bench(eve):
-    eve.aaasetup()
-    time.sleep(0.5)
     eve.calibrategs()
+    eve.aaasetup()
 
     #eve.aaasetup()
     #Write suedo code here
     # move forward 340 mm while lowrring attatchment 1.5
 
     eve.moveblock(15,15,320)
-    eve.motor_mover(50,-2.75,eve.attach)
+    eve.motor_mover(50,-3,eve.attach)
     eve.turnblock(8,10)
     #eve.aaasetup()
-    eve.moveblock(15,15,50)
-    time.sleep(.5)
+    eve.moveblock(15,15,40)
+    time.sleep(1)
     #eve.aaasetup()
-    eve.motor_mover(50,2.75,eve.attach)
+    eve.motor_mover(50,2.5,eve.attach)
     #eve.aaasetup()
     time.sleep(0.25)
 
     
-    y = threading.Thread(target = eve.motor_mover, args = (75,-3.75,eve.attach,))
-    z = threading.Thread(target = eve.motor_mover, args = (20,2,eve.turret,))
+    y = threading.Thread(target = eve.motor_mover, args = (75,-2.7,eve.attach,))
+    z = threading.Thread(target = eve.motor_mover, args = (25,2,eve.turret,))
 
     y.start()
     z.start()
@@ -177,10 +193,10 @@ def mission_bench(eve):
     y.join()
     z.join()
     
-    #eve.aaasetup()
+    eve.aaasetup()
      #Move the attachment back to it's original positon 
     x = threading.Thread(target = eve.moveblock,args = (35,30,-365,))
-    y = threading.Thread(target = eve.motor_mover, args = (75,3.75,eve.attach,))
+    y = threading.Thread(target = eve.motor_mover, args = (75,3.2,eve.attach,))
     z = threading.Thread(target = eve.motor_mover, args = (25,-2,eve.turret,))
 
     x.start()
@@ -191,17 +207,11 @@ def mission_bench(eve):
     y.join()
     z.join()
 
-
-def allmissions(eve):
-    mission_Row_Machine(eve)
-    mission_Step_Counter(eve)
-    mission_bench(eve)
-    
-
 def mission_basket(eve):
-    eve.aaasetup()  
     eve.calibrategs()
-
+    #eve.aaasetup()
+    #eve.calibratecs(10,2)
+    eve.aaasetup()
    # eve.moveblovk(20,20,510)
    # eve.turnblock(20,90)
     #eve.line_finder(10,10,'l','b')
@@ -255,7 +265,8 @@ def mission_basket(eve):
     except LineFollowErrorTooFast:
         eve.stop() 
         raise
-    
+
+
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, #kd=3,
@@ -275,74 +286,17 @@ def mission_basket(eve):
         eve.stop() 
         raise
 
-    #eve.turnblock(10,-30)
-    eve.motor_mover(50,-2.5,eve.attach)
-    time.sleep(0.5)
-    #eve.aaasetup()
-    eve.moveblock(10,10,60,brake=False)
+    eve.moveblock(20,20,20,brake=False)
     time.sleep(0.25)
 
-    #eve.aaasetup()
-    eve.motor_mover(75,1.75,eve.attach)
+    eve.turnblock(10,-30)
+    eve.motor_mover(50,-3.25,eve.attach)
     time.sleep(0.25)
-    eve.moveblock(20,20,-50,brake=False)
-    eve.motor_mover(50,.75,eve.attach)
-
-    #slide
-    eve.turnblock(10,95)
-    eve.moveblock(10,10,85)
-    eve.line_finder(10,10,'r','b')
-    #turn more if the attachment doesn't push man down
-    eve.turnblock(10,40)
-    eve.motor_mover(50,.5,eve.attach)
-    #eve.motor_mover(25,-3,eve.turret)
     
-    #eve.aaasetup()
-    eve.turnblock(10,-40)
-    eve.motor_mover(50,-.5,eve.attach)
-    #eve.aaasetup()
-    #eve.line_finder(10,10,'r','b')
-    
-    try:
-        eve.athfollow_line(
-            #kp=2, ki=0.060, #kd=3,
-            kp=2, ki=0.00, kd=0,         # use this for change of directions speed = 10       
-            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(15),
-            cs_for_line = eve.csr,            
-            follow_left_edge=False,
-            sleep_time=0.002,
-            follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
-            #follow_for = follow_for_distance,distance = 425
-            #follow_for=follow_for_forever
-            #follow_for=follow_for_ms,  ms=4500
-        
-        )
-    except LineFollowErrorTooFast:
-        eve.stop() 
-        raise
-
-    try:
-        eve.athfollow_line(
-            #kp=2, ki=0.060, #kd=3,
-            kp=2, ki=0.00, kd=0,         # use this for change of directions speed = 10       
-            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(15),
-            cs_for_line = eve.csr,            
-            follow_left_edge=False,
-            sleep_time=0.002,
-            follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
-            #follow_for = follow_for_distance,distance = 425
-            #follow_for=follow_for_forever
-            #follow_for=follow_for_ms,  ms=4500
-        
-        )
-    except LineFollowErrorTooFast:
-        eve.stop() 
-        raise
+    eve.moveblock(20,20,60,brake=False)
 
     eve.aaasetup()
-
-
-
+    eve.motor_mover(75,3.25,eve.attach)
+ 
+    eve.aaasetup()
  
