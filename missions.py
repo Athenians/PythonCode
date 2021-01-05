@@ -22,23 +22,11 @@ import threading
 
 
 
-def mission01(eve):
-    eve.calibrategs()
-    eve.moveblock(25,25,30)
-    eve.turnblock(10,80)
-    eve.moveblock(25,25,1650)
-    eve.turnblock(10,-80)
-
-
-def mission02(eve):
-
-    eve.calibrategs()
-    for x in range(4):
-        eve.moveblock(25,25,400)
-        eve.turnblock(10,90,error_margin=0)
-
-    #eve.moveblock(25,25,1500)
-
+def allmissions(eve):
+    mission_Row_Machine(eve)
+    mission_Step_Counter(eve)
+    mission_bench(eve)
+    
 
 def mission_Step_Counter(eve):
     #eve.calibrategs()
