@@ -33,7 +33,7 @@ def mission01(eve):
 def mission02(eve):
 
     eve.calibrategs()
-    for _ in range(4):
+    for x in range(4):
         eve.moveblock(25,25,400)
         eve.turnblock(10,90,error_margin=0)
 
@@ -41,8 +41,6 @@ def mission02(eve):
 
 
 def mission_Step_Counter(eve):
-    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','ORANGE','LEFT','RIGHT', 0.01, 20,))
-    z.start()
     #eve.calibrategs()
     eve.aaasetup()
     eve.moveblock(7,7,50)
@@ -85,8 +83,7 @@ def mission_Step_Counter(eve):
 
     x.join()
     y.join()
-    #color thread
-    z.join()  
+    #z.join()  
 
 
 def calibrate(eve):
@@ -95,9 +92,7 @@ def calibrate(eve):
 
 
 def mission_Row_Machine(eve):
-    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','RED','LEFT','RIGHT', 0.01, 45,))   
     #eve.calibrategs()
-    z.start()
     #eve.calibratecs(10,2)
     eve.aaasetup()
     time.sleep(0.5)
@@ -135,9 +130,9 @@ def mission_Row_Machine(eve):
     eve.moveblock(10,10,220)
     #eve.aaasetup()
     
-    eve.motor_mover(60,-3.85,eve.attach)
+    eve.motor_mover(60,-0.77,eve.attach)
     eve.moveblock(0,10,1000)
-    eve.motor_mover(60,3.85,eve.attach)
+    eve.motor_mover(60,0.77,eve.attach)
     #eve.aaasetup()
  
     eve.moveblock(-15,-15,400)
@@ -161,18 +156,15 @@ def mission_Row_Machine(eve):
     eve.moveblock(10,10,37)
     #eve.aaasetup()
     # 3 45
-    eve.motor_mover(40,-4.4,eve.attach)
+    eve.motor_mover(40,-0.88,eve.attach)
     eve.turnblock(5,-35)
-    eve.motor_mover(40,4.4,eve.attach)
+    eve.motor_mover(40,0.88,eve.attach)
     #eve.aaasetup()
     eve.turnblock(15,73)
     #eve.aaasetup()
     eve.moveblock(50,50,-1600)
-    z.join()
    
 def mission_bench(eve):
-    x = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','AMBER', 'LEFT','RIGHT', 0.01, 20,))
-    x.start()
     eve.calibrategs()
     eve.aaasetup()
 
@@ -181,18 +173,18 @@ def mission_bench(eve):
     # move forward 340 mm while lowrring attatchment 1.5
 
     eve.moveblock(15,15,320)
-    eve.motor_mover(50,-3,eve.attach)
+    eve.motor_mover(8,-0.6,eve.attach)
     eve.turnblock(8,10)
     #eve.aaasetup()
     eve.moveblock(15,15,40)
     time.sleep(1)
     #eve.aaasetup()
-    eve.motor_mover(50,2.5,eve.attach)
+    eve.motor_mover(8,0.6,eve.attach)
     #eve.aaasetup()
     time.sleep(0.25)
 
     
-    y = threading.Thread(target = eve.motor_mover, args = (75,-2.7,eve.attach,))
+    y = threading.Thread(target = eve.motor_mover, args = (15,-.75,eve.attach,))
     z = threading.Thread(target = eve.motor_mover, args = (25,2,eve.turret,))
 
     y.start()
@@ -201,11 +193,10 @@ def mission_bench(eve):
     y.join()
     z.join()
     
-    eve.aaasetup()
-    x.join()
-    #Move the attachment back to it's original positon 
+    #eve.aaasetup()
+     #Move the attachment back to it's original positon 
     x = threading.Thread(target = eve.moveblock,args = (35,30,-365,))
-    y = threading.Thread(target = eve.motor_mover, args = (75,3.2,eve.attach,))
+    y = threading.Thread(target = eve.motor_mover, args = (15,.75,eve.attach,))
     z = threading.Thread(target = eve.motor_mover, args = (25,-2,eve.turret,))
 
     x.start()
@@ -216,11 +207,7 @@ def mission_bench(eve):
     y.join()
     z.join()
 
-
-
 def mission_basket(eve):
-    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','YELLOW', 'LEFT', 'RIGHT', 0.01, 35,))
-    z.start()
     eve.calibrategs()
     #eve.aaasetup()
     #eve.calibratecs(10,2)
@@ -299,25 +286,72 @@ def mission_basket(eve):
         eve.stop() 
         raise
 
-    eve.moveblock(20,20,20,brake=False)
+    #################
+    eve.motor_mover(50,-0.5,eve.attach)
+    time.sleep(0.5)
+    #eve.aaasetup()
+    eve.moveblock(10,10,60,brake=False)
     time.sleep(0.25)
 
-    eve.turnblock(10,-30)
-    eve.motor_mover(50,-3.25,eve.attach)
+    #eve.aaasetup()
+    eve.motor_mover(75,0.35,eve.attach)
     time.sleep(0.25)
+    eve.moveblock(20,20,-50,brake=False)
+    eve.motor_mover(15,.15,eve.attach)
+
+    #slide
+    eve.turnblock(10,95)
+    eve.moveblock(10,10,85)
+    eve.line_finder(10,10,'r','b')
+    #turn more if the attachment doesn't push man down
+    eve.turnblock(10,40)
+    eve.motor_mover(50,.1,eve.attach)
+    #eve.motor_mover(25,-3,eve.turret)
     
-    eve.moveblock(20,20,60,brake=False)
+    #eve.aaasetup()
+    eve.turnblock(10,-40)
+    eve.motor_mover(50,-.1,eve.attach)
+    #eve.aaasetup()
+    #eve.line_finder(10,10,'r','b')
+    
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, #kd=3,
+            kp=2, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(15),
+            cs_for_line = eve.csr,            
+            follow_left_edge=False,
+            sleep_time=0.002,
+            follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
+            #follow_for = follow_for_distance,distance = 425
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms,  ms=4500
+        
+        )
+    except LineFollowErrorTooFast:
+        eve.stop() 
+        raise
+
+    try:
+        eve.athfollow_line(
+            #kp=2, ki=0.060, #kd=3,
+            kp=2, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
+            speed=SpeedPercent(15),
+            cs_for_line = eve.csr,            
+            follow_left_edge=False,
+            sleep_time=0.002,
+            follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
+            #follow_for = follow_for_distance,distance = 425
+            #follow_for=follow_for_forever
+            #follow_for=follow_for_ms,  ms=4500
+        
+        )
+    except LineFollowErrorTooFast:
+        eve.stop() 
+        raise
 
     eve.aaasetup()
-    eve.motor_mover(75,3.25,eve.attach)
+    #################
  
-    eve.aaasetup()
-    
-    #PUT THIS AT THE END OF THE PROGRAMMING FOR MISSION
-    z.join()
- 
-def allmissions(eve):
-    mission_Row_Machine(eve)
-    mission_Step_Counter(eve)
-    mission_bench(eve)
-    mission_basket(eve)

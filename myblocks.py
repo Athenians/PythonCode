@@ -21,7 +21,6 @@ import ev3dev2.fonts as fonts
 from ev3dev2.console import Console
 from ev3dev2.led import Leds
 import pickle 
-import threading
 
 log = getLogger(__name__)
  
@@ -276,7 +275,7 @@ class EveTank(MoveTank):
     def up(self,state):
         if state:
             debug_print('Up button pressed')
-            self.attach.on(speed=25)
+            self.attach.on(speed=10)
             xdisplay = 'Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position)
             debug_print(xdisplay)
             self.lcd.text_at(xdisplay, column = 2,row= 2,inverse=False) 
@@ -289,7 +288,7 @@ class EveTank(MoveTank):
     def down(self,state):
         if state:
             debug_print('Down button pressed')
-            self.attach.on(speed=-25)
+            self.attach.on(speed=-10)
         else:
             debug_print('Down button released')
             self.attach.off()
@@ -307,11 +306,7 @@ class EveTank(MoveTank):
 
 
     def aaasetup(self):
-        x = threading.Thread(target = self.leds.animate_flash, args = ('RED','LEFT','RIGHT',0.01,15,))
-
-        
-        x.start()
-
+       # self.leds.animate_flash('RED',sleeptime = 0.01, duration = 15)
         """
         If attachment moved first initalize position as 0 by 
         eve.turret.position = 0 
@@ -335,7 +330,7 @@ class EveTank(MoveTank):
             btn.process()
             time.sleep(0.01)
 
-        x.join()
+        self.leds.animate_flash('GREEN',sleeptime = 0.01, duration = 5)
         self.turret.reset
         self.attach.reset
 
@@ -542,7 +537,7 @@ class EveTank(MoveTank):
                 + ' integral: ' + str(integral)
                 + ' derivative: ' + str(derivative)
                 + ' turn_native_units: ' + str(turn_native_units))
-
+ 
             left_speed = SpeedNativeUnits(speed_native_units - turn_native_units * tnul)
             right_speed = SpeedNativeUnits(speed_native_units + turn_native_units * tnur)
 
