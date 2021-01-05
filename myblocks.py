@@ -25,6 +25,7 @@ import pickle
 log = getLogger(__name__)
  
 btn = Button()
+leds = Leds()
 
 class EveColorSensor(ColorSensor):
     def __init__(self,port):
@@ -306,12 +307,15 @@ class EveTank(MoveTank):
 
 
     def aaasetup(self):
-       # self.leds.animate_flash('RED',sleeptime = 0.01, duration = 15)
         """
         If attachment moved first initalize position as 0 by 
         eve.turret.position = 0 
         eve.attach.position = 0 
         """
+       #self.leds.animate_flash('RED',sleeptime = 0.75)
+        leds.set_color('LEFT','AMBER')
+        leds.set_color('RIGHT','RED')
+
         debug_print('aaasetup begin')
         print('hit a button')  
         time.sleep(1)
@@ -330,7 +334,7 @@ class EveTank(MoveTank):
             btn.process()
             time.sleep(0.01)
 
-        self.leds.animate_flash('GREEN',sleeptime = 0.01, duration = 5)
+        #self.leds.animate_flash('GREEN',sleeptime = 0.01, duration = 5)
         self.turret.reset
         self.attach.reset
 

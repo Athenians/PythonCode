@@ -3,9 +3,10 @@ from globals import debug_print
 import time
 import ev3dev2.fonts as fonts
 from  ev3dev2.console import Console
-
+from ev3dev2.led import Leds
 from myblocks import *
 
+leds = Leds()
 class MenuItem:
     def __init__(self, menu, line, linetype, linename, lineprog):
         self.menu = menu
@@ -70,6 +71,8 @@ class Menu(object):
                 debug_print('cur_lineprog: ' + self.cur_lineprog)
                 function=getattr(self.eve,self.cur_lineprog)
                 debug_print('function: ' + str(function))
+                leds.set_color('LEFT','YELLOW')
+                leds.set_color('RIGHT','YELLOW')                
                 function()
        
         self.refreshflag = True
@@ -147,6 +150,9 @@ class Menu(object):
         btn.on_down = self.down
         btn.on_enter = self.enter
         
+        leds.set_color('LEFT','AMBER')
+        leds.set_color('RIGHT','GREEN')
+        #leds.animate_police_lights('RED','GREEN',sleeptime=.5,duration=None)
 
         while True:
             if btn.check_buttons(buttons=['backspace']):
@@ -173,5 +179,9 @@ class Menu(object):
                 self.refreshflag = False
  
                 time.sleep(0.1)
+                leds.set_color('LEFT','AMBER')
+                leds.set_color('RIGHT','GREEN')
+                #leds.animate_police_lights('RED','GREEN',sleeptime=.5,duration=None)
 
         debug_print('menu End')
+        leds.reset()
