@@ -26,6 +26,7 @@ def allmissions(eve):
     mission_Row_Machine(eve)
     mission_Step_Counter(eve)
     mission_bench(eve)
+    mission_basket(eve)    
     
 
 def mission_Step_Counter(eve):
@@ -275,71 +276,35 @@ def mission_basket(eve):
         raise
 
     #################
-    eve.motor_mover(50,-0.5,eve.attach)
-    time.sleep(0.5)
+    eve.motor_mover(30,-0.4,eve.attach)
+    time.sleep(0.25)
     #eve.aaasetup()
     eve.moveblock(10,10,60,brake=False)
     time.sleep(0.25)
 
     #eve.aaasetup()
-    eve.motor_mover(75,0.35,eve.attach)
+    eve.motor_mover(15,0.3,eve.attach)
     time.sleep(0.25)
     eve.moveblock(20,20,-50,brake=False)
-    eve.motor_mover(15,.15,eve.attach)
+    #eve.motor_mover(15,0.15,eve.attach)
 
     #slide
     eve.turnblock(10,95)
     eve.moveblock(10,10,85)
-    eve.line_finder(10,10,'r','b')
+    #eve.line_finder(10,10,'r','b')
     #turn more if the attachment doesn't push man down
-    eve.turnblock(10,40)
-    eve.motor_mover(50,.1,eve.attach)
+    #eve.aaasetup()
+    eve.turnblock(10,113)
+    #eve.aaasetup()
+    eve.motor_mover(15,.1,eve.attach)
     #eve.motor_mover(25,-3,eve.turret)
     
     #eve.aaasetup()
-    eve.turnblock(10,-40)
-    eve.motor_mover(50,-.1,eve.attach)
+    #eve.turnblock(10,-75)
+    #eve.motor_mover(50,-.1,eve.attach)
     #eve.aaasetup()
     #eve.line_finder(10,10,'r','b')
-    
-    try:
-        eve.athfollow_line(
-            #kp=2, ki=0.060, #kd=3,
-            kp=2, ki=0.00, kd=0,         # use this for change of directions speed = 10       
-            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(15),
-            cs_for_line = eve.csr,            
-            follow_left_edge=False,
-            sleep_time=0.002,
-            follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
-            #follow_for = follow_for_distance,distance = 425
-            #follow_for=follow_for_forever
-            #follow_for=follow_for_ms,  ms=4500
-        
-        )
-    except LineFollowErrorTooFast:
-        eve.stop() 
-        raise
-
-    try:
-        eve.athfollow_line(
-            #kp=2, ki=0.060, #kd=3,
-            kp=2, ki=0.00, kd=0,         # use this for change of directions speed = 10       
-            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(15),
-            cs_for_line = eve.csr,            
-            follow_left_edge=False,
-            sleep_time=0.002,
-            follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
-            #follow_for = follow_for_distance,distance = 425
-            #follow_for=follow_for_forever
-            #follow_for=follow_for_ms,  ms=4500
-        
-        )
-    except LineFollowErrorTooFast:
-        eve.stop() 
-        raise
-
+    eve.moveblock(46,31,-394.53)
     eve.aaasetup()
     #################
  
