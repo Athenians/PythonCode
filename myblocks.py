@@ -21,6 +21,7 @@ import ev3dev2.fonts as fonts
 from ev3dev2.console import Console
 from ev3dev2.led import Leds
 import pickle 
+import threading
 
 log = getLogger(__name__)
  
@@ -314,8 +315,8 @@ class EveTank(MoveTank):
         eve.turret.position = 0 
         eve.attach.position = 0 
         """
-        x = threading.Thread(target = self.leds.animate_flash, args = ('RED','LEFT','RIGHT',0.01,15,))
-	    x.start()
+        #x = threading.Thread(target = self.leds.animate_flash, args = ('RED','LEFT','RIGHT',0.01,15,))
+        #x.start()
 
         debug_print('aaasetup begin')
         print('hit a button')  
@@ -339,7 +340,7 @@ class EveTank(MoveTank):
         self.turret.reset
         self.attach.reset
 
-        x.join()
+        #x.join()
         debug_print('aaasetup End')
 
     def moveblock(self, lspeed, rspeed, distance, brake=True, block=True):
