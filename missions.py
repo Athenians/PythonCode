@@ -3,7 +3,7 @@
 
 
 #from ev3dev2.button import Button
-#from ev3dev2.sound import Sound
+from ev3dev2.sound import Sound
 #from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D, Motor
 from ev3dev2.motor import MoveTank, LineFollowErrorTooFast, follow_for_forever
 from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, follow_for_ms
@@ -30,6 +30,9 @@ def allmissions(eve):
     
 
 def mission_Step_Counter(eve):
+    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','ORANGE','LEFT','RIGHT', 0.01, 20,))
+	z.start()
+
     #eve.calibrategs()
     eve.aaasetup()
     eve.moveblock(7,7,50)
@@ -61,7 +64,7 @@ def mission_Step_Counter(eve):
     #for x in range (1):
       #  eve.moveblock(7,7,-20)
        # eve.moveblock(7,7,80)
-
+    eve.sound.play_file('fanfare_x.wav')
     x = threading.Thread(target = eve.moveblock, args = (60,60,-1360,) )
     #eve.moveblock(60,60,-1360)
     y = threading.Thread(target = eve.motor_mover, args = (50,-2,eve.turret,))
@@ -72,7 +75,7 @@ def mission_Step_Counter(eve):
 
     x.join()
     y.join()
-    #z.join()  
+    z.join()  
 
 
 def calibrate(eve):
@@ -81,6 +84,9 @@ def calibrate(eve):
 
 
 def mission_Row_Machine(eve):
+    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','RED','LEFT','RIGHT', 0.01, 45,)) 	
+	z.start()
+	
     #eve.calibrategs()
     #eve.calibratecs(10,2)
     eve.aaasetup()
@@ -123,7 +129,7 @@ def mission_Row_Machine(eve):
     eve.moveblock(0,10,1000)
     eve.motor_mover(60,0.77,eve.attach)
     #eve.aaasetup()
- 
+    eve.sound.play_file('fanfare_x.wav')
     eve.moveblock(-15,-15,400)
 
     
@@ -151,12 +157,15 @@ def mission_Row_Machine(eve):
     #eve.aaasetup()
     eve.turnblock(15,73)
     #eve.aaasetup()
+    eve.sound.play_file('fanfare_x.wav')
     eve.moveblock(50,50,-1600)
+    z.join()
    
 def mission_bench(eve):
     eve.calibrategs()
     eve.aaasetup()
-
+    x = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','AMBER', 'LEFT','RIGHT', 0.01, 20,))
+	x.start()
     #eve.aaasetup()
     #Write suedo code here
     # move forward 340 mm while lowrring attatchment 1.5
@@ -181,9 +190,10 @@ def mission_bench(eve):
 
     y.join()
     z.join()
-    
+    x.join()
     #eve.aaasetup()
      #Move the attachment back to it's original positon 
+    eve.sound.play_file('fanfare_x.wav')
     x = threading.Thread(target = eve.moveblock,args = (35,30,-365,))
     y = threading.Thread(target = eve.motor_mover, args = (15,.75,eve.attach,))
     z = threading.Thread(target = eve.motor_mover, args = (25,-2,eve.turret,))
@@ -198,6 +208,9 @@ def mission_bench(eve):
 
 def mission_basket(eve):
     eve.calibrategs()
+    z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','YELLOW', 'LEFT', 'RIGHT', 0.01, 35,))
+	z.start()
+	
     #eve.aaasetup()
     #eve.calibratecs(10,2)
     eve.aaasetup()
@@ -286,6 +299,7 @@ def mission_basket(eve):
     eve.motor_mover(15,0.3,eve.attach)
     time.sleep(0.25)
     eve.moveblock(20,20,-50,brake=False)
+    eve.sound.play_file('fanfare_x.wav')
     #eve.motor_mover(15,0.15,eve.attach)
 
     #slide
@@ -295,6 +309,7 @@ def mission_basket(eve):
     #turn more if the attachment doesn't push man down
     #eve.aaasetup()
     eve.turnblock(10,113)
+    eve.sound.play_file('fanfare_x.wav')
     #eve.aaasetup()
     eve.motor_mover(15,.1,eve.attach)
     #eve.motor_mover(25,-3,eve.turret)
@@ -306,5 +321,11 @@ def mission_basket(eve):
     #eve.line_finder(10,10,'r','b')
     eve.moveblock(46,31,-394.53)
     eve.aaasetup()
+    #Dance Floor Lights
+    x = threading.Thread(target = eve.leds.animate_rainbow, args = (‘LEFT’,’RIGHT’, 0.1, 0.1,28,True)
+	x.start()
+    #attachment dance code
+	x.join()
+    eve.sound.play_file('fanfare_x.wav')
     #################
  

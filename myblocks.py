@@ -25,7 +25,7 @@ import pickle
 log = getLogger(__name__)
  
 btn = Button()
-leds = Leds()
+
 
 class EveColorSensor(ColorSensor):
     def __init__(self,port):
@@ -164,6 +164,8 @@ class EveTank(MoveTank):
         #set up LED lights
         self.leds = Leds()
 
+        #set up sound
+        self.sound = Sound()
         #Loads color sensor values saved from last calibration
         #before loading file make sure exists
         
@@ -312,9 +314,8 @@ class EveTank(MoveTank):
         eve.turret.position = 0 
         eve.attach.position = 0 
         """
-       #self.leds.animate_flash('RED',sleeptime = 0.75)
-        leds.set_color('LEFT','AMBER')
-        leds.set_color('RIGHT','RED')
+        x = threading.Thread(target = self.leds.animate_flash, args = ('RED','LEFT','RIGHT',0.01,15,))
+	    x.start()
 
         debug_print('aaasetup begin')
         print('hit a button')  
@@ -338,7 +339,7 @@ class EveTank(MoveTank):
         self.turret.reset
         self.attach.reset
 
-
+        x.join()
         debug_print('aaasetup End')
 
     def moveblock(self, lspeed, rspeed, distance, brake=True, block=True):

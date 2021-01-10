@@ -149,10 +149,6 @@ class Menu(object):
         btn.on_up = self.up
         btn.on_down = self.down
         btn.on_enter = self.enter
-        
-        leds.set_color('LEFT','AMBER')
-        leds.set_color('RIGHT','GREEN')
-        #leds.animate_police_lights('RED','GREEN',sleeptime=.5,duration=None)
 
         while True:
             if btn.check_buttons(buttons=['backspace']):
@@ -179,9 +175,5 @@ class Menu(object):
                 self.refreshflag = False
  
                 time.sleep(0.1)
-                leds.set_color('LEFT','AMBER')
-                leds.set_color('RIGHT','GREEN')
-                #leds.animate_police_lights('RED','GREEN',sleeptime=.5,duration=None)
-
+                
         debug_print('menu End')
-        leds.reset()
