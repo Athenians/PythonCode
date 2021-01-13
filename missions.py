@@ -35,12 +35,12 @@ def mission_Step_Counter(eve):
 
     #eve.calibrategs()
     eve.aaasetup()
-    eve.moveblock(7,7,50)
+    eve.moveblock(15,15,50)
     #eve.aaasetup()
     eve.turnblock(10,92)
     #eve.aaasetup()
 
-    x = threading.Thread(target = eve.moveblock, args = (25,25,800,) )
+    x = threading.Thread(target = eve.moveblock, args = (30,30,800,) )
     #eve.moveblock(25,25,800)
 
     y = threading.Thread(target = eve.motor_mover, args = (50,2,eve.turret,))
@@ -54,18 +54,18 @@ def mission_Step_Counter(eve):
     y.join()
     #z.join()
 
-    eve.moveblock(7,7,60)
+    eve.moveblock(15,15,60)
    # for x in range (1):
       # eve.moveblock(7,10,-10)
        #eve.moveblock(7,7,50)    
-    for x in range(20):
-        eve.moveblock(10,10,-20)
-        eve.moveblock(10,10,50)
+    for x in range(18):
+        eve.moveblock(15,15,-9)
+        eve.moveblock(10,10,30)
     #for x in range (1):
       #  eve.moveblock(7,7,-20)
        # eve.moveblock(7,7,80)
     #eve.sound.play_file('fanfare_x.wav')
-    x = threading.Thread(target = eve.moveblock, args = (60,60,-1360,) )
+    x = threading.Thread(target = eve.moveblock, args = (65,65,-1360,) )
     #eve.moveblock(60,60,-1360)
     y = threading.Thread(target = eve.motor_mover, args = (50,-2,eve.turret,))
     
@@ -103,7 +103,7 @@ def mission_Row_Machine(eve):
             #kp=2, ki=0.060, #kd=3,
             kp=3, ki=0.00, kd=0,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(10),
+            speed=SpeedPercent(12),
             cs_for_line = eve.csr,            
             follow_left_edge=True,
             sleep_time=0.002,
@@ -118,7 +118,7 @@ def mission_Row_Machine(eve):
         raise
     
     #eve.aaasetup()
-    eve.line_finder(5,5,'l','b')
+    eve.line_finder(10,10,'l','b')
 
 
    #this is to complete treadmill
@@ -134,14 +134,14 @@ def mission_Row_Machine(eve):
     eve.moveblock(-15,-15,375)
 
     eve.turnblock(5,-100)
-    eve.moveblock(-15,-15,260)
+    eve.moveblock(-20,-20,260)
     time.sleep(1)
     
-    eve.line_finder(5,5,'l','b')
+    eve.line_finder(10,10,'l','b')
    # eve.aaasetup()
     eve.moveblock(15,0,190)
     
-    eve.line_finder(5,5,'l','b')
+    eve.line_finder(10,10,'l','b')
 
 
 
@@ -151,12 +151,12 @@ def mission_Row_Machine(eve):
     eve.moveblock(10,10,37)
     #eve.aaasetup()
     # 3 45
-    eve.motor_mover(40,-0.88,eve.attach)
+    eve.motor_mover(40,-0.75,eve.attach)
     eve.turnblock(5,-35)
     eve.turnblock(5,2)
-    eve.motor_mover(40,0.88,eve.attach)
+    eve.motor_mover(40,0.75,eve.attach)
     #eve.aaasetup()
-    eve.turnblock(5,73)
+    eve.turnblock(5,70)
     #eve.aaasetup()
     #eve.sound.play_file('fanfare_x.wav')
     eve.moveblock(50,50,-1600)
@@ -171,7 +171,7 @@ def mission_bench(eve):
     #Write suedo code here
     # move forward 340 mm while lowrring attatchment 1.5
 
-    eve.moveblock(15,15,320)
+    eve.moveblock(20,20,320)
     eve.motor_mover(8,-0.6,eve.attach)
     eve.turnblock(8,10)
     #eve.aaasetup()
@@ -195,7 +195,7 @@ def mission_bench(eve):
     #eve.aaasetup()
      #Move the attachment back to it's original positon 
     #eve.sound.play_file('fanfare_x.wav')
-    x = threading.Thread(target = eve.moveblock,args = (35,30,-365,))
+    x = threading.Thread(target = eve.moveblock,args = (55,50,-365,))
     y = threading.Thread(target = eve.motor_mover, args = (15,.75,eve.attach,))
     z = threading.Thread(target = eve.motor_mover, args = (25,-2,eve.turret,))
 
@@ -220,7 +220,7 @@ def mission_basket(eve):
     #eve.line_finder(10,10,'l','b')
     #eve.moveblock()
 
-    eve.moveblock(20,20,250,brake=False)
+    eve.moveblock(25,25,250,brake=False)
     eve.turnblock(10,90)
     eve.line_finder(10,10,'r','b')
 
@@ -297,7 +297,7 @@ def mission_basket(eve):
     time.sleep(0.25)
 
     #eve.aaasetup()
-    eve.motor_mover(15,0.3,eve.attach)
+    eve.motor_mover(15,0.275,eve.attach)
     time.sleep(0.25)
     eve.moveblock(20,20,-50,brake=False)
     #eve.sound.play_file('fanfare_x.wav')
@@ -312,7 +312,7 @@ def mission_basket(eve):
     eve.turnblock(10,113)
     #eve.sound.play_file('fanfare_x.wav')
     #eve.aaasetup()
-    eve.motor_mover(15,.1,eve.attach)
+    eve.motor_mover(15,.125,eve.attach)
     #eve.motor_mover(25,-3,eve.turret)
     
     #eve.aaasetup()
@@ -327,14 +327,17 @@ def mission_basket(eve):
     #attachment dance code
     #x.join()
     #eve.sound.play_file('fanfare_x.wav')
-    eve.moveblock(20,20,20)
-    eve.turnblock(15,20)
-    eve.turnblock(15,-20)
-    eve.motor_mover(17,1.5,eve.turret)
-    eve.motor_mover(18,-2,eve.turret)
-    eve.moveblock(20,15,-20)
-    eve.motor_mover(8,0.5,eve.attach)
-    eve.motor_mover(8,-0.5,eve.attach)
+    
+    for x in range(8):
+        eve.moveblock(20,20,15)
+        eve.motor_mover(17,1.5,eve.turret)
+        eve.turnblock(15,20)
+        eve.motor_mover(8,-0.3,eve.attach)
+        eve.turnblock(15,-20)
+        eve.motor_mover(18,-1.5,eve.turret)
+        eve.moveblock(20,15,-15)
+        eve.motor_mover(8,0.3,eve.attach)
+
     eve.aaasetup()
     #################
  
