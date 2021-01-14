@@ -327,15 +327,14 @@ def mission_basket(eve):
     #attachment dance code
     #x.join()
     #eve.sound.play_file('fanfare_x.wav')
-    
+
+    eve.moveblock(20,20,15)   
     for x in range(8):
-        eve.moveblock(20,20,15)
         eve.motor_mover(17,1.5,eve.turret)
         eve.turnblock(15,20)
         eve.motor_mover(8,-0.3,eve.attach)
         eve.turnblock(15,-20)
         eve.motor_mover(18,-1.5,eve.turret)
-        eve.moveblock(20,15,-15)
         eve.motor_mover(8,0.3,eve.attach)
 
     eve.aaasetup()
