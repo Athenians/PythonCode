@@ -159,7 +159,7 @@ def mission_Row_Machine(eve):
     eve.turnblock(5,70)
     #eve.aaasetup()
     #eve.sound.play_file('fanfare_x.wav')
-    eve.moveblock(50,50,-1600)
+    eve.moveblock(45,45,-1600)
     #z.join()
    
 def mission_bench(eve):
@@ -322,21 +322,37 @@ def mission_basket(eve):
     #eve.line_finder(10,10,'r','b')
     eve.moveblock(46,31,-394.53)
     #Dance Floor Lights
-    #x = threading.Thread(target = eve.leds.animate_rainbow, args = ())
-    #x.start()
+    x = threading.Thread(target = eve.leds.animate_rainbow, args = ())
+    y = threading.Thread(target = eve.sound.play_file, args=('sounds/fanfare3.wav',))
+    x.start()
+    y.start()
     #attachment dance code
-    #x.join()
-    #eve.sound.play_file('fanfare_x.wav')
+    
+   
 
     eve.moveblock(20,20,15)   
     for x in range(8):
+        x = threading.Thread(target = eve.motor_mover, args=(16,-.8,eve.attach,))
+        y = threading.Thread(target = eve.motor_mover, args=(15,-2,eve.turret,))
+        x.start()
+        y.start()
+        x.join()
+        y.join()
+        x = threading.Thread(target = eve.motor_mover, args=(16,.8,eve.attach,))
+        y = threading.Thread(target = eve.motor_mover, args=(15,2,eve.turret,))
+        x.start()
+        y.start()
+        x.join()
+        y.join()
+        ####
         eve.motor_mover(17,1.5,eve.turret)
         eve.turnblock(15,20)
         eve.motor_mover(8,-0.3,eve.attach)
         eve.turnblock(15,-20)
         eve.motor_mover(18,-1.5,eve.turret)
         eve.motor_mover(8,0.3,eve.attach)
-
+    x.join()
+    y.join()
     eve.aaasetup()
     #################
  
