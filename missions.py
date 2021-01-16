@@ -163,8 +163,9 @@ def mission_Row_Machine(eve):
     #z.join()
    
 def mission_bench(eve):
-    eve.calibrategs()
     eve.aaasetup()
+    time.sleep(0.25)
+    eve.calibrategs
     #x = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','AMBER', 'LEFT','RIGHT', 0.01, 9.253,))
     #x.start()
     #eve.aaasetup()
@@ -208,13 +209,9 @@ def mission_bench(eve):
     z.join()
 
 def mission_basket(eve):
-    eve.calibrategs()
-    #z = threading.Thread(target = eve.leds.animate_police_lights, args =('BLACK','YELLOW', 'LEFT', 'RIGHT', 0.01, 35,))
-    #z.start()
-	
-    #eve.aaasetup()
-    #eve.calibratecs(10,2)
     eve.aaasetup()
+    time.sleep(0.5)
+    eve.calibrategs
    # eve.moveblovk(20,20,510)
    # eve.turnblock(20,90)
     #eve.line_finder(10,10,'l','b')
@@ -320,7 +317,7 @@ def mission_basket(eve):
     #eve.motor_mover(50,-.1,eve.attach)
     #eve.aaasetup()
     #eve.line_finder(10,10,'r','b')
-    eve.moveblock(45,33.53,-394.53)
+    eve.moveblock(45,33.53,-400.53)
     #Dance Floor Lights
     #x = threading.Thread(target = eve.leds.animate_rainbow, args = ())
     #y = threading.Thread(target = eve.sound.play_file, args=('sounds/fanfare3.wav',))
@@ -332,18 +329,18 @@ def mission_basket(eve):
 
     eve.moveblock(20,20,15)   
     for _ in range(14):
-        x = threading.Thread(target = eve.motor_mover, args=(16,-.25,eve.attach,))
-        y = threading.Thread(target = eve.motor_mover, args=(15,-2.5,eve.turret,))
-        z = threading.Thread(target = eve.turnblock, args=(10,20,))
+        x = threading.Thread(target = eve.motor_mover, args=(16,-.5,eve.attach,))
+        y = threading.Thread(target = eve.motor_mover, args=(15,2.5,eve.turret,))
+        z = threading.Thread(target = eve.turnblock, args=(10,-20,))
         x.start()
         y.start()
         z.start()
         x.join()
         y.join()
         z.join()
-        x = threading.Thread(target = eve.motor_mover, args=(16,.25,eve.attach,))
-        y = threading.Thread(target = eve.motor_mover, args=(15,2.5,eve.turret,))
-        z = threading.Thread(target = eve.turnblock, args=(10,-20,))
+        x = threading.Thread(target = eve.motor_mover, args=(16,.5,eve.attach,))
+        y = threading.Thread(target = eve.motor_mover, args=(15,-2.5,eve.turret,))
+        z = threading.Thread(target = eve.turnblock, args=(5,20,))
         x.start()
         y.start()
         z.start()
@@ -359,6 +356,6 @@ def mission_basket(eve):
         #eve.motor_mover(8,0.2,eve.attach)
     #x.join()
     #y.join()
-    eve.aaasetup()
+    #eve.aaasetup()
     #################
  
