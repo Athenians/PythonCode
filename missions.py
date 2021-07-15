@@ -11,7 +11,7 @@ from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, 
 #from ev3dev2.sensor import INPUT_1, INPUT_2,  INPUT_4
 #from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
 from ev3dev2.led import Leds
-from myblocks import EveTank, follow_until_line,follow_for_distance
+from myblocks import EveTank, follow_until_line, follow_for_distance
 
 #import logging as log
 
@@ -328,9 +328,7 @@ def mission_basket(eve):
     y.start()
     #attachment dance code
     
-   
-
-    eve.moveblock(20,20,15)   
+def mission_dance(eve):
     for x in range(8):
         x = threading.Thread(target = eve.motor_mover, args=(16,-.8,eve.attach,))
         y = threading.Thread(target = eve.motor_mover, args=(15,-2,eve.turret,))
@@ -355,4 +353,28 @@ def mission_basket(eve):
     y.join()
     eve.aaasetup()
     #################
+    eve.moveblock(20,20,15)   
+    for x in range(8):
+        x = threading.Thread(target = eve.motor_mover, args=(16,-.8,eve.attach,))
+        y = threading.Thread(target = eve.motor_mover, args=(15,-2,eve.turret,))
+        x.start()
+        y.start()
+        x.join()
+        y.join()
+        x = threading.Thread(target = eve.motor_mover, args=(16,.8,eve.attach,))
+        y = threading.Thread(target = eve.motor_mover, args=(15,2,eve.turret,))
+        x.start()
+        y.start()
+        x.join()
+        y.join()
+        ####
+        eve.motor_mover(17,1.5,eve.turret)
+        eve.turnblock(15,20)
+        eve.motor_mover(8,-0.3,eve.attach)
+        eve.turnblock(15,-20)
+        eve.motor_mover(18,-1.5,eve.turret)
+        eve.motor_mover(8,0.3,eve.attach)
+    x.join()
+    y.join()
+    eve.aaasetup()
  

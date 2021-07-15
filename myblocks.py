@@ -591,3 +591,6 @@ class EveTank(MoveTank):
 
     def mission_basket(self):
         missions.mission_basket(self)
+        
+    def mission_dance(self):
+        missions.mission_dance(self)
