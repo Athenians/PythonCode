@@ -576,18 +576,9 @@ class EveTank(MoveTank):
             self.on(left_speed, right_speed)
 
         self.stop()
-    
+    '''
+    how to write mission into myblocks
+    ex.
     def mission_Step_Counter(self):
         missions.mission_Step_Counter(self)
-
-    def mission_Row_Machine(self):
-        missions.mission_Row_Machine(self)
-        
-    def mission_bench(self):
-        missions.mission_bench(self)
-
-    def all_missions(self):
-        missions.allmissions(self)
-
-    def mission_basket(self):
-        missions.mission_basket(self)
+    '''
