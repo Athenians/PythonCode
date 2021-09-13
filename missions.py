@@ -25,9 +25,13 @@ def calibrate(eve):
     eve.calibratecs(10,2)
 
 def mission_bridge(eve):
-    eve.moveblock(20,20,200)
-    eve.turnblock(15,65)
-    eve.line_finder(10,10,'l','b')
+    eve.aaasetup()
+    eve.calibrategs()
+    eve.moveblock(20,20,320)
+    eve.turnblock(10,90)
+    eve.aaasetup()
+    eve.line_finder(10,10,'r','b')
+    eve.aaasetup()
     #add attachment or stick to drop bridge
     eve.left_motor.position = 0
     eve.right_motor.position = 0 
@@ -38,7 +42,7 @@ def mission_bridge(eve):
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(12),
             cs_for_line = eve.csr,            
-            follow_left_edge=True,
+            follow_left_edge= False,
             sleep_time=0.002,
             #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
             follow_for = follow_for_distance,distance = 1400
@@ -63,7 +67,7 @@ def mission_bridge(eve):
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(12),
             cs_for_line = eve.csr,            
-            follow_left_edge=True,
+            follow_left_edge=False,
             sleep_time=0.002,
             #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
             follow_for = follow_for_distance,distance = 1450

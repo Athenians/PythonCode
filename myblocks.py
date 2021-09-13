@@ -582,3 +582,5 @@ class EveTank(MoveTank):
     def mission_Step_Counter(self):
         missions.mission_Step_Counter(self)
     '''
+    def mission_bridge(self):
+        missions.mission_bridge(self)
