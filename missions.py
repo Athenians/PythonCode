@@ -27,11 +27,7 @@ def calibrate(eve):
 def mission_bridge(eve):
     eve.aaasetup()
     eve.calibrategs()
-    eve.moveblock(20,20,320)
-    eve.turnblock(10,90)
-    eve.aaasetup()
-    eve.line_finder(10,10,'r','b')
-    eve.aaasetup()
+    eve.find_line_2()
     #add attachment or stick to drop bridge
     eve.left_motor.position = 0
     eve.right_motor.position = 0 

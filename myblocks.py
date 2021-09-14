@@ -576,6 +576,13 @@ class EveTank(MoveTank):
             self.on(left_speed, right_speed)
 
         self.stop()
+    
+    def find_line_2(self):
+        self.calibrategs()
+        self.moveblock(20,20,320)
+        self.turnblock(10,90)
+        self.line_finder(10,10,'r','b')
+        self.turnblock(5,-33)
     '''
     how to write mission into myblocks
     ex.
