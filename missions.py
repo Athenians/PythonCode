@@ -28,6 +28,7 @@ def mission_bridge(eve):
     eve.aaasetup()
     eve.calibrategs()
     eve.find_line_2()
+    eve.aaasetup
     #add attachment or stick to drop bridge
     eve.left_motor.position = 0
     eve.right_motor.position = 0 
@@ -38,7 +39,7 @@ def mission_bridge(eve):
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(12),
             cs_for_line = eve.csr,            
-            follow_left_edge= False,
+            follow_left_edge= True,
             sleep_time=0.002,
             #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
             follow_for = follow_for_distance,distance = 1400
@@ -63,7 +64,7 @@ def mission_bridge(eve):
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(12),
             cs_for_line = eve.csr,            
-            follow_left_edge=False,
+            follow_left_edge=True,
             sleep_time=0.002,
             #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
             follow_for = follow_for_distance,distance = 1450
