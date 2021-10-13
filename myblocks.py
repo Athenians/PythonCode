@@ -170,15 +170,15 @@ class EveTank(MoveTank):
         #Loads color sensor values saved from last calibration
         #before loading file make sure exists
         
-        #with open("csvalues.pk" , 'rb') as fi:
-        #    cs_values = pickle.load(fi)
+        with open("csvalues.pk" , 'rb') as fi:
+            cs_values = pickle.load(fi)
 
-        #self.csl.min = cs_values[0]
-       # self.csl.mid = cs_values[1]
-        #self.csl.max = cs_values[2]
-        #self.csr.min = cs_values[3]
-        #self.csr.mid = cs_values[4]
-        #self.csr.max = cs_values[5]
+        self.csl.min = cs_values[0]
+        self.csl.mid = cs_values[1]
+        self.csl.max = cs_values[2]
+        self.csr.min = cs_values[3]
+        self.csr.mid = cs_values[4]
+        self.csr.max = cs_values[5]
         
 
         debug_print('left min: ' + str(self.csl.min) 

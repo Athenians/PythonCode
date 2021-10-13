@@ -28,16 +28,16 @@ def mission_bridge(eve):
     eve.aaasetup()
     eve.calibrategs()
     eve.find_line_2()
-    eve.aaasetup
+    eve.aaasetup()
     #add attachment or stick to drop bridge
     eve.left_motor.position = 0
     eve.right_motor.position = 0 
     try:
         eve.athfollow_line(
             #kp=2, ki=0.060, #kd=3,
-            kp=3, ki=0.00, kd=0,         # use this for change of directions speed = 10       
+            kp=4, ki=0.06, kd=3,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(12),
+            speed=SpeedPercent(5),
             cs_for_line = eve.csr,            
             follow_left_edge= True,
             sleep_time=0.002,
@@ -50,7 +50,7 @@ def mission_bridge(eve):
     except LineFollowErrorTooFast:
         eve.stop() 
         raise
-    
+    eve.aaasetup()
     eve.turnblock(15,10)
     #food package dropped during this 
     eve.turnblock(15,178)
