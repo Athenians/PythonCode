@@ -54,6 +54,7 @@ def mission_bridge(eve):
     eve.turnblock(15,10)
     #food package dropped during this 
     eve.turnblock(15,178)
+    eve.aaasetup()
     #add attachment or stick to drop bridge
     eve.left_motor.position = 0
     eve.right_motor.position = 0 
@@ -63,8 +64,8 @@ def mission_bridge(eve):
             kp=3, ki=0.00, kd=0,         # use this for change of directions speed = 10       
             #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
             speed=SpeedPercent(12),
-            cs_for_line = eve.csr,            
-            follow_left_edge=True,
+            cs_for_line = eve.csl,            
+            follow_left_edge=False,
             sleep_time=0.002,
             #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
             follow_for = follow_for_distance,distance = 1450
@@ -76,4 +77,9 @@ def mission_bridge(eve):
         eve.stop() 
         raise
 
-    eve.moveblock(20,20,115)
+    eve.moveblock(20,20,400)
+
+def mission_unload_cargo_plane(eve):
+    eve.aaasetup()
+    eve.moveblock(10,10,850)
+    eve.turnblock(10,-20)
