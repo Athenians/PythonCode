@@ -132,7 +132,7 @@ class Menu(object):
         self.menu.append(MenuItem(1,0,'P','AAASetup','aaasetup'))
         self.menu.append(MenuItem(1,1,'P','Calibratcs','calibratecs'))
         self.menu.append(MenuItem(2,0,'P','Bridge','mission_bridge'))
-        self.menu.append(MenuItem(2,1,'P','Unload Cargo Plane','mission_unload_plane'))
+        self.menu.append(MenuItem(2,1,'P','Unload Cargo Plane','mission_unload_cargo_plane'))
         #self.menu.append(MenuItem(2,2,'P','Bench','mission_bench'))
         #self.menu.append(MenuItem(2,3,'P','Basket','mission_basket'))
     

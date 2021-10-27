@@ -41,7 +41,7 @@ def mission_bridge(eve):
             follow_left_edge= True,
             sleep_time=0.002,
             #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
-            follow_for = follow_for_distance,distance = 1050
+            follow_for = follow_for_distance,distance = 1300
             #follow_for=follow_for_forever
             #follow_for=follow_for_ms,  ms=4500
         
@@ -50,35 +50,14 @@ def mission_bridge(eve):
         eve.stop() 
         raise
 
-    try:
-        eve.athfollow_line(
-            #kp=2, ki=0.060, #kd=3,
-            kp=4, ki=0.06, kd=3,         # use this for change of directions speed = 10       
-            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(5),
-            cs_for_line = eve.csr,            
-            follow_left_edge= True,
-            sleep_time=0.002,
-            Follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'w',tolerence=2
-            #follow_for = follow_for_distance,distance = 1050
-            #follow_for=follow_for_forever
-            #follow_for=follow_for_ms,  ms=4500
-        
-        )
-    except LineFollowErrorTooFast:
-        eve.stop() 
-        raise  
-    
-    eve.aaasetup()
+    eve.line_finder(10,10,'l','w')
     eve.turnblock(15,110)
-    eve.aaasetup()
 
     #food package dropped during this
-    eve.moveblock(15,15,300)
-    eve.motor_mover(10,12,eve.turret)
-    eve.motor_mover(10,0.5,eve.attach)
-    eve.motor_mover(10,-12,eve.turret)
-    eve.moveblock(15,15,30)
+    eve.moveblock(15,15,380)
+    eve.motor_mover(45,12,eve.turret)
+    eve.motor_mover(10,0.7,eve.attach)
+    eve.motor_mover(45,-12,eve.turret)
     eve.motor_mover(10,0.25,eve.attach)
 
     '''
@@ -111,5 +90,11 @@ def mission_bridge(eve):
 
 def mission_unload_cargo_plane(eve):
     eve.aaasetup()
+    eve.calibrategs()
     eve.moveblock(10,10,850)
     eve.turnblock(10,-20)
+    eve.motor_mover(10,0.75,eve.turret)
+    eve.turnblock(10,20)
+    eve.moveblock(10,10,-500)
+    eve.turnblock(10,-145)
+    eve.moveblock(30,30,280)

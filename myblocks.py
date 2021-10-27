@@ -172,7 +172,7 @@ class EveTank(MoveTank):
         
         with open("csvalues.pk" , 'rb') as fi:
             cs_values = pickle.load(fi)
-
+        
         self.csl.min = cs_values[0]
         self.csl.mid = cs_values[1]
         self.csl.max = cs_values[2]
@@ -187,10 +187,10 @@ class EveTank(MoveTank):
         debug_print('right min: ' + str(self.csr.min)
             + ' right mid: ' + str(self.csr.mid)
             + ' right max: ' + str(self.csr.max))
+        
 
 
-
-        # set up wheel data
+        #set up wheel data
         self.wheel_Dia = Wheel_Dia
         self.Circumference = Wheel_Dia * math.pi
 
@@ -408,7 +408,7 @@ class EveTank(MoveTank):
         while True:
             self.on(lspeed,rspeed)
             xread = xsensor.value()
-            #debug_print('xread = ' + str(xread))           
+            debug_print('xread = ' + str(xread)+ 'xmin = ' + str(xmin) + 'xmax = ' + str(xmax))           
             if wb == 'w' and xread >= xmax:
                 break
             if wb == 'b' and xread <= xmin:
@@ -595,3 +595,6 @@ class EveTank(MoveTank):
     '''
     def mission_bridge(self):
         missions.mission_bridge(self)
+
+    def mission_unload_cargo_plane(self):
+        missions.mission_unload_cargo_plane
