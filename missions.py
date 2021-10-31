@@ -91,10 +91,14 @@ def mission_bridge(eve):
 def mission_unload_cargo_plane(eve):
     eve.aaasetup()
     eve.calibrategs()
-    eve.moveblock(10,10,850)
-    eve.turnblock(10,-20)
+    eve.moveblock(10,10,1000)
+    eve.turnblock(10,90)
+
+
+
+    
     eve.motor_mover(10,0.75,eve.turret)
     eve.turnblock(10,20)
-    eve.moveblock(10,10,-500)
+    eve.moveblock(10,10,-280)
     eve.turnblock(10,-145)
-    eve.moveblock(30,30,280)
+    eve.moveblock(30,30,550)
