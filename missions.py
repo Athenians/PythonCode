@@ -51,6 +51,7 @@ def mission_bridge(eve):
         raise
 
     eve.line_finder(10,10,'l','w')
+    eve.aaasetup()
     eve.turnblock(15,110)
 
     #food package dropped during this
@@ -115,4 +116,20 @@ def mission_unload_cargo_plane(eve):
     eve.moveblock(10,10,-70)
     eve.turnblock(10,90)
     eve.moveblock(30,30,-500)
+
+
+def mission_cargo_circle(eve):
+    eve.aaasetup()
+    eve.calibrategs()
+    eve.moveblock(15,15,150)
+    eve.turnblock(15,90)
+    eve.moveblock(15,15,1050)
+    eve.turnblcok(15,-45)
+    eve.moveblock(15,15,50)
+    eve.moveblock(15,15,-50)
+    eve.turnblock(15,45)
+    eve.moveblock(15,15,1350)
+
+
+
 
