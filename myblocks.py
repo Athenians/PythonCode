@@ -602,3 +602,6 @@ class EveTank(MoveTank):
 
     def mission_unload_cargo_plane(self):
         missions.mission_unload_cargo_plane(self)
+
+    def mission_cargo_circle(self):
+        missions.mission_cargo_circle(self)
