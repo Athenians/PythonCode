@@ -129,6 +129,7 @@ class EveTank(MoveTank):
 
 
         # set up robot
+        debug_print('Eve Begin')
         self.set_polarity('inversed')
         self.ramp_up_sp = 2000
         self.ramp_down_sp = 2000
@@ -584,9 +585,12 @@ class EveTank(MoveTank):
         #self.aaasetup()
         self.turnblock(10,90)
         #self.aaasetup()
+        self.moveblock(20,20,530)
+        self.moveblock(20,20,-100)
+        self.turnblock(10,-45)
         self.line_finder(10,10,'r','b')
         #self.aaasetup()
-        self.turnblock(5,-60)
+        self.moveblock(30,10,90)
     '''
     how to write mission into myblocks
     ex.
@@ -597,4 +601,4 @@ class EveTank(MoveTank):
         missions.mission_bridge(self)
 
     def mission_unload_cargo_plane(self):
-        missions.mission_unload_cargo_plane
+        missions.mission_unload_cargo_plane(self)

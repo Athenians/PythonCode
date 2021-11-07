@@ -41,7 +41,7 @@ def mission_bridge(eve):
             follow_left_edge= True,
             sleep_time=0.002,
             #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
-            follow_for = follow_for_distance,distance = 1300
+            follow_for = follow_for_distance,distance = 1000
             #follow_for=follow_for_forever
             #follow_for=follow_for_ms,  ms=4500
         
@@ -54,11 +54,25 @@ def mission_bridge(eve):
     eve.turnblock(15,110)
 
     #food package dropped during this
+    '''
+    x = threading.Thread(target = eve.motor_mover, args = (45,9,eve.turret,) )
+    y = threading.Thread(target = eve.motor_mover, args = (15,1.07,eve.attach,))
+
+    x.start()
+    y.start()
+
+    x.join()
+    y.join()
+    '''
+    eve.motor_mover(45,9,eve.turret)
+    eve.motor_mover(15,1.0,eve.attach)
     eve.moveblock(15,15,380)
-    eve.motor_mover(45,12,eve.turret)
-    eve.motor_mover(10,0.7,eve.attach)
-    eve.motor_mover(45,-12,eve.turret)
-    eve.motor_mover(10,0.25,eve.attach)
+    eve.moveblock(20,20,-400)
+    eve.motor_mover(55,-4,eve.turret)
+    eve.motor_mover(7,0.17,eve.attach)
+    eve.moveblock(20,20,490)
+    eve.motor_mover(45,-5,eve.turret)
+    eve.motor_mover(15,-1.17,eve.attach)
 
     '''
     eve.turnblock(15,178)
@@ -86,19 +100,19 @@ def mission_bridge(eve):
         raise
         '''
 
-   # eve.moveblock(20,20,400)
+    #eve.moveblock(20,20,-200)
+    eve.turnblock(10,90)
 
 def mission_unload_cargo_plane(eve):
     eve.aaasetup()
     eve.calibrategs()
-    eve.moveblock(10,10,1000)
+    eve.motor_mover(45,2.5,eve.turret)
+    eve.moveblock(15,15,625)
+    eve.motor_mover(15,2.2,eve.attach)
+    eve.aaasetup()
+    eve.motor_mover(15,-2.2,eve.attach)
+    eve.motor_mover(45,-2.5,eve.turret)
+    eve.moveblock(10,10,-70)
     eve.turnblock(10,90)
+    eve.moveblock(30,30,-500)
 
-
-
-    
-    eve.motor_mover(10,0.75,eve.turret)
-    eve.turnblock(10,20)
-    eve.moveblock(10,10,-280)
-    eve.turnblock(10,-145)
-    eve.moveblock(30,30,550)

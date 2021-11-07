@@ -50,7 +50,6 @@ def Main():
 
     debug_print('Main  Start')
     Wheel_Dia = 100.3           #68 for other robot
-    
     eve = EveTank(
             left_motor_port = OUTPUT_D,
             right_motor_port = OUTPUT_B,
