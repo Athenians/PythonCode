@@ -141,4 +141,4 @@ def mission_cargo_circle(eve):
     eve.moveblock(15,15,-120)
     eve.turnblock(15,60)
     eve.aaasetup()
-    eve.moveblock(35,35,-1451)
+    eve.moveblock(35,35,-1450)
