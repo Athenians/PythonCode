@@ -579,7 +579,6 @@ class EveTank(MoveTank):
         self.stop()
     
     def find_line_2(self):
-        self.calibrategs()
         #self.aaasetup()
         self.moveblock(20,20,450)
         #self.aaasetup()

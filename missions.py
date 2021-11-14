@@ -51,94 +51,49 @@ def mission_bridge(eve):
         raise
 
     eve.line_finder(10,10,'l','w')
-    eve.aaasetup()
     eve.moveblock(5,5,35)
     eve.moveblock(5,5,-35)
-    eve.aaasetup()
     eve.turnblock(15,110)
-    eve.aaasetup()
     #food package dropped during this
-    '''
-    x = threading.Thread(target = eve.motor_mover, args = (45,9,eve.turret,) )
-    y = threading.Thread(target = eve.motor_mover, args = (15,1.07,eve.attach,))
-
-    x.start()
-    y.start()
-
-    x.join()
-    y.join()
-    '''
-    eve.motor_mover(45,6,eve.turret)
-    eve.motor_mover(15,0.7,eve.attach)
+    eve.aaasetup()
+    eve.motor_mover(45,2.55,eve.turret)
+    eve.motor_mover(15,0.85,eve.attach)
     eve.aaasetup()
     eve.moveblock(15,15,380)
-    eve.aaasetup()
-    eve.moveblock(20,20,-400)
-    eve.aaasetup()
-    eve.motor_mover(55,-3,eve.turret)
-    eve.motor_mover(7,0.15,eve.attach)
-    eve.aaasetup()
-    eve.moveblock(20,20,490)
-    eve.aaasetup()
-    eve.motor_mover(45,-3,eve.turret)
-    eve.motor_mover(15,-0.85,eve.attach)
-
-    '''
-    eve.turnblock(15,178)
-    eve.aaasetup()
-    #add attachment or stick to drop bridge
-    eve.left_motor.position = 0
-    eve.right_motor.position = 0 
-    try:
-        eve.athfollow_line(
-            #kp=2, ki=0.060, #kd=3,
-            kp=3, ki=0.00, kd=0,         # use this for change of directions speed = 10       
-            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(12),
-            cs_for_line = eve.csl,            
-            follow_left_edge=False,
-            sleep_time=0.002,
-            #follow_for=follow_until_line,cs_for_until = eve.csl, wb = 'b',tolerence=2
-            follow_for = follow_for_distance,distance = 1450
-            #follow_for=follow_for_forever
-            #follow_for=follow_for_ms,  ms=4500
-        
-        )
-    except LineFollowErrorTooFast:
-        eve.stop() 
-        '''
-
-    #eve.moveblock(20,20,-200)
+    eve.moveblock(20,20,-500)
+    eve.motor_mover(55,-1,eve.turret)
+    eve.motor_mover(7,0.30,eve.attach)
+    eve.moveblock(20,20,510)
+    eve.moveblock(20,20,-40)
+    eve.motor_mover(15,-0.5,eve.attach)
+    eve.motor_mover(45,-1.5,eve.turret)
     eve.turnblock(10,90)
+    eve.moveblock(15,15,260)
+    eve.turnblock(10,40)
+    eve.moveblock(15,15,475)
+    eve.turnblock(10,135)
 
+ 
 def mission_unload_cargo_plane(eve):
     eve.aaasetup()
-    eve.calibrategs()
     eve.motor_mover(40,2.2,eve.turret)
     eve.moveblock(15,15,600)
     eve.motor_mover(15,1.5,eve.attach)
-    #eve.aaasetup()
     eve.motor_mover(15,-1.5,eve.attach)
     eve.motor_mover(45,-2.2,eve.turret)
     eve.moveblock(10,10,-80)
-    #eve.aaasetup()
-    #eve.turnblock(10,45)
-    #eve.motor_mover(15,1.0,eve.attach)
-    #eve.moveblock(15,15,100)
-    #eve.motor_mover(15,-1.0,eve.attach)
-    #eve.moveblock(15,15,-90)
     eve.turnblock(10,90)
     eve.moveblock(30,30,-500)
 
 
 def mission_cargo_circle(eve):
     eve.aaasetup()
-    eve.calibrategs()
     eve.moveblock(15,15,225)
     eve.turnblock(5,90)
     eve.moveblock(15,15,1050)
     eve.moveblock(0,30,130)
     eve.moveblock(15,15,-120)
     eve.turnblock(15,60)
-    eve.aaasetup()
     eve.moveblock(35,35,-1450)
+
+
