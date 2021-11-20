@@ -57,8 +57,8 @@ def Main():
             csl_port = INPUT_1, 
             csr_port = INPUT_4, # left and right color sensor
             gy_port = INPUT_2,
-            turret_port = OUTPUT_A,
-            attach_port = OUTPUT_C,
+            turret_port = OUTPUT_C,
+            attach_port = OUTPUT_A,
             )
 
 
