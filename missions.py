@@ -53,7 +53,7 @@ def mission_bridge(eve):
     eve.line_finder(10,10,'l','w')
     eve.moveblock(5,5,35)
     eve.moveblock(5,5,-35)
-    eve.turnblock(15,115)
+    eve.turnblock(15,113)
     #food package dropped during this
     eve.motor_mover(55,3.85,eve.turret)
     eve.motor_mover(25,0.97,eve.attach)
