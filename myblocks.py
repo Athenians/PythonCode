@@ -117,8 +117,8 @@ class EveTank(MoveTank):
             Wheel_Dia,
             csl_port , csr_port, # left and right color sensor
             gy_port,
-            turret_port,
-            attach_port,
+            left_medium_port,
+            right_medium_port,
             desc=None, motor_class=LargeMotor,
             lcd= Console(font="Lat15-TerminusBold16")):
         """
@@ -136,8 +136,8 @@ class EveTank(MoveTank):
 
     
         #set up small motors
-        self.turret = Motor(turret_port)
-        self.attach = Motor(attach_port)
+        self.turret = Motor(left_medium_port)
+        self.attach = Motor(right_medium_port)
 
         #set up gyro sensor
         self.gyro = GyroSensor(gy_port)
