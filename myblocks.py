@@ -130,7 +130,7 @@ class EveTank(MoveTank):
 
         # set up robot
         debug_print('Eve Begin')
-        self.set_polarity('inversed')
+        #self.set_polarity('inversed')
         self.ramp_up_sp = 2000
         self.ramp_down_sp = 2000
 

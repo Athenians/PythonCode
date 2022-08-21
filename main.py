@@ -49,14 +49,14 @@ def Main():
     set_font('Lat15-Terminus24x12')
 
     debug_print('Main  Start')
-    Wheel_Dia = 51           #68 for other robot
+    Wheel_Dia = 103.8           #68 for other robot
     eve = EveTank(
             left_motor_port = OUTPUT_B,
             right_motor_port = OUTPUT_C,
             Wheel_Dia = Wheel_Dia,
             csl_port = INPUT_2, 
             csr_port = INPUT_3, # left and right color sensor
-            gy_port = INPUT_1,
+            gy_port = INPUT_4,
             left_medium_port = OUTPUT_D,
             right_medium_port = OUTPUT_A,
             )
@@ -73,3 +73,18 @@ def Main():
 if __name__ == '__main__':
     Main()
 
+
+
+'''
+dans robot info
+wheel diameter = 81.6
+left_motor_port = OUTPUT_C,
+            right_motor_port = OUTPUT_D,
+            Wheel_Dia = Wheel_Dia,
+            csl_port = INPUT_2, 
+            csr_port = INPUT_1, # left and right color sensor
+            gy_port = INPUT_3,
+            left_medium_port = OUTPUT_B,
+            right_medium_port = OUTPUT_A,
+
+'''
