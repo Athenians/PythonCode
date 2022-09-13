@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 
-
-from re import X
-from tkinter import SW
-from turtle import left, right
 from ev3dev2.sound import Sound
 
 from ev3dev2.motor import MoveTank
@@ -133,7 +129,7 @@ class EveTank(MoveTank):
 
         # set up robot
         debug_print('Eve Begin')
-        self.set_polarity('inversed')
+        #self.set_polarity('inversed')
         self.ramp_up_sp = 2000
         self.ramp_down_sp = 2000
 
@@ -361,6 +357,7 @@ class EveTank(MoveTank):
         debug_print('moveblock rotations = ' + str(rotations))
 
         self.on_for_rotations(lspeed,rspeed,rotations) 
+    '''
     def mturnblock(self, lspeed, rspeed, direction==left or direction==right, degrees,wheels=sw or wheels=dw, brake=True, block=True):
 
         self.left_motor.reset
@@ -390,7 +387,7 @@ class EveTank(MoveTank):
         debug_print('mturnblock wheels = sw or wheels = dw = ' + str(wheels=dw or wheels=sw))
 
         self.on_for_rotations(lspeed,rspeed,rotations)
-
+    '''
     def turnblock(self, speed, target_angle, brake=True, error_margin=1, sleep_time=0.002):
         """
         turnblock
