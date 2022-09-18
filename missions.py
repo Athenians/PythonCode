@@ -21,7 +21,14 @@ import time
 import threading
 
 def mission_bridge(eve):
-    eve.moveblock(35,35,2000)
+    eve.calibrategs()
+    eve.turnblock(5,360)
+    #time.sleep(.1)
+    #eve.turnblock(5,90)
+    #time.sleep(.1)
+    #eve.turnblock(5,90)
+    #time.sleep(.1)
+    #eve.turnblock(5,90)
     #eve.mturnblock (eve, 10, -10, direction = right,degrees=90, wheels = dw)
     '''
     eve.moveblock(17,17,430)
