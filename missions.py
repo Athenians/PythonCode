@@ -22,10 +22,8 @@ import threading
 
 def mission_bridge(eve):
     eve.calibrategs()
-    eve.turnblock(5,178) 
-    time.sleep(1)  
-    gsnow = eve._gyro.angle     
-    print('turnblock End Angle ' + str(gsnow))
+    eve.mturnblock(10,-10,180) 
+    time.sleep(1)
 
     #eve.turnblock(5,90)
     #time.sleep(.1)

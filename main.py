@@ -49,7 +49,7 @@ def Main():
     set_font('Lat15-Terminus24x12')
 
     debug_print('Main  Start')
-    Wheel_Dia = 100.3           #68 for other robot
+    Wheel_Dia = 103.8           #68 for other robot
     eve = EveTank(
             left_motor_port = OUTPUT_B,
             right_motor_port = OUTPUT_C,

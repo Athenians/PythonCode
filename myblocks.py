@@ -357,37 +357,28 @@ class EveTank(MoveTank):
         debug_print('moveblock rotations = ' + str(rotations))
 
         self.on_for_rotations(lspeed,rspeed,rotations) 
-    '''
-    def mturnblock(self, lspeed, rspeed, direction==left or direction==right, degrees,wheels=sw or wheels=dw, brake=True, block=True):
+    
+    def mturnblock(self, lspeed, rspeed, x, error_margin=1, sleep_time=0.001):
 
         self.left_motor.reset
         self.right_motor.reset
 
-        if lspeed==0 or rspeed==0:
-            sw
-        else:
-            dw
-
-        if lspeed = -#:
-            direction=left
-        if rspeed = -#
-            direction=right
-
-        degrees=X
-        if wheels == dw:
-            rotations = X/360
-        if wheels == sw:
-            rotations = X/360 * 2
+        degrees=x 
+        rotations= x/self.Circumference 
 
         debug_print('mturnblock lspeed = ' + str(lspeed))
         debug_print('mturnblock rspeed = ' + str(rspeed))
         debug_print('mturnblock degrees = ' + str(degrees))
-        debug_print('mturnblock direction = ' + str(direction))
         debug_print('mturnblock rotations = ' + str(rotations))
-        debug_print('mturnblock wheels = sw or wheels = dw = ' + str(wheels=dw or wheels=sw))
+        gsnow = self._gyro.angle
+        debug_print('turnblock Start Angle ' + str(gsnow))
 
         self.on_for_rotations(lspeed,rspeed,rotations)
-    '''
+
+        gsnow = self._gyro.angle
+        debug_print('turnblock End Angle ' + str(gsnow))
+
+    
     def turnblock(self, speed, target_angle, brake=True, error_margin=1, sleep_time=0.0005):
         """
         turnblock
