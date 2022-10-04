@@ -22,38 +22,4 @@ import threading
 
 def mission_bridge(eve):
     eve.calibrategs()
-    eve.mturnblock(10,-10,180) 
-    time.sleep(1)
-
-    #eve.turnblock(5,90)
-    #time.sleep(.1)
-    #eve.turnblock(5,90)
-    #time.sleep(.1)
-    #eve.turnblock(5,90)
-    #eve.mturnblock (eve, 10, -10, direction = right,degrees=90, wheels = dw)
-    '''
-    eve.moveblock(17,17,430)
-    eve.moveblock(5,-5,)
-    eve.line_finder(20,20)
-    eve.left_motor.position = 0
-    eve.right_motor.position = 0 
-    try:
-        eve.athfollow_line(
-            #kp=2, ki=0.060, #kd=3,
-            kp=4, ki=0.06, kd=3,         # use this for change of directions speed = 10       
-            #kp=2, ki=0.000, #kd=0,           # use this for speed=20 on straight lines
-            speed=SpeedPercent(5),
-            cs_for_line = eve.csl,            
-            follow_left_edge=True,
-            sleep_time=0.002,
-            follow_for=follow_until_line,cs_for_until = eve.csr, wb = 'b',tolerence=2
-            #follow_for = follow_for_distance,distance = 230
-            #follow_for=follow_for_forever
-            #follow_for=follow_for_ms,  ms=4500
-        
-        )
-    except LineFollowErrorTooFast:
-        eve.stop() 
-        raise
-    eve.moveblock(14,14,120)
-    '''
+    eve.moveblock(25,25,550)
