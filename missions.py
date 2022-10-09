@@ -23,5 +23,11 @@ import threading
 def mission_bridge(eve):
     eve.calibrategs()
     eve.moveblock(25,25,550)
-
-    
+    eve.moveblock(-25,-25,70)
+    eve.moveblock(-5,5,45)
+    eve.moveblock(30,30,410)
+    eve.moveblock(5,-5,90)
+    eve.moveblock(35,35,80)
+    eve.moveblock(-15,-15,30)
+    eve.moveblock(15,15,35)
+    eve.moveblock(-15,-15,30)
