@@ -36,7 +36,7 @@ def mission_bridge(eve):
         time.sleep(0.35)
         eve.moveblock(-20,-20,50)
 
-    #eve.moveblock(20,20,50)
+     #eve.moveblock(20,20,50)
     #time.sleep(0.35)
     #eve.aaasetup()
     #eve.moveblock(-20,-20,50)
