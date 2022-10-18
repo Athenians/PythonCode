@@ -21,8 +21,10 @@ import time
 import threading
 
 def mission_bridge(eve):
+    eve.aaasetup()
     eve.calibrategs()
-    eve.moveblock(25,25,550)
+    #eve.motor_mover(60,-0.77,eve.attach)
+    eve.moveblock(25,25,505)
     eve.moveblock(-35,-35,70)
     eve.moveblock(-10,10,45)
     #eve.aaasetup()

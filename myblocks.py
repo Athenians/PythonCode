@@ -279,7 +279,7 @@ class EveTank(MoveTank):
     def up(self,state):
         if state:
             debug_print('Up button pressed')
-            self.attach.on(speed=10)
+            self.attach.on(speed=20)
             xdisplay = 'Attach: ' + str(self.attach.position) + "Turret: " + str(self.turret.position)
             debug_print(xdisplay)
             self.lcd.text_at(xdisplay, column = 2,row= 2,inverse=False) 
@@ -292,7 +292,7 @@ class EveTank(MoveTank):
     def down(self,state):
         if state:
             debug_print('Down button pressed')
-            self.attach.on(speed=-10)
+            self.attach.on(speed=-20)
         else:
             debug_print('Down button released')
             self.attach.off()
