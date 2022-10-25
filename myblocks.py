@@ -172,7 +172,7 @@ class EveTank(MoveTank):
         
         with open("csvalues.pk" , 'rb') as fi:
             cs_values = pickle.load(fi)
-        
+
         self.csl.min = cs_values[0]
         self.csl.mid = cs_values[1]
         self.csl.max = cs_values[2]
@@ -188,7 +188,7 @@ class EveTank(MoveTank):
             + ' right mid: ' + str(self.csr.mid)
             + ' right max: ' + str(self.csr.max))
         
-
+        
 
         #set up wheel data
         self.wheel_Dia = Wheel_Dia
