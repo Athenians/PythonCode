@@ -25,7 +25,7 @@ def mission_bridge(eve):
     eve.calibrategs()
     #eve.motor_mover(60,-0.77,eve.attach)
     eve.moveblock(25,25,505)
-    eve.moveblock(-35,-35,70)
+    eve.moveblock(-35,-35,90)
     eve.moveblock(-10,10,45)
     #eve.aaasetup()
     eve.moveblock(40,40,410)
@@ -49,7 +49,12 @@ def mission_bridge(eve):
     '''
     eve.line_finder(20,20,'r','w')
     eve.aaasetup()
-    eve.moveblock(10,-10,45)
+    eve.moveblock(-10,-22.25,164)
      #time.sleep(0.35)
     eve.aaasetup()
-    eve.moveblock(15,15,120)
+    eve.moveblock(15,13,257)
+    eve.aaasetup()
+    eve.motor_mover(20,1.5,eve.attach)
+    eve.moveblock(5,5,20)
+    eve.motor_mover(20,-1.5,eve.attach)
+    
