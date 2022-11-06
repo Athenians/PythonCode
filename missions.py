@@ -20,7 +20,7 @@ import sys
 import time
 import threading
 
-def mission_bridge(eve):
+def mission_windmill(eve):
     eve.aaasetup()
     eve.calibrategs()
     #eve.motor_mover(60,-0.77,eve.attach)
@@ -58,3 +58,25 @@ def mission_bridge(eve):
     eve.moveblock(-5,-5,50)
     eve.motor_mover(20,-1.5,eve.attach)
     eve.moveblock(-45,-45,1000)
+    eve.aaasetup()
+
+def mission_high_five(eve):
+    eve.moveblock(15,15,310)
+    eve.moveblock(-10,10,90)
+    #eve.aaasetup()
+    eve.moveblock(40,40,630)
+    #eve.aaasetup()
+    eve.line_finder(10,10,'l','w')
+    eve.moveblock(10,-10,53)
+    #eve.aaasetup()
+    eve.moveblock(20,20,260)
+    eve.aaasetup()
+    eve.moveblock(10,-10,37)
+    eve.aaasetup()
+    eve.moveblock(15,15,160)
+    eve.aaasetup()
+    eve.moveblock(-10,10,90)
+    eve.moveblock()
+    #eve.moveblock(5,25,54)
+
+

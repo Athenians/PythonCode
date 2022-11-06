@@ -189,7 +189,6 @@ class EveTank(MoveTank):
             + ' right max: ' + str(self.csr.max))
         
         
-
         #set up wheel data
         self.wheel_Dia = Wheel_Dia
         self.Circumference = Wheel_Dia * math.pi
@@ -242,7 +241,6 @@ class EveTank(MoveTank):
         cs_values =  [self.csl.min,self.csl.mid,self.csl.max,
         self.csr.min,self.csr.mid,self.csr.max]
 
-        #delete the pickle file
 
         with open("csvalues.pk",'wb') as fi:
             pickle.dump(cs_values, fi)
@@ -615,16 +613,16 @@ class EveTank(MoveTank):
     def mission_Step_Counter(self):
         missions.mission_Step_Counter(self)
     '''
-    def mission_bridge(self):
-        missions.mission_bridge(self)
+    def mission_windmill(self):
+        missions.mission_windmill(self)
 
-    def mission_unload_cargo_plane(self):
-        missions.mission_unload_cargo_plane(self)
+    def mission_high_five(self):
+        missions.mission_high_five(self)
 
     def mission_cargo_circle(self):
         missions.mission_cargo_circle(self)
 
     def all_missions(self):
-        missions.mission_unload_cargo_plane(self)
+        missions.mission_high_five(self)
         missions.mission_cargo_circle(self)
-        missions.mission_bridge(self)
+        missions.mission_windmill(self)
