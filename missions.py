@@ -58,7 +58,9 @@ def mission_windmill(eve):
     eve.moveblock(-5,-5,50)
     eve.motor_mover(20,-1.5,eve.attach)
     eve.moveblock(-45,-45,1000)
+    eve.moveblock(-35,-10,100)
     eve.aaasetup()
+
 
 def mission_high_five(eve):
     eve.moveblock(15,15,310)
@@ -67,16 +69,23 @@ def mission_high_five(eve):
     eve.moveblock(40,40,630)
     #eve.aaasetup()
     eve.line_finder(10,10,'l','w')
-    eve.moveblock(10,-10,53)
+    eve.moveblock(10,0,180)
     #eve.aaasetup()
-    eve.moveblock(20,20,260)
+    eve.moveblock(20,20,45)
+    eve.moveblock(-20,-20,125)
+    eve.moveblock(0,10,180)
+    eve.moveblock(45,45,870)
     eve.aaasetup()
-    eve.moveblock(10,-10,37)
-    eve.aaasetup()
-    eve.moveblock(15,15,160)
-    eve.aaasetup()
-    eve.moveblock(-10,10,90)
-    eve.moveblock()
-    #eve.moveblock(5,25,54)
+
+def mission_oil_platform(eve):
+    eve.moveblock(15,15,520)
+    for x in range (3): 
+        #eve.aaasetup
+        eve.moveblock(20,20,40)
+        time.sleep(0.35)
+        eve.moveblock(-20,-20,40)
+
+
+
 
 
