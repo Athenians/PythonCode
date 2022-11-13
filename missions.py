@@ -63,16 +63,14 @@ def mission_windmill(eve):
 
 
 def mission_high_five(eve):
-    eve.moveblock(15,15,310)
-    eve.moveblock(-10,10,90)
-    #eve.aaasetup()
+    eve.aaasetup()
     eve.moveblock(40,40,630)
     #eve.aaasetup()
-    eve.line_finder(10,10,'l','w')
+    eve.line_finder(10,10,'r','b')
     eve.moveblock(10,0,180)
     #eve.aaasetup()
-    eve.moveblock(20,20,45)
-    eve.moveblock(-20,-20,125)
+    eve.moveblock(20,20,55)
+    eve.moveblock(-20,-20,200)
     eve.moveblock(0,10,180)
     eve.moveblock(45,45,870)
     eve.aaasetup()
