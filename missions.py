@@ -12,13 +12,26 @@ from ev3dev2.motor import SpeedDPS, SpeedRPM, SpeedRPS, SpeedDPM, SpeedPercent, 
 #from ev3dev2.sensor.lego import TouchSensor, ColorSensor, GyroSensor
 from ev3dev2.led import Leds
 from myblocks import EveTank, follow_until_line, follow_for_distance
-
+from globals import debug_print
 #import logging as log
 
 import os
 import sys
 import time
 import threading
+
+
+
+def all_missions(eve):
+    debug_print('About to run mission_wndmill')
+    mission_windmill(eve)
+
+    debug_print('About to run mission_high_five')
+    mission_high_five(eve)
+
+    debug_print('About to run mission_oil_platform')
+    mission_oil_platform(eve)
+
 
 def mission_windmill(eve):
     eve.aaasetup()
@@ -59,7 +72,9 @@ def mission_windmill(eve):
     eve.motor_mover(20,-1.5,eve.attach)
     eve.moveblock(-45,-45,1000)
     eve.moveblock(-35,-10,100)
-    eve.aaasetup()
+    eve.motor_mover(10,1.5,eve.attach)
+
+    #eve.aaasetup()
 
 
 def mission_high_five(eve):

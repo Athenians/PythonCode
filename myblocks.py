@@ -623,6 +623,4 @@ class EveTank(MoveTank):
         missions.mission_oil_platform(self)
 
     def all_missions(self):
-        missions.mission_high_five(self)
-        missions.mission_oil_platform(self)
-        missions.mission_windmill(self)
+        missions.all_missions(self)
