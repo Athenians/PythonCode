@@ -169,7 +169,7 @@ class EveTank(MoveTank):
         self.sound = Sound()
         #Loads color sensor values saved from last calibration
         #before loading file make sure exists
-        
+        '''
         with open("csvalues.pk" , 'rb') as fi:
             cs_values = pickle.load(fi)
 
@@ -187,7 +187,7 @@ class EveTank(MoveTank):
         debug_print('right min: ' + str(self.csr.min)
             + ' right mid: ' + str(self.csr.mid)
             + ' right max: ' + str(self.csr.max))
-        
+        '''
         
         #set up wheel data
         self.wheel_Dia = Wheel_Dia
@@ -613,9 +613,9 @@ class EveTank(MoveTank):
     def mission_Step_Counter(self):
         missions.mission_Step_Counter(self)
     '''
-    def mission_windmill(self):
-        missions.mission_windmill(self)
-
+    def mission_pickle_dragon(self):
+        missions.mission_pickle_dragon(self)
+    '''
     def mission_high_five(self):
         missions.mission_high_five(self)
 
@@ -624,3 +624,4 @@ class EveTank(MoveTank):
 
     def all_missions(self):
         missions.all_missions(self)
+    '''
