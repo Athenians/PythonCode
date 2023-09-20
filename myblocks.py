@@ -615,13 +615,14 @@ class EveTank(MoveTank):
     '''
     def mission_pickle_dragon(self):
         missions.mission_pickle_dragon(self)
-    '''
-    def mission_high_five(self):
-        missions.mission_high_five(self)
+    
+    def M02(self):
+        missions.M02(self)
 
-    def mission_oil_platform(self):
+    '''
+    #def mission_oil_platform(self):
         missions.mission_oil_platform(self)
 
-    def all_missions(self):
+    #def all_missions(self):
         missions.all_missions(self)
     '''

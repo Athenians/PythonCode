@@ -22,10 +22,17 @@ import threading
 
 def mission_pickle_dragon(eve):
     eve.aaasetup()
-    eve.motor_mover(15,1,eve.attach)
+    eve.motor_mover(50,1,eve.attach)
     eve.moveblock(30,30,190)
-    eve.moveblock(-30,30,30)
+    eve.moveblock(-10,10,30)
     eve.moveblock(30,30,130)
-    eve.moveblock(30,-30,30)
-    eve.moveblock(-60,-60,320)
-    eve.motor_mover(20,-1,eve.attach)
+    eve.moveblock(10,-10,30)
+    eve.moveblock(-40,-40,320)
+
+def M02(eve):
+    eve.aaasetup()    
+    eve.motor_mover(40,1.25,eve.attach)
+    eve.moveblock(20,20,600)
+    for x in range (2):
+        eve.motor_mover(20,-1.5,eve.attach)
+        eve.motor_mover(20,1.5,eve.attach)

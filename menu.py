@@ -132,7 +132,7 @@ class Menu(object):
         self.menu.append(MenuItem(1,0,'P','AAASetup','aaasetup'))
         self.menu.append(MenuItem(1,1,'P','Calibratcs','calibratecs'))
         self.menu.append(MenuItem(2,0,'P','Pickle_Dragon','mission_pickle_dragon'))
-        self.menu.append(MenuItem(2,1,'P','High-five','mission_high_five'))
+        self.menu.append(MenuItem(2,1,'P','M02','M02'))
         self.menu.append(MenuItem(2,2,'P','oil_platform','mission_oil_platform'))
     
 
