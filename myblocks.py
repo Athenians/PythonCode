@@ -619,10 +619,12 @@ class EveTank(MoveTank):
     def M02(self):
         missions.M02(self)
 
-    '''
-    #def mission_oil_platform(self):
-        missions.mission_oil_platform(self)
+    
+    def M03(self):
+        missions.M03(self)
 
+    
+    '''
     #def all_missions(self):
         missions.all_missions(self)
     '''
