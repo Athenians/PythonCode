@@ -77,7 +77,7 @@ def M03(eve):
     
     eve.aaasetup()
 
-    x = threading.Thread(target = eve.moveblock, args = (20,20,480))
+    x = threading.Thread(target = eve.moveblock, args = (20,20,450))
     y = threading.Thread(target = eve.motor_mover, args = (50,1.5,eve.attach))
 
     x.start()
@@ -88,14 +88,26 @@ def M03(eve):
 
     eve.motor_mover(50,-1.5,eve.attach)
 
-    eve.moveblock(-20,-20,95)
-    eve.moveblock(-20,20,40)
+    eve.moveblock(-10,-10,105)
+    eve.moveblock(-10,10,40)
     eve.motor_mover(50,3,eve.attach)
-    eve.moveblock(-20,20,10)
-    eve.moveblock(20,20,280)
+
+    eve.moveblock(20,20,300)
     eve.moveblock(20,30,300)
     eve.moveblock(20,20,130)
-    eve.aaasetup()
-    eve.motor_mover(20,-2.5,eve.attach)
-    eve.motor_mover(40,2,eve.attach)
+    eve.motor_mover(20,-2.75,eve.attach)
+    eve.motor_mover(40,2.75,eve.attach)
+    
+    
+    x = threading.Thread(target = eve.moveblock, args = (20,-20,55))
+    y = threading.Thread(target = eve.motor_mover, args = (40,-2.75,eve.attach))
+
+    x.start()
+    y.start()
+
+    x.join()
+    y.join()
+    
+    eve.moveblock(20,20,360)
+    
     
