@@ -87,14 +87,13 @@ def M03(eve):
     y.join()
 
     eve.motor_mover(50,-1.5,eve.attach)
-
     eve.moveblock(-10,-10,105)
-    eve.moveblock(-10,10,40)
+    eve.moveblock(-10,10,30)
     eve.motor_mover(50,3,eve.attach)
-
-    eve.moveblock(20,20,300)
-    eve.moveblock(20,30,300)
-    eve.moveblock(20,20,130)
+    eve.moveblock(-10,10,10)
+    eve.moveblock(20,20,320)
+    eve.moveblock(20,30,330)
+    eve.moveblock(20,20,90)
     eve.motor_mover(20,-2.75,eve.attach)
     eve.motor_mover(40,2.75,eve.attach)
     
@@ -109,5 +108,6 @@ def M03(eve):
     y.join()
     
     eve.moveblock(20,20,360)
+    eve.moveblock(70,-70,175)
     
     

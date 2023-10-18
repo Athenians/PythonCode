@@ -348,11 +348,11 @@ class EveTank(MoveTank):
 
         rotations = distance / self.Circumference
 
-        debug_print('moveblock lspeed = ' + str(lspeed))
-        debug_print('moveblock rspeed = ' + str(rspeed))
-        debug_print('moveblock distance = ' + str(distance))
-        debug_print('moveblock Circumference = ' + str(self.Circumference))
-        debug_print('moveblock rotations = ' + str(rotations))
+        # debug_print('moveblock lspeed = ' + str(lspeed))
+        # debug_print('moveblock rspeed = ' + str(rspeed))
+        # debug_print('moveblock distance = ' + str(distance))
+        # debug_print('moveblock Circumference = ' + str(self.Circumference))
+        # debug_print('moveblock rotations = ' + str(rotations))
 
         self.on_for_rotations(lspeed,rspeed,rotations) 
     
