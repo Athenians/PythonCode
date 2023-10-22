@@ -99,7 +99,7 @@ def M03(eve):
     
     
     x = threading.Thread(target = eve.moveblock, args = (20,-20,55))
-    y = threading.Thread(target = eve.motor_mover, args = (40,-2.75,eve.attach))
+    y = threading.Thread(target = eve.motor_mover, args = (40,-3,eve.attach))
 
     x.start()
     y.start()
@@ -108,6 +108,19 @@ def M03(eve):
     y.join()
     
     eve.moveblock(20,20,360)
-    eve.moveblock(70,-70,175)
+    eve.moveblock(70,-70,170)
+    eve.moveblock(-10,-10,200)
+
+    eve.moveblock(20,40,315)
+    eve.moveblock(30,30,340)
+    eve.moveblock(30,20,300)
+    eve.moveblock(50,50,440)
+
+    def M03(eve):
     
+        eve.moveblock(30,30,370)
+    eve.moveblock(30,20,300)
+    eve.moveblock(30,30,250)
+
+
     
