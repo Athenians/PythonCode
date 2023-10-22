@@ -134,6 +134,7 @@ class Menu(object):
         self.menu.append(MenuItem(2,0,'P','Pickle_Dragon','mission_pickle_dragon'))
         self.menu.append(MenuItem(2,1,'P','M02','M02'))
         self.menu.append(MenuItem(2,2,'P','M03','M03'))
+        self.menu.append(MenuItem(2,3,'P','M04','M04'))
     
 
 

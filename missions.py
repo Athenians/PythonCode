@@ -116,9 +116,10 @@ def M03(eve):
     eve.moveblock(30,20,300)
     eve.moveblock(50,50,440)
 
-    def M03(eve):
-    
-        eve.moveblock(30,30,370)
+def M04(eve):
+    eve.aaasetup()
+   
+    eve.moveblock(30,30,370)
     eve.moveblock(30,20,300)
     eve.moveblock(30,30,250)
 

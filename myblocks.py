@@ -623,6 +623,9 @@ class EveTank(MoveTank):
     def M03(self):
         missions.M03(self)
 
+    def M04(self):
+        missions.M04(self)
+
     
     '''
     #def all_missions(self):
