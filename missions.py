@@ -117,11 +117,14 @@ def M03(eve):
     eve.moveblock(50,50,440)
 
 def M04(eve):
+    # align BN7
     eve.aaasetup()
-   
-    eve.moveblock(30,30,370)
-    eve.moveblock(30,20,300)
-    eve.moveblock(30,30,250)
-
-
+    eve.moveblock(30,30,330)
+    #eve.aaasetup()
+    eve.moveblock(27,40,500)
+    #eve.aaasetup()
+    eve.moveblock(40,40,300)
+    eve.moveblock(40,27,140)
+    #eve.aaasetup()
+    eve.moveblock(-40,-35,200)
     
