@@ -172,7 +172,7 @@ class EveTank(MoveTank):
         '''
         with open("csvalues.pk" , 'rb') as fi:
             cs_values = pickle.load(fi)
-
+        
         self.csl.min = cs_values[0]
         self.csl.mid = cs_values[1]
         self.csl.max = cs_values[2]
@@ -187,8 +187,8 @@ class EveTank(MoveTank):
         debug_print('right min: ' + str(self.csr.min)
             + ' right mid: ' + str(self.csr.mid)
             + ' right max: ' + str(self.csr.max))
-        '''
         
+        '''
         #set up wheel data
         self.wheel_Dia = Wheel_Dia
         self.Circumference = Wheel_Dia * math.pi
@@ -626,7 +626,17 @@ class EveTank(MoveTank):
     def M04(self):
         missions.M04(self)
 
-    
+    def M05(self):
+        missions.M05(self)
+
+    def M06(self):
+        missions.M06(self)
+
+    def M00(self):
+        missions.M00(self)
+
+    def M001(self):
+        missions.M001(self)
     '''
     #def all_missions(self):
         missions.all_missions(self)

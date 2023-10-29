@@ -131,10 +131,15 @@ class Menu(object):
         self.menu.append(MenuItem(0,2,'P','DoIt','all_missions'))
         self.menu.append(MenuItem(1,0,'P','AAASetup','aaasetup'))
         self.menu.append(MenuItem(1,1,'P','Calibratcs','calibratecs'))
-        self.menu.append(MenuItem(2,0,'P','Pickle_Dragon','mission_pickle_dragon'))
+        self.menu.append(MenuItem(2,0,'P','M01','M01'))
         self.menu.append(MenuItem(2,1,'P','M02','M02'))
         self.menu.append(MenuItem(2,2,'P','M03','M03'))
         self.menu.append(MenuItem(2,3,'P','M04','M04'))
+        self.menu.append(MenuItem(2,4,'P','M05','M05'))
+        self.menu.append(MenuItem(2,5,'P','M06','M06'))
+        self.menu.append(MenuItem(2,6,'P','M00','M00'))
+        self.menu.append(MenuItem(2,7,'P','M001','M001'))
+
     
 
 
