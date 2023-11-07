@@ -21,6 +21,8 @@ import time
 import threading
 
 def M001(eve):
+    #align to AN8
+    #puts 2 orange people in the skate park
     eve.aaasetup()
     eve.moveblock(30,30,200)
     eve.line_finder(10,10,'r','b')
@@ -45,13 +47,27 @@ def M001(eve):
     except LineFollowErrorTooFast:
         eve.stop() 
         raise
-    
+    eve.moveblock(40,20,210)
+    eve.motor_mover(50,2,eve.attach)
+    eve.moveblock(-40,-20,220)
+ 
+
+    x = threading.Thread(target = eve.moveblock, args = (-45,-40,680,) )
+    y = threading.Thread(target = eve.motor_mover, args = (50,-2,eve.attach,))
+
+    x.start()
+    y.start()
+
+    x.join()
+    y.join()
 
 def M00(eve):
+    # align to AN7
+    # Put 2 orange people into cinema
     eve.aaasetup()
     eve.moveblock(30,30,380)
     eve.motor_mover(50,1,eve.attach)
-    x = threading.Thread(target = eve.moveblock, args = (30,30,370,) )
+    x = threading.Thread(target = eve.moveblock, args = (-30,-30,370,) )
     y = threading.Thread(target = eve.motor_mover, args = (50,-1,eve.attach,))
 
     x.start()
@@ -62,6 +78,8 @@ def M00(eve):
 
 
 def M01(eve):
+    # align to AN1
+    # M01 3D Cinema
     eve.aaasetup()
 
     x = threading.Thread(target = eve.moveblock, args = (30,30,190,) )
@@ -76,12 +94,22 @@ def M01(eve):
     eve.moveblock(-10,10,30)
     eve.moveblock(30,30,130)
     eve.moveblock(10,-10,30)
-    eve.moveblock(-40,-40,320)
+
+    x = threading.Thread(target = eve.moveblock, args = (-40,-40,320,) )
+    y = threading.Thread(target = eve.motor_mover, args = (50,-1,eve.attach,))
+
+    x.start()
+    y.start()
+
+    x.join()
+    y.join()
 
 def M02(eve):
+    # align to AN8
+    # M02 Theater Change Cinema
     eve.aaasetup()    
 
-    x = threading.Thread(target = eve.moveblock, args = (20,20,600,) )
+    x = threading.Thread(target = eve.moveblock, args = (30,30,600,) )
     y = threading.Thread(target = eve.motor_mover, args = (40,1.25,eve.attach,))
 
     x.start()
@@ -93,10 +121,19 @@ def M02(eve):
     for x in range (2):
         eve.motor_mover(10,-1.1,eve.attach)
         eve.motor_mover(20,1.1,eve.attach)
-    eve.moveblock(-20,-20,600)
+    
+    x = threading.Thread(target = eve.moveblock, args = (-50,-50,620,) )
+    y = threading.Thread(target = eve.motor_mover, args = (40,-1.25,eve.attach,))
 
+    x.start()
+    y.start()
+
+    x.join()
+    y.join()
 
 def M03(eve):
+    # align to AE6 - use jig
+    # M09 Movie Set
     
     eve.aaasetup()
 
@@ -140,8 +177,8 @@ def M03(eve):
     eve.moveblock(50,50,440)
 
 def M04(eve):
-    
-    # align BN12
+    # align to BN7
+    # Museum, Hologram Performer, and Expert Delivery
     eve.aaasetup()
     eve.moveblock(30,30,330,brake=False)
     #eve.aaasetup()
@@ -157,14 +194,48 @@ def M04(eve):
     eve.moveblock(50,50,590)
     
 def M05(eve):
-    #BN12
+    #aim for mission model
+    # M03 craft creator
+    eve.aaasetup()
     eve.moveblock(30,30,370)
     eve.moveblock(-30,-30,370)
 
 def M06(eve):
-    #BN12
+    # align to BN7
+    # put 2 people in the music concert
+    eve.aaasetup()
     eve.moveblock(30,30,330)
     eve.moveblock(27,40,125)
     eve.moveblock(30,30,370)
     eve.moveblock(-70,-70,790,brake=False)
+    
+    
+def all_missions(eve):
+    
+    debug_print('About to run skatepark mission')
+    M001(eve)
+
+    debug_print('About to run theater change cinema')
+    M02(eve)
+    
+    debug_print('About to run cinema')
+    M00(eve)
+
+    debug_print('About to run dragon mission')
+    M01(eve)
+
+    debug_print('About to run movie set missions')
+    M03(eve)
+
+    debug_print('BLUE BASE: About to run the craft creator mission - aim for it')
+    M05(eve)
+
+    debug_print('About to run Museum mission')
+    M04(eve)
+
+    debug_print('About to run Music Concert mission')
+    M06(eve)
+
+    
+
     
