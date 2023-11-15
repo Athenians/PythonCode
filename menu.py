@@ -132,6 +132,7 @@ class Menu(object):
         self.menu.append(MenuItem(1,0,'P','AAASetup','aaasetup'))
         self.menu.append(MenuItem(1,1,'P','Calibratcs','calibratecs'))
         self.menu.append(MenuItem(2,0,'P','M01','M01'))
+        self.menu.append(MenuItem(2,8,'P','M001B','M001B'))
         self.menu.append(MenuItem(2,1,'P','M02','M02'))
         self.menu.append(MenuItem(2,2,'P','M03','M03'))
         self.menu.append(MenuItem(2,3,'P','M04','M04'))

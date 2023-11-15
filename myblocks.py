@@ -21,6 +21,8 @@ from ev3dev2.console import Console
 from ev3dev2.led import Leds
 import pickle 
 import threading
+import os.path
+from genericpath import exists
 
 log = getLogger(__name__)
  
@@ -169,26 +171,31 @@ class EveTank(MoveTank):
         self.sound = Sound()
         #Loads color sensor values saved from last calibration
         #before loading file make sure exists
-        '''
-        with open("csvalues.pk" , 'rb') as fi:
-            cs_values = pickle.load(fi)
         
-        self.csl.min = cs_values[0]
-        self.csl.mid = cs_values[1]
-        self.csl.max = cs_values[2]
-        self.csr.min = cs_values[3]
-        self.csr.mid = cs_values[4]
-        self.csr.max = cs_values[5]
+        if exists("csvalues.pk"):  
+            with open("csvalues.pk" , 'rb') as fi:
+                cs_values = pickle.load(fi)
+
+            self.csl.min = cs_values[0]
+            self.csl.mid = cs_values[1]
+            self.csl.max = cs_values[2]
+            self.csr.min = cs_values[3]
+            self.csr.mid = cs_values[4]
+            self.csr.max = cs_values[5]
+
+            debug_print('left min: ' + str(self.csl.min) 
+                + ' left mid: ' + str(self.csl.mid)
+                + ' left max: ' + str(self.csl.max))
+            debug_print('right min: ' + str(self.csr.min)
+                + ' right mid: ' + str(self.csr.mid)
+                + ' right max: ' + str(self.csr.max))
+            
+        else:
+            debug_print('Pickle file not found')
         
 
-        debug_print('left min: ' + str(self.csl.min) 
-            + ' left mid: ' + str(self.csl.mid)
-            + ' left max: ' + str(self.csl.max))
-        debug_print('right min: ' + str(self.csr.min)
-            + ' right mid: ' + str(self.csr.mid)
-            + ' right max: ' + str(self.csr.max))
         
-        '''
+        
         #set up wheel data
         self.wheel_Dia = Wheel_Dia
         self.Circumference = Wheel_Dia * math.pi
@@ -584,7 +591,7 @@ class EveTank(MoveTank):
                 )
                 if off_line_count >= off_line_count_max:
                     self.stop()
-                    raise LineFollowErrorLostLine("we lost the line")
+                    #LineFollowErrorLostLine("we lost the line")
             else:
                 off_line_count = 0
 
@@ -637,7 +644,10 @@ class EveTank(MoveTank):
 
     def M001(self):
         missions.M001(self)
-    '''
-    #def all_missions(self):
+
+    def M001B(self):
+        missions.M001B(self)
+    
+    def all_missions(self):
         missions.all_missions(self)
-    '''
+    

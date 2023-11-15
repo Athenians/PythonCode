@@ -46,13 +46,13 @@ def M001(eve):
         )
     except LineFollowErrorTooFast:
         eve.stop() 
-        raise
+        #raise
     eve.moveblock(40,20,210)
     eve.motor_mover(50,2,eve.attach)
     eve.moveblock(-40,-20,220)
  
 
-    x = threading.Thread(target = eve.moveblock, args = (-45,-40,680,) )
+    x = threading.Thread(target = eve.moveblock, args = (-45,-40,770,) )
     y = threading.Thread(target = eve.motor_mover, args = (50,-2,eve.attach,))
 
     x.start()
@@ -104,12 +104,31 @@ def M01(eve):
     x.join()
     y.join()
 
+def M001B(eve):
+    eve.aaasetup()    
+
+    eve.moveblock(40,40,310)
+    eve.moveblock(40,32,330)
+    eve.moveblock(25,25,180)
+    eve.motor_mover(50,2,eve.attach)
+    eve.moveblock(-25,-25,180)
+    eve.moveblock(-37,-32,420)
+ 
+    x = threading.Thread(target = eve.moveblock, args = (-45,-45,340,) )
+    y = threading.Thread(target = eve.motor_mover, args = (50,-2,eve.attach,))
+
+    x.start()
+    y.start()
+
+    x.join()
+    y.join()
+
 def M02(eve):
     # align to AN8
     # M02 Theater Change Cinema
     eve.aaasetup()    
 
-    x = threading.Thread(target = eve.moveblock, args = (30,30,600,) )
+    x = threading.Thread(target = eve.moveblock, args = (20,20,600,) )
     y = threading.Thread(target = eve.motor_mover, args = (40,1.25,eve.attach,))
 
     x.start()
