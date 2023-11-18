@@ -132,7 +132,6 @@ class Menu(object):
         self.menu.append(MenuItem(1,0,'P','AAASetup','aaasetup'))
         self.menu.append(MenuItem(1,1,'P','Calibratcs','calibratecs'))
         self.menu.append(MenuItem(2,0,'P','M01','M01'))
-        self.menu.append(MenuItem(2,8,'P','M001B','M001B'))
         self.menu.append(MenuItem(2,1,'P','M02','M02'))
         self.menu.append(MenuItem(2,2,'P','M03','M03'))
         self.menu.append(MenuItem(2,3,'P','M04','M04'))
@@ -140,6 +139,7 @@ class Menu(object):
         self.menu.append(MenuItem(2,5,'P','M06','M06'))
         self.menu.append(MenuItem(2,6,'P','M00','M00'))
         self.menu.append(MenuItem(2,7,'P','M001','M001'))
+        self.menu.append(MenuItem(2,8,'P','M001B','M001B'))
 
     
 

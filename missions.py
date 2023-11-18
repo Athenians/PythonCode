@@ -232,7 +232,7 @@ def M06(eve):
 def all_missions(eve):
     
     debug_print('About to run skatepark mission')
-    M001(eve)
+    M001B(eve)
 
     debug_print('About to run theater change cinema')
     M02(eve)
